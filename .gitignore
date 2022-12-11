@@ -130,3 +130,6 @@ dmypy.json
 
 # sqlite db
 *.db
+
+# IDE related cache
+.idea
