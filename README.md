@@ -1,1 +1,1 @@
-# weakly-supervised-fake-news-classification
+# Weakly Supervised Fake News Classification
