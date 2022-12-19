@@ -1,4 +1,4 @@
-import pandas
+import pandas as pd
 
 from src.read_data.consts import RawDatasets
 from src.read_data.read_raw_data import read_raw_data
@@ -7,7 +7,7 @@ from src.read_data.read_raw_data import read_raw_data
 def train_roberta_classifier(
     dataset: RawDatasets = RawDatasets.ELECTIONS_DATASET_SAMPLED,
 ):
-    df: pandas.DataFrame = read_raw_data(dataset)
+    df: pd.DataFrame = read_raw_data(dataset)
 
     print(df.label.value_counts())
     for idx, row in df.iterrows():
