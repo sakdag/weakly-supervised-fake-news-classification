@@ -131,6 +131,7 @@ dmypy.json
 # sqlite db
 data/raw/*.db
 data/raw/*.csv
+data/example/*.csv
 
 # IDE related cache
 .idea
