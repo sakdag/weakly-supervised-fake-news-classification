@@ -135,3 +135,6 @@ data/example/*.csv
 
 # IDE related cache
 .idea
+
+# model
+*.pkl
