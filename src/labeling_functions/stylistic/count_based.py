@@ -18,7 +18,7 @@ WORD_PER_SENTENCE_THRESHOLD = 24.1
 @labeling_function(pre=[spacy_content])
 def lf_word_per_sentence(x):
     wps = len(x.content.split()) / sum(1 for dummy in x.spacy_content.sents)
-    return Labels.FAKE if wps > WORD_PER_SENTENCE_THRESHOLD  else Labels.REAL
+    return Labels.FAKE if wps > WORD_PER_SENTENCE_THRESHOLD else Labels.REAL
 
 
 def get_average_word_per_sentence(df: pd.DataFrame):
@@ -30,10 +30,13 @@ def get_average_word_per_sentence(df: pd.DataFrame):
     fake_average_wps = get_average_wps_helper(fake_df)
     print(f"Fake average wps: {fake_average_wps}")
 
+
 def get_average_wps_helper(df: pd.DataFrame):
     wps_list = []
     for idx, row in tqdm(df.iterrows()):
-        wps_list.append(len(row.content.split()) / sum(1 for dummy in NLP(row.content).sents))
+        wps_list.append(
+            len(row.content.split()) / sum(1 for dummy in NLP(row.content).sents)
+        )
     return mean(wps_list)
 
 

@@ -14,6 +14,6 @@ XGB = load_xgb(date=datetime.date(2023, 1, 13))
 def lf_xgboost_classifier(x):
     test_data = pd.Series([x.content])
     features = xgboost_tokenizer(ROBERTA_TOKENIZER, test_data)
-    padded_features = sequence.pad_sequences(features, maxlen = 500)
+    padded_features = sequence.pad_sequences(features, maxlen=500)
     xgb_pred = XGB.predict(padded_features)
     return xgb_pred[0]
