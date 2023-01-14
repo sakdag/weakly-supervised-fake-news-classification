@@ -18,7 +18,8 @@ def train_xgb(df: pd.DataFrame, use_saved=True):
     # warnings.filterwarnings(action='ignore', category=UserWarning)
     print(f"Use saved XGB model: {use_saved}")
     xgb_file_name = os.path.join(
-        get_project_root(), f"model/xgboost/xgb-nela-covid-{str(datetime.now().date())}.pkl"
+        get_project_root(),
+        f"model/xgboost/xgb-nela-covid-{str(datetime.now().date())}.pkl",
     )
     if use_saved:
         xgb = pickle.load(open(xgb_file_name, "rb"))

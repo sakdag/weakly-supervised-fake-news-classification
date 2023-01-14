@@ -21,8 +21,8 @@ def lf_adverb_frequency(x):
     for token in x.spacy_content:
         if token.pos_ == "ADV":
             count += 1
-    adverb_per_sentence = (count / sum(1 for dummy in x.spacy_content.sents))
-    return Labels.FAKE if adverb_per_sentence > ADVERB_THRESHOLD  else Labels.REAL
+    adverb_per_sentence = count / sum(1 for dummy in x.spacy_content.sents)
+    return Labels.FAKE if adverb_per_sentence > ADVERB_THRESHOLD else Labels.REAL
 
 
 def get_average_adverb_frequency(df: pd.DataFrame):
@@ -33,6 +33,7 @@ def get_average_adverb_frequency(df: pd.DataFrame):
 
     fake_adv_freq = get_average_adverb_frequency_helper(fake_df)
     print(f"Fake adverb frequency: {fake_adv_freq}")
+
 
 def get_average_adverb_frequency_helper(df: pd.DataFrame):
     adverb_per_sentence_list = []
