@@ -1,12 +1,20 @@
 import enum
 
 
-RAW_DATA_FOLDER_PREFIX = "data/raw"
+DATA_FOLDER_PREFIX = "data"
 
 
-class RawDatasets(enum.Enum):
-    COVID_DATASET = "nela-covid-2020.db"
-    ELECTIONS_DATASET = "nela-elections-2020.db"
-    COVID_DATASET_SAMPLED = "nela-covid-2020-sampled.csv"
-    ELECTIONS_DATASET_SAMPLED = "nela-elections-2022-sampled.csv"
-    SOURCE_LABELS = "source-labels.csv"
+class Datasets(enum.Enum):
+    NELA_COVID_DATASET = "raw/nela/nela-covid-2020.db"
+    NELA_ELECTIONS_DATASET = "raw/nela/nela-elections-2020.db"
+    NELA_COVID_DATASET_SAMPLED = "raw/nela/nela-covid-2020-sampled.csv"
+    NELA_ELECTIONS_DATASET_SAMPLED = "raw/nela/nela-elections-2022-sampled.csv"
+    NELA_SOURCE_LABELS = "raw/nela/source-labels.csv"
+
+    # Feature injected datasets
+    INJECTED_NELA_COVID_DATASET_SAMPLED = (
+        "feature_injected/nela/nela-covid-2020-sampled.csv"
+    )
+    INJECTED_NELA_ELECTIONS_DATASET_SAMPLED = (
+        "feature_injected/nela/nela-elections-2022-sampled.csv"
+    )
