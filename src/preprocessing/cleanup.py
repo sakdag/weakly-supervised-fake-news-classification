@@ -3,9 +3,9 @@ import pandas as pd
 
 def cleanup_df(df: pd.DataFrame):
     copied_df = df.copy(deep=True)
-    copied_df = copied_df[["title", "content", "label"]]
+    copied_df = copied_df[["id", "title", "content", "label"]]
     copied_df.dropna(inplace=True)
-    copied_df = copied_df[copied_df["content"].apply(len) < 5000]
+    # copied_df = copied_df[copied_df["content"].apply(len) < 5000]
     return copied_df.sample(frac=1).reset_index(drop=True)
 
 
