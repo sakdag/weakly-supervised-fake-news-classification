@@ -2,8 +2,7 @@ import os
 
 import pandas
 
-from src.read_data.consts import RawDatasets, RAW_DATA_FOLDER_PREFIX
-import argparse
+from src.preprocessing.consts import RawDatasets, RAW_DATA_FOLDER_PREFIX
 import sqlite3
 import pandas as pd
 

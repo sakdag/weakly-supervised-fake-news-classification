@@ -129,9 +129,8 @@ dmypy.json
 .pyre/
 
 # sqlite db
-data/raw/*.db
-data/raw/*.csv
-data/example/*.csv
+data/**/*.db
+data/**/*.csv
 
 # IDE related cache
 .idea
