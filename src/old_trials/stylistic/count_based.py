@@ -4,9 +4,9 @@ import pandas as pd
 from tqdm import tqdm
 from snorkel.labeling import labeling_function
 
-from src.consts.labels import Labels
+from src.weak_labeling.consts.labels import Labels
 from src.old_trials.preprocessors import spacy_content, NLP
-from src.preprocessing.consts import RawDatasets
+from src.preprocessing.consts import Datasets
 from src.preprocessing.read_raw_data import read_raw_data
 from src.preprocessing.preprocessing_utils import cleanup_df, separate_real_and_fake
 
@@ -39,6 +39,6 @@ def get_average_wps_helper(df: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    covid_df: pd.DataFrame = read_raw_data(RawDatasets.COVID_DATASET_SAMPLED)
+    covid_df: pd.DataFrame = read_raw_data(Datasets.NELA_COVID_DATASET_SAMPLED)
     covid_df_cleaned = cleanup_df(covid_df)
     get_average_word_per_sentence(covid_df_cleaned)
