@@ -129,4 +129,11 @@ dmypy.json
 .pyre/
 
 # sqlite db
-*.db
+data/**/*.db
+data/**/*.csv
+
+# IDE related cache
+.idea
+
+# model
+*.pkl
