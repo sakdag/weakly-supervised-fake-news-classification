@@ -1,0 +1,22 @@
+{
+  "content_words_per_sentence": {
+    "upper": {
+      "side": "fake",
+      "threshold": 28.0
+    },
+    "lower": {
+      "side": "real",
+      "threshold": 20.88
+    }
+  },
+  "content_stopwords_per_sentence": {
+    "upper": {
+      "side": "fake",
+      "threshold": 11.54
+    },
+    "lower": {
+      "side": "real",
+      "threshold": 6.62
+    }
+  }
+}
