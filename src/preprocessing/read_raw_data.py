@@ -90,7 +90,7 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_DATASET):
     print(len(df))
 
     # undersample = RandomUnderSampler(sampling_strategy="majority")
-    undersample = RandomUnderSampler(sampling_strategy={0: 10, 1: 10})
+    undersample = RandomUnderSampler(sampling_strategy={0: 500, 1: 500})
     df, labels = undersample.fit_resample(df, df.label)
     print(len(df))
     print(df.label.value_counts())
