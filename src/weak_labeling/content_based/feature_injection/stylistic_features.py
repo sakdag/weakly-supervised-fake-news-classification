@@ -12,7 +12,7 @@ def append_stylistic_features(df: pd.DataFrame) -> pd.DataFrame:
 
     df[
         [
-            ContentFeatures.CONTENT_WORD_PER_SENTENCE,
+            ContentFeatures.CONTENT_WORDS_PER_SENTENCE,
             ContentFeatures.CONTENT_STOPWORDS_PER_SENTENCE,
         ]
     ] = df.progress_apply(
