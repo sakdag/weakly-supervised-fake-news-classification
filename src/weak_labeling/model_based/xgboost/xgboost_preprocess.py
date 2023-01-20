@@ -3,7 +3,7 @@ import transformers
 from keras_preprocessing import sequence
 from sklearn.model_selection import train_test_split
 
-from src.preprocessing.preprocessing_utils import cleanup_df
+from src.preprocessing.cleanup import cleanup_df
 
 ROBERTA_TOKENIZER = transformers.RobertaTokenizer.from_pretrained(
     "roberta-base-openai-detector"
