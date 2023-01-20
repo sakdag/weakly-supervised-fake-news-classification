@@ -6,10 +6,12 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 from xgboost import XGBClassifier
 
-from src.classifier.xgboost.preprocessing import preprocess_for_xgboost_train
 from src.preprocessing.consts import Datasets
 from src.preprocessing.read_raw_data import read_raw_data
 from src.utils.path_utils import get_project_root
+from src.weak_labeling.model_based.xgboost.xgboost_preprocess import (
+    preprocess_for_xgboost_train,
+)
 
 
 def train_xgb(df: pd.DataFrame, use_saved=True):

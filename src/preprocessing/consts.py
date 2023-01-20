@@ -18,3 +18,8 @@ class Datasets(enum.Enum):
     INJECTED_NELA_ELECTIONS_DATASET_SAMPLED = (
         "feature_injected/nela/nela-elections-2022-sampled.csv"
     )
+
+    # Datasets with probabilistic labels
+    LABELED_NELA_ELECTIONS_DATASET_SAMPLED = (
+        "with_weak_labels/nela/nela-elections-2022-sampled.csv"
+    )
