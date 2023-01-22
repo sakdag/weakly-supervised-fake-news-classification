@@ -7,6 +7,8 @@ from src.weak_labeling.consts.content_features import ContentFeatures
 from src.weak_labeling.content_based.threshold_selection.consts import (
     FEATURE_PERCENTILES,
 )
+from src.weak_labeling.content_based.threshold_selection.utils import get_thresholds_json, \
+    update_and_save_thresholds_json
 
 
 def select_thresholds_for_content_features(injected_df: pd.DataFrame):
@@ -14,6 +16,8 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
 
     real_desc = real_df.describe(percentiles=FEATURE_PERCENTILES)
     fake_desc = fake_df.describe(percentiles=FEATURE_PERCENTILES)
+
+    thresholds = {}
 
     for feature in ContentFeatures.get_all():
         wps_desc_df = pd.concat(
@@ -24,12 +28,25 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
         print(wps_desc_df)
         print("\n\n")
 
-        # TODO: Calculate the thresholds and update json with them
+        upper_side = "fake"
+        upper_threshold = 11.54
+        lower_side = "real"
+        lower_threshold = 6.62
 
-    return real_desc, fake_desc
+        thresholds[feature] = {
+            "upper": {
+                "side": upper_side,
+                "threshold": upper_threshold,
+            },
+            "lower": {
+                "side": lower_side,
+                "threshold": lower_threshold,
+            }
+        }
+
+    update_and_save_thresholds_json(updated_thresholds=thresholds)
 
 
 if __name__ == "__main__":
-    df = read_raw_data(Datasets.INJECTED_NELA_COVID_DATASET_SAMPLED)
+    df = read_raw_data(Datasets.INJECTED_NELA_COVID_2021_DATASET_SAMPLED)
     select_thresholds_for_content_features(df)
-    # save_to_csv(injected_df, Datasets.INJECTED_NELA_COVID_DATASET_SAMPLED)

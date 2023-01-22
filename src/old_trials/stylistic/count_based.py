@@ -39,6 +39,6 @@ def get_average_wps_helper(df: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    covid_df: pd.DataFrame = read_raw_data(Datasets.NELA_COVID_DATASET_SAMPLED)
+    covid_df: pd.DataFrame = read_raw_data(Datasets.NELA_COVID_DATASET_2020_SAMPLED)
     covid_df_cleaned = cleanup_df(covid_df)
     get_average_word_per_sentence(covid_df_cleaned)

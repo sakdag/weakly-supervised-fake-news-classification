@@ -21,7 +21,7 @@ def train_xgb(df: pd.DataFrame, use_saved=True):
     print(f"Use saved XGB model: {use_saved}")
     xgb_file_name = os.path.join(
         get_project_root(),
-        f"model/xgboost/xgb-nela-covid-{str(datetime.now().date())}.pkl",
+        f"model/weak_labeling/xgboost/xgb-nela-covid-{str(datetime.now().date())}.pkl",
     )
     if use_saved:
         xgb = pickle.load(open(xgb_file_name, "rb"))
@@ -48,11 +48,11 @@ def train_xgb(df: pd.DataFrame, use_saved=True):
 
 def load_xgb(date: datetime.date):
     xgb_file_name = os.path.join(
-        get_project_root(), f"model/xgboost/xgb-nela-covid-{str(date)}.pkl"
+        get_project_root(), f"model/weak_labeling/xgboost/xgb-nela-covid-{str(date)}.pkl"
     )
     return pickle.load(open(xgb_file_name, "rb"))
 
 
 if __name__ == "__main__":
-    covid_df: pd.DataFrame = read_raw_data(Datasets.NELA_COVID_DATASET_SAMPLED)
+    covid_df: pd.DataFrame = read_raw_data(Datasets.NELA_COVID_2021_DATASET_SAMPLED)
     train_xgb(covid_df, use_saved=False)

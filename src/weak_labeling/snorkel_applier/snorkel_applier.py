@@ -13,6 +13,8 @@ from src.weak_labeling.model_based.model_based_lfs import get_model_based_lfs
 from snorkel.labeling import LabelingFunction, PandasLFApplier, LFAnalysis
 from snorkel.labeling.model import MajorityLabelVoter, LabelModel
 
+pd.set_option('display.max_columns', None)
+
 
 def generate_labels(
     df: pd.DataFrame, lfs: List[LabelingFunction], sample_n: Optional[int] = None
@@ -23,13 +25,19 @@ def generate_labels(
     if sample_n:
         train = train.sample(n=sample_n).reset_index(drop=True)
 
+    print("before lf applier")
+
     applier = PandasLFApplier(lfs)
     l_train = applier.apply(train)
 
-    LFAnalysis(L=l_train, lfs=lfs).lf_summary(Y=train.label.values)
+    print("before lf analysis")
+
+    analysis = LFAnalysis(L=l_train, lfs=lfs).lf_summary(Y=train.label.values)
+
+    print(analysis)
 
     label_model = LabelModel(cardinality=2, verbose=True)
-    label_model.fit(L_train=train, n_epochs=500, log_freq=100, seed=1234)
+    label_model.fit(L_train=l_train, n_epochs=500, log_freq=100, seed=1234)
 
     predictions = label_model.predict(train)
 
@@ -46,8 +54,10 @@ if __name__ == "__main__":
     model_based_lfs = get_model_based_lfs()
     labeling_functions = content_lfs + model_based_lfs
 
-    a_df = read_raw_data(Datasets.INJECTED_NELA_ELECTIONS_DATASET_SAMPLED)
+    print(labeling_functions)
+
+    a_df = read_raw_data(Datasets.INJECTED_NELA_ELECTIONS_DATASET_2020_SAMPLED)
 
     df_with_predictions = generate_labels(a_df, labeling_functions)
 
-    save_to_csv(df_with_predictions, Datasets.LABELED_NELA_ELECTIONS_DATASET_SAMPLED)
+    save_to_csv(df_with_predictions, Datasets.LABELED_NELA_ELECTIONS_DATASET_2020_SAMPLED)
