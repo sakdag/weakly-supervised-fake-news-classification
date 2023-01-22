@@ -8,7 +8,7 @@ from src.weak_labeling.model_based.xgboost.xgboost_preprocess import (
 )
 from src.weak_labeling.model_based.xgboost.xgboost_train import load_xgb
 
-XGB = load_xgb(date=datetime.date(2023, 1, 13))
+XGB = load_xgb(date=datetime.date(2023, 1, 22))
 
 
 @labeling_function()

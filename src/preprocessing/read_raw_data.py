@@ -13,7 +13,7 @@ from src.utils.path_utils import get_project_root
 
 
 def read_raw_data(
-    dataset: Datasets = Datasets.NELA_ELECTIONS_DATASET,
+    dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET,
 ) -> pandas.DataFrame:
     dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, dataset.value)
     print(f"Reading dataset from path: {dataset_path}")
@@ -37,12 +37,16 @@ def save_to_csv(df: pd.DataFrame, dataset: Datasets):
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
 
 
-def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_DATASET):
+def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
     df = read_raw_data(dataset)
-    if dataset == Datasets.NELA_ELECTIONS_DATASET:
-        sampled_dataset = Datasets.NELA_ELECTIONS_DATASET_SAMPLED
-    elif dataset == Datasets.NELA_COVID_DATASET:
-        sampled_dataset = Datasets.NELA_COVID_DATASET_SAMPLED
+    if dataset == Datasets.NELA_ELECTIONS_2020_DATASET:
+        sampled_dataset = Datasets.NELA_ELECTIONS_2020_DATASET_SAMPLED
+    elif dataset == Datasets.NELA_CAPITOL_2021_DATASET:
+        sampled_dataset = Datasets.NELA_CAPITOL_2021_DATASET_SAMPLED
+    elif dataset == Datasets.NELA_COVID_2020_DATASET:
+        sampled_dataset = Datasets.NELA_COVID_2020_DATASET_SAMPLED
+    elif dataset == Datasets.NELA_COVID_2021_DATASET:
+        sampled_dataset = Datasets.NELA_COVID_2021_DATASET_SAMPLED
     else:
         print(f"Cant sample dataset: {dataset}")
         return
@@ -89,8 +93,8 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_DATASET):
     df.dropna(inplace=True)
     print(len(df))
 
-    # undersample = RandomUnderSampler(sampling_strategy="majority")
-    undersample = RandomUnderSampler(sampling_strategy={0: 500, 1: 500})
+    undersample = RandomUnderSampler(sampling_strategy="majority")
+    # undersample = RandomUnderSampler(sampling_strategy={0: 5000, 1: 5000})
     df, labels = undersample.fit_resample(df, df.label)
     print(len(df))
     print(df.label.value_counts())
@@ -106,6 +110,14 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_DATASET):
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
 
 
+def balanced_undersample(df: pd.DataFrame, n: int):
+    undersample = RandomUnderSampler(sampling_strategy={0: int(n/2), 1: int(n/2)})
+    undersampled_df, labels = undersample.fit_resample(df, df.label)
+    print(f"Dataframe size: {len(undersampled_df)}")
+    print(undersampled_df.label.value_counts())
+    return undersampled_df
+
+
 if __name__ == "__main__":
     # df = read_raw_data(dataset=Datasets.NELA_COVID_DATASET_SAMPLED)
     # print(len(df))
@@ -113,4 +125,7 @@ if __name__ == "__main__":
     # print(is_string_series(df.content))
     # print(df.dtypes)
 
-    sample_and_save(dataset=Datasets.NELA_COVID_DATASET)
+    sample_and_save(dataset=Datasets.NELA_COVID_2021_DATASET)
+    sample_and_save(dataset=Datasets.NELA_COVID_2020_DATASET)
+    sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020_DATASET)
+    sample_and_save(dataset=Datasets.NELA_CAPITOL_2021_DATASET)
