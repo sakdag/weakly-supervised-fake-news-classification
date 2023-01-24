@@ -1,7 +1,9 @@
 import os
+import re
 
 import pandas
 from imblearn.under_sampling import RandomUnderSampler
+from tqdm import tqdm
 
 from src.preprocessing.cleanup import cleanup_df
 from src.preprocessing.consts import Datasets, DATA_FOLDER_PREFIX
@@ -82,8 +84,20 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
 
     print(is_string_series(df.title))
     print(is_string_series(df.content))
-    # Type changes
     print(df.dtypes)
+
+    undersample = RandomUnderSampler(sampling_strategy={0: 10000, 1: 10000})
+    df, labels = undersample.fit_resample(df, df.label)
+    print(len(df))
+    print(df.label.value_counts())
+
+    for i, row in tqdm(df.iterrows(), total=df.shape[0]):
+        val = row["content"].encode("ascii", errors="ignore").decode()
+        val = val.replace("@ @ @ @ @ @ @", "")
+        val = val.replace("@ @ @ @ @", "")
+        val = re.sub(' +', ' ', val)
+        df.at[i, 'content'] = val
+        df.at[i, 'title'] = row["title"].encode("ascii", errors="ignore").decode()
 
     print(f"Saving dataset to path: {dataset_path}")
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
@@ -93,11 +107,11 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
     df.dropna(inplace=True)
     print(len(df))
 
-    undersample = RandomUnderSampler(sampling_strategy="majority")
+    # undersample = RandomUnderSampler(sampling_strategy="majority")
     # undersample = RandomUnderSampler(sampling_strategy={0: 5000, 1: 5000})
-    df, labels = undersample.fit_resample(df, df.label)
-    print(len(df))
-    print(df.label.value_counts())
+    # df, labels = undersample.fit_resample(df, df.label)
+    # print(len(df))
+    # print(df.label.value_counts())
 
     # Make max elements in each label type 25k
     # n_max = 25000
@@ -107,6 +121,7 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
     # print(undersampled_df["label"].value_counts())
 
     print(f"Saving dataset to path: {dataset_path}")
+    df = df.sample(frac=1)
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
 
 
@@ -118,12 +133,28 @@ def balanced_undersample(df: pd.DataFrame, n: int):
     return undersampled_df
 
 
+def drop_na_and_save(dataset: Datasets):
+    df = read_raw_data(dataset)
+
+    dataset_path = os.path.join(
+        get_project_root(), DATA_FOLDER_PREFIX, dataset.value
+    )
+
+    df.dropna(inplace=True)
+    print(len(df))
+
+    print(f"Saving dataset to path: {dataset_path}")
+    df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
+
+
 if __name__ == "__main__":
     # df = read_raw_data(dataset=Datasets.NELA_COVID_DATASET_SAMPLED)
     # print(len(df))
     # print(is_string_series(df.title))
     # print(is_string_series(df.content))
     # print(df.dtypes)
+
+    # drop_na_and_save(dataset=Datasets.NELA_COVID_2021_DATASET_SAMPLED)
 
     sample_and_save(dataset=Datasets.NELA_COVID_2021_DATASET)
     sample_and_save(dataset=Datasets.NELA_COVID_2020_DATASET)

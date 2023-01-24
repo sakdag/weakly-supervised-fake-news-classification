@@ -9,9 +9,9 @@ from src.preprocessing.read_raw_data import read_raw_data, save_to_csv
 from src.weak_labeling.content_based.labeling_functions.lf_creation import (
     create_content_lfs,
 )
-from src.weak_labeling.model_based.model_based_lfs import get_model_based_lfs
+from src.weak_labeling.model_based.labeling_functions.model_based_lfs import get_model_based_lfs
 from snorkel.labeling import LabelingFunction, PandasLFApplier, LFAnalysis
-from snorkel.labeling.model import MajorityLabelVoter, LabelModel
+from snorkel.labeling.model import LabelModel
 
 pd.set_option('display.max_columns', None)
 
