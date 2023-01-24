@@ -19,29 +19,29 @@ pd.set_option('display.max_columns', None)
 def generate_labels(
     df: pd.DataFrame, lfs: List[LabelingFunction], sample_n: Optional[int] = None
 ):
-    train, test = train_test_split(df, train_size=0.8)
-    print(f"{len(train)} - {len(test)}")
+    # train, test = train_test_split(df, train_size=0.8)
+    # print(f"{len(train)} - {len(test)}")
 
     if sample_n:
-        train = train.sample(n=sample_n).reset_index(drop=True)
+        df = df.sample(n=sample_n).reset_index(drop=True)
 
     print("before lf applier")
 
     applier = PandasLFApplier(lfs)
-    l_train = applier.apply(train)
+    l_train = applier.apply(df)
 
     print("before lf analysis")
 
-    analysis = LFAnalysis(L=l_train, lfs=lfs).lf_summary(Y=train.label.values)
+    analysis = LFAnalysis(L=l_train, lfs=lfs).lf_summary(Y=df.label.values)
 
     print(analysis)
 
     label_model = LabelModel(cardinality=2, verbose=True)
     label_model.fit(L_train=l_train, n_epochs=500, log_freq=100, seed=1234)
 
-    predictions = label_model.predict(train)
+    predictions = label_model.predict(l_train)
 
-    matches = np.count_nonzero(train["label"] == predictions)
+    matches = np.count_nonzero(df["label"] == predictions)
     mismatches = predictions.size - matches
     print(mismatches / predictions.size * 100)
 
