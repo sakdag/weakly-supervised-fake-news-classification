@@ -1,0 +1,45 @@
+import datetime
+
+import pandas as pd
+
+from src.preprocessing.consts import Datasets
+from src.preprocessing.read_raw_data import read_raw_data, save_to_csv, balanced_undersample
+from src.weak_labeling.model_based.xgboost.xgboost_preprocess import preprocess_for_xgboost_test
+from src.weak_labeling.model_based.xgboost.xgboost_train import load_xgb
+from src.weak_labeling.utils import get_injected_dataset_name
+
+
+def inject_xgboost_label(df_to_inject: pd.DataFrame) -> pd.DataFrame:
+    xgb = load_xgb(date=datetime.date(2023, 1, 22))
+    test_data = df_to_inject.content
+    features = preprocess_for_xgboost_test(test_data)
+    xgb_pred = xgb.predict(features)
+    df_to_inject["model_xgboost_label"] = xgb_pred
+    return df_to_inject
+
+
+def inject_model_features(df_to_inject: pd.DataFrame) -> pd.DataFrame:
+    df_to_inject = inject_xgboost_label(df_to_inject)
+    return df_to_inject
+
+def run_model_feature_injection(dataset: Datasets):
+    injected_dataset = get_injected_dataset_name(dataset)
+    if not injected_dataset:
+        return
+
+    df = read_raw_data(dataset)
+    if injected_dataset != dataset:
+        df = balanced_undersample(df=df, n=10000)
+    print(df.head())
+
+    injected_df = inject_model_features(df)
+    print(injected_df.head())
+
+    save_to_csv(injected_df, injected_dataset)
+
+
+if __name__ == "__main__":
+    # run_model_feature_injection(dataset=Datasets.INJECTED_NELA_ELECTIONS_DATASET_2020_SAMPLED)
+    run_model_feature_injection(dataset=Datasets.INJECTED_NELA_COVID_2020_DATASET_SAMPLED)
+    run_model_feature_injection(dataset=Datasets.INJECTED_NELA_COVID_2021_DATASET_SAMPLED)
+    run_model_feature_injection(dataset=Datasets.INJECTED_NELA_CAPITOL_DATASET_2021_SAMPLED)
