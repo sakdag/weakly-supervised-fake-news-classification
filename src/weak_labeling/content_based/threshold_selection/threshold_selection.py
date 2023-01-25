@@ -44,12 +44,12 @@ def find_threshold_for_feature(
     print(percentiles_dict)
 
     for percentile in percentiles_to_process:
-        if abs(percentiles_dict[percentile]["diff"]) > (total_max_diff / 20):
+        if abs(percentiles_dict[percentile]["diff"]) > (total_max_diff / 40):
             if percentiles_dict[percentile]["diff"] > 0:
-                side = "real"
+                side = "real" if direction == Direction.UPPER else "fake"
                 threshold = percentiles_dict[percentile]["real"]
             else:
-                side = "fake"
+                side = "fake" if direction == Direction.UPPER else "real"
                 threshold = percentiles_dict[percentile]["fake"]
             selected_percentile = percentile
             break
@@ -108,7 +108,7 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
             percentiles_dict=percentiles_dict,
         )
         if threshold:
-            feature_thresholds[Direction.UPPER.value] = threshold
+            feature_thresholds[Direction.LOWER.value] = threshold
 
         print(feature_thresholds)
 

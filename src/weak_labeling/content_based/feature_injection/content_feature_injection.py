@@ -34,7 +34,7 @@ def run_content_feature_injection(dataset: Datasets):
 
 
 if __name__ == "__main__":
-    # run_content_feature_injection(dataset=Datasets.NELA_COVID_2021_DATASET_SAMPLED)
-    run_content_feature_injection(dataset=Datasets.NELA_COVID_2020_DATASET_SAMPLED)
-    run_content_feature_injection(dataset=Datasets.NELA_CAPITOL_2021_DATASET_SAMPLED)
+    run_content_feature_injection(dataset=Datasets.NELA_COVID_2021_DATASET_SAMPLED)
+    # run_content_feature_injection(dataset=Datasets.NELA_COVID_2020_DATASET_SAMPLED)
+    # run_content_feature_injection(dataset=Datasets.NELA_CAPITOL_2021_DATASET_SAMPLED)
     run_content_feature_injection(dataset=Datasets.NELA_ELECTIONS_2020_DATASET_SAMPLED)

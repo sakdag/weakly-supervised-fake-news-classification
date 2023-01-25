@@ -46,13 +46,13 @@ def run_model_feature_injection(dataset: Datasets):
 
 
 if __name__ == "__main__":
-    # run_model_feature_injection(dataset=Datasets.INJECTED_NELA_ELECTIONS_DATASET_2020_SAMPLED)
-    run_model_feature_injection(
-        dataset=Datasets.INJECTED_NELA_COVID_2020_DATASET_SAMPLED
-    )
-    run_model_feature_injection(
-        dataset=Datasets.INJECTED_NELA_COVID_2021_DATASET_SAMPLED
-    )
-    run_model_feature_injection(
-        dataset=Datasets.INJECTED_NELA_CAPITOL_DATASET_2021_SAMPLED
-    )
+    run_model_feature_injection(dataset=Datasets.INJECTED_NELA_ELECTIONS_DATASET_2020_SAMPLED)
+    # run_model_feature_injection(
+    #     dataset=Datasets.INJECTED_NELA_COVID_2020_DATASET_SAMPLED
+    # )
+    # run_model_feature_injection(
+    #     dataset=Datasets.INJECTED_NELA_COVID_2021_DATASET_SAMPLED
+    # )
+    # run_model_feature_injection(
+    #     dataset=Datasets.INJECTED_NELA_CAPITOL_DATASET_2021_SAMPLED
+    # )

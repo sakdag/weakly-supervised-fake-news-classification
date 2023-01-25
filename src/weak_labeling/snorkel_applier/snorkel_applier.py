@@ -19,35 +19,33 @@ pd.set_option("display.max_columns", None)
 
 
 def generate_labels(
-    df: pd.DataFrame, lfs: List[LabelingFunction], sample_n: Optional[int] = None
+    df: pd.DataFrame, lfs: List[LabelingFunction]
 ):
-    # train, test = train_test_split(df, train_size=0.8)
-    # print(f"{len(train)} - {len(test)}")
-
-    if sample_n:
-        df = df.sample(n=sample_n).reset_index(drop=True)
-
-    print("before lf applier")
+    train, test = train_test_split(df, train_size=0.8)
+    print(f"{len(train)} - {len(test)}")
 
     applier = PandasLFApplier(lfs)
-    l_train = applier.apply(df)
+    l_train = applier.apply(df=train)
+    l_test = applier.apply(df=test)
 
-    print("before lf analysis")
-
-    analysis = LFAnalysis(L=l_train, lfs=lfs).lf_summary(Y=df.label.values)
+    analysis = LFAnalysis(L=l_train, lfs=lfs).lf_summary(Y=train.label.values)
 
     print(analysis)
 
     label_model = LabelModel(cardinality=2, verbose=True)
     label_model.fit(L_train=l_train, n_epochs=500, log_freq=100, seed=1234)
 
-    predictions = label_model.predict(l_train)
+    # majority_acc = majority_model.score(L=L_test, Y=Y_test, tie_break_policy="random")[
+    #     "accuracy"
+    # ]
+    # print(f"{'Majority Vote Accuracy:':<25} {majority_acc * 100:.1f}%")
 
-    matches = np.count_nonzero(df["label"] == predictions)
-    mismatches = predictions.size - matches
-    print(mismatches / predictions.size * 100)
+    label_model_acc = label_model.score(L=l_test, Y=test.label.values, tie_break_policy="random")[
+        "accuracy"
+    ]
+    print(f"{'Label Model Accuracy:':<25} {label_model_acc * 100:.1f}%")
 
-    df["predicted_labels"] = predictions
+    # df["predicted_labels"] = label_model.predict(l_train + l_test)
     return df
 
 
