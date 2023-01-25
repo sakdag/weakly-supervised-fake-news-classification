@@ -95,9 +95,9 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
         val = row["content"].encode("ascii", errors="ignore").decode()
         val = val.replace("@ @ @ @ @ @ @", "")
         val = val.replace("@ @ @ @ @", "")
-        val = re.sub(' +', ' ', val)
-        df.at[i, 'content'] = val
-        df.at[i, 'title'] = row["title"].encode("ascii", errors="ignore").decode()
+        val = re.sub(" +", " ", val)
+        df.at[i, "content"] = val
+        df.at[i, "title"] = row["title"].encode("ascii", errors="ignore").decode()
 
     print(f"Saving dataset to path: {dataset_path}")
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
@@ -126,7 +126,7 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
 
 
 def balanced_undersample(df: pd.DataFrame, n: int):
-    undersample = RandomUnderSampler(sampling_strategy={0: int(n/2), 1: int(n/2)})
+    undersample = RandomUnderSampler(sampling_strategy={0: int(n / 2), 1: int(n / 2)})
     undersampled_df, labels = undersample.fit_resample(df, df.label)
     print(f"Dataframe size: {len(undersampled_df)}")
     print(undersampled_df.label.value_counts())
@@ -136,9 +136,7 @@ def balanced_undersample(df: pd.DataFrame, n: int):
 def drop_na_and_save(dataset: Datasets):
     df = read_raw_data(dataset)
 
-    dataset_path = os.path.join(
-        get_project_root(), DATA_FOLDER_PREFIX, dataset.value
-    )
+    dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, dataset.value)
 
     df.dropna(inplace=True)
     print(len(df))

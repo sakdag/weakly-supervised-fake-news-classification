@@ -18,6 +18,8 @@ def get_injected_dataset_name(dataset: Datasets) -> Optional[Datasets]:
         print(f"Cant inject to dataset: {dataset}")
         return None
 
-    print(f"get_injected_dataset_name, input dataset: {dataset.value}, dataset name to inject: {injected_dataset.value}")
+    print(
+        f"get_injected_dataset_name, input dataset: {dataset.value}, dataset name to inject: {injected_dataset.value}"
+    )
 
     return injected_dataset

@@ -3,8 +3,14 @@ import datetime
 import pandas as pd
 
 from src.preprocessing.consts import Datasets
-from src.preprocessing.read_raw_data import read_raw_data, save_to_csv, balanced_undersample
-from src.weak_labeling.model_based.xgboost.xgboost_preprocess import preprocess_for_xgboost_test
+from src.preprocessing.read_raw_data import (
+    read_raw_data,
+    save_to_csv,
+    balanced_undersample,
+)
+from src.weak_labeling.model_based.xgboost.xgboost_preprocess import (
+    preprocess_for_xgboost_test,
+)
 from src.weak_labeling.model_based.xgboost.xgboost_train import load_xgb
 from src.weak_labeling.utils import get_injected_dataset_name
 
@@ -21,6 +27,7 @@ def inject_xgboost_label(df_to_inject: pd.DataFrame) -> pd.DataFrame:
 def inject_model_features(df_to_inject: pd.DataFrame) -> pd.DataFrame:
     df_to_inject = inject_xgboost_label(df_to_inject)
     return df_to_inject
+
 
 def run_model_feature_injection(dataset: Datasets):
     injected_dataset = get_injected_dataset_name(dataset)
@@ -40,6 +47,12 @@ def run_model_feature_injection(dataset: Datasets):
 
 if __name__ == "__main__":
     # run_model_feature_injection(dataset=Datasets.INJECTED_NELA_ELECTIONS_DATASET_2020_SAMPLED)
-    run_model_feature_injection(dataset=Datasets.INJECTED_NELA_COVID_2020_DATASET_SAMPLED)
-    run_model_feature_injection(dataset=Datasets.INJECTED_NELA_COVID_2021_DATASET_SAMPLED)
-    run_model_feature_injection(dataset=Datasets.INJECTED_NELA_CAPITOL_DATASET_2021_SAMPLED)
+    run_model_feature_injection(
+        dataset=Datasets.INJECTED_NELA_COVID_2020_DATASET_SAMPLED
+    )
+    run_model_feature_injection(
+        dataset=Datasets.INJECTED_NELA_COVID_2021_DATASET_SAMPLED
+    )
+    run_model_feature_injection(
+        dataset=Datasets.INJECTED_NELA_CAPITOL_DATASET_2021_SAMPLED
+    )

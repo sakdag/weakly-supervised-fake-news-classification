@@ -1,7 +1,11 @@
 import pandas as pd
 
 from src.preprocessing.consts import Datasets
-from src.preprocessing.read_raw_data import read_raw_data, save_to_csv, balanced_undersample
+from src.preprocessing.read_raw_data import (
+    read_raw_data,
+    save_to_csv,
+    balanced_undersample,
+)
 from src.weak_labeling.content_based.feature_injection.stylistic_features import (
     append_stylistic_features,
 )
@@ -11,6 +15,7 @@ from src.weak_labeling.utils import get_injected_dataset_name
 def inject_content_features(df_to_inject: pd.DataFrame) -> pd.DataFrame:
     df_to_inject = append_stylistic_features(df_to_inject)
     return df_to_inject
+
 
 def run_content_feature_injection(dataset: Datasets):
     injected_dataset = get_injected_dataset_name(dataset)

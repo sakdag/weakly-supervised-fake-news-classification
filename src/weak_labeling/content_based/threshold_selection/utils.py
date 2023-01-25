@@ -13,6 +13,7 @@ def get_thresholds_json() -> dict:
     f = open(thresholds_json_path)
     return json.load(f)
 
+
 def update_and_save_thresholds_json(updated_thresholds: dict):
     old_thresholds = get_thresholds_json()
     old_thresholds.update(updated_thresholds)
