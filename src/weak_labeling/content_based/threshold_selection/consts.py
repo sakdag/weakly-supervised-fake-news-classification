@@ -48,6 +48,7 @@ UPPER_PERCENTILES = [
     0.95,
 ]
 
+
 class Direction(enum.Enum):
     UPPER = "upper"
     LOWER = "lower"

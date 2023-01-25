@@ -7,19 +7,34 @@ from src.preprocessing.consts import Datasets
 from src.preprocessing.read_raw_data import read_raw_data, save_to_csv
 from src.weak_labeling.consts.content_features import ContentFeatures
 from src.weak_labeling.content_based.threshold_selection.consts import (
-    FEATURE_PERCENTILES, Direction, UPPER_PERCENTILES, LOWER_PERCENTILES,
+    FEATURE_PERCENTILES,
+    Direction,
+    UPPER_PERCENTILES,
+    LOWER_PERCENTILES,
 )
-from src.weak_labeling.content_based.threshold_selection.utils import get_thresholds_json, \
-    update_and_save_thresholds_json
+from src.weak_labeling.content_based.threshold_selection.utils import (
+    get_thresholds_json,
+    update_and_save_thresholds_json,
+)
 
 
-def find_threshold_for_feature(direction: Direction, feature: str, percentiles_dict: dict) -> Optional[dict]:
+def find_threshold_for_feature(
+    direction: Direction, feature: str, percentiles_dict: dict
+) -> Optional[dict]:
     print(f"Finding threshold for feature: {feature} and direction: {direction}")
 
     threshold, side, selected_percentile = None, None, None
-    percentiles_to_process = UPPER_PERCENTILES if direction == Direction.UPPER else LOWER_PERCENTILES
-    real_max_diff = abs(percentiles_dict[FEATURE_PERCENTILES[0]]["real"] - percentiles_dict[FEATURE_PERCENTILES[-1]]["real"])
-    fake_max_diff = abs(percentiles_dict[FEATURE_PERCENTILES[0]]["fake"] - percentiles_dict[FEATURE_PERCENTILES[-1]]["fake"])
+    percentiles_to_process = (
+        UPPER_PERCENTILES if direction == Direction.UPPER else LOWER_PERCENTILES
+    )
+    real_max_diff = abs(
+        percentiles_dict[FEATURE_PERCENTILES[0]]["real"]
+        - percentiles_dict[FEATURE_PERCENTILES[-1]]["real"]
+    )
+    fake_max_diff = abs(
+        percentiles_dict[FEATURE_PERCENTILES[0]]["fake"]
+        - percentiles_dict[FEATURE_PERCENTILES[-1]]["fake"]
+    )
     total_max_diff = min(real_max_diff, fake_max_diff)
 
     print(total_max_diff)
@@ -40,7 +55,9 @@ def find_threshold_for_feature(direction: Direction, feature: str, percentiles_d
             break
 
     if threshold and side:
-        print(f"Adding labeling function, feature: {feature}, direction: {Direction.UPPER}, side: {side}, threshold: {threshold}")
+        print(
+            f"Adding labeling function, feature: {feature}, direction: {Direction.UPPER}, side: {side}, threshold: {threshold}"
+        )
         return {
             "side": side,
             "threshold": threshold,
@@ -70,13 +87,17 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
         percentiles_dict = {}
         for idx, row in wps_desc_df.iterrows():
             if "%" in row.name:
-                percentiles_dict[int(str(row.name).split("%")[0]) / 100] = {"real": row.real, "fake": row.fake, "diff": row.real - row.fake}
+                percentiles_dict[int(str(row.name).split("%")[0]) / 100] = {
+                    "real": row.real,
+                    "fake": row.fake,
+                    "diff": row.real - row.fake,
+                }
 
         feature_thresholds = {}
         threshold = find_threshold_for_feature(
             direction=Direction.UPPER,
             feature=feature,
-            percentiles_dict=percentiles_dict
+            percentiles_dict=percentiles_dict,
         )
         if threshold:
             feature_thresholds[Direction.UPPER.value] = threshold
@@ -84,7 +105,7 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
         threshold = find_threshold_for_feature(
             direction=Direction.LOWER,
             feature=feature,
-            percentiles_dict=percentiles_dict
+            percentiles_dict=percentiles_dict,
         )
         if threshold:
             feature_thresholds[Direction.UPPER.value] = threshold

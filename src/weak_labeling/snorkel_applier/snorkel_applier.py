@@ -9,11 +9,13 @@ from src.preprocessing.read_raw_data import read_raw_data, save_to_csv
 from src.weak_labeling.content_based.labeling_functions.lf_creation import (
     create_content_lfs,
 )
-from src.weak_labeling.model_based.labeling_functions.model_based_lfs import get_model_based_lfs
+from src.weak_labeling.model_based.labeling_functions.model_based_lfs import (
+    get_model_based_lfs,
+)
 from snorkel.labeling import LabelingFunction, PandasLFApplier, LFAnalysis
 from snorkel.labeling.model import LabelModel
 
-pd.set_option('display.max_columns', None)
+pd.set_option("display.max_columns", None)
 
 
 def generate_labels(
@@ -60,4 +62,6 @@ if __name__ == "__main__":
 
     df_with_predictions = generate_labels(a_df, labeling_functions)
 
-    save_to_csv(df_with_predictions, Datasets.LABELED_NELA_ELECTIONS_DATASET_2020_SAMPLED)
+    save_to_csv(
+        df_with_predictions, Datasets.LABELED_NELA_ELECTIONS_DATASET_2020_SAMPLED
+    )

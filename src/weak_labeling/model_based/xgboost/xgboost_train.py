@@ -14,7 +14,11 @@ from src.weak_labeling.model_based.xgboost.xgboost_preprocess import (
 )
 
 
-def train_xgb(df: pd.DataFrame, use_saved=True, save_date: datetime.date = datetime.datetime.now().date()):
+def train_xgb(
+    df: pd.DataFrame,
+    use_saved=True,
+    save_date: datetime.date = datetime.datetime.now().date(),
+):
     roberta_train, roberta_test, y_test, y_train = preprocess_for_xgboost_train(df)
 
     # warnings.filterwarnings(action='ignore', category=UserWarning)
@@ -48,7 +52,8 @@ def train_xgb(df: pd.DataFrame, use_saved=True, save_date: datetime.date = datet
 
 def load_xgb(date: datetime.date):
     xgb_file_name = os.path.join(
-        get_project_root(), f"model/weak_labeling/xgboost/xgb-nela-covid-{str(date)}.pkl"
+        get_project_root(),
+        f"model/weak_labeling/xgboost/xgb-nela-covid-{str(date)}.pkl",
     )
     return pickle.load(open(xgb_file_name, "rb"))
 
