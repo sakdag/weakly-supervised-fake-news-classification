@@ -1,25 +1,31 @@
 import os
 import pickle
-from datetime import datetime
+import datetime
 
 import pandas as pd
 from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 from xgboost import XGBClassifier
 
-from src.classifier.xgboost.preprocessing import preprocess_for_xgboost_train
 from src.preprocessing.consts import Datasets
 from src.preprocessing.read_raw_data import read_raw_data
 from src.utils.path_utils import get_project_root
+from src.weak_labeling.model_based.xgboost.xgboost_preprocess import (
+    preprocess_for_xgboost_train,
+)
 
 
-def train_xgb(df: pd.DataFrame, use_saved=True):
+def train_xgb(
+    df: pd.DataFrame,
+    use_saved=True,
+    save_date: datetime.date = datetime.datetime.now().date(),
+):
     roberta_train, roberta_test, y_test, y_train = preprocess_for_xgboost_train(df)
 
     # warnings.filterwarnings(action='ignore', category=UserWarning)
     print(f"Use saved XGB model: {use_saved}")
     xgb_file_name = os.path.join(
         get_project_root(),
-        f"model/xgboost/xgb-nela-covid-{str(datetime.now().date())}.pkl",
+        f"model/weak_labeling/xgboost/xgb-nela-covid-{str(save_date)}.pkl",
     )
     if use_saved:
         xgb = pickle.load(open(xgb_file_name, "rb"))
@@ -46,11 +52,12 @@ def train_xgb(df: pd.DataFrame, use_saved=True):
 
 def load_xgb(date: datetime.date):
     xgb_file_name = os.path.join(
-        get_project_root(), f"model/xgboost/xgb-nela-covid-{str(date)}.pkl"
+        get_project_root(),
+        f"model/weak_labeling/xgboost/xgb-nela-covid-{str(date)}.pkl",
     )
     return pickle.load(open(xgb_file_name, "rb"))
 
 
 if __name__ == "__main__":
-    covid_df: pd.DataFrame = read_raw_data(Datasets.NELA_COVID_DATASET_SAMPLED)
-    train_xgb(covid_df, use_saved=False)
+    covid_df: pd.DataFrame = read_raw_data(Datasets.NELA_COVID_2021_DATASET_SAMPLED)
+    train_xgb(covid_df, use_saved=True, save_date=datetime.date(2023, 1, 22))
