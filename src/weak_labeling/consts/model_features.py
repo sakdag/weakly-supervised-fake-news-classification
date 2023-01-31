@@ -1,5 +1,6 @@
 class ModelFeatures:
     XGBOOST = "xgboost"
+    ADABOOST = "adaboost"
 
     @staticmethod
     def get_all():

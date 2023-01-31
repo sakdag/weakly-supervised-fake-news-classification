@@ -1,59 +1,44 @@
 {
   "content_words_per_sentence": {
-    "upper": {
-      "side": "fake",
-      "threshold": 38.0,
-      "percentile": 0.95
-    },
     "lower": {
       "side": "fake",
-      "threshold": 24.33333333333333,
-      "percentile": 0.35
+      "threshold": 17.666666666666668,
+      "percentile": 0.05
     }
   },
   "content_stopwords_per_sentence": {
     "lower": {
       "side": "fake",
-      "threshold": 8.612244897959183,
-      "percentile": 0.2
+      "threshold": 6.517592592592592,
+      "percentile": 0.05
     }
   },
   "content_word_count": {
     "upper": {
-      "side": "real",
-      "threshold": 802.3499999999999,
-      "percentile": 0.65
+      "side": "fake",
+      "threshold": 2453.05,
+      "percentile": 0.95
     }
   },
   "content_unique_words_ratio": {
     "upper": {
-      "side": "fake",
-      "threshold": 0.4796629797693326,
-      "percentile": 0.5
-    },
-    "lower": {
       "side": "real",
-      "threshold": 0.4796629797693326,
-      "percentile": 0.5
+      "threshold": 0.7017543859649122,
+      "percentile": 0.9
     }
   },
   "content_unique_words_count": {
     "upper": {
-      "side": "real",
-      "threshold": 380.0,
-      "percentile": 0.7
+      "side": "fake",
+      "threshold": 791.0500000000002,
+      "percentile": 0.95
     }
   },
   "content_average_sentence_length": {
-    "upper": {
-      "side": "fake",
-      "threshold": 38.0,
-      "percentile": 0.95
-    },
     "lower": {
       "side": "fake",
-      "threshold": 24.33333333333333,
-      "percentile": 0.35
+      "threshold": 17.666666666666668,
+      "percentile": 0.05
     }
   },
   "title_word_count": {

@@ -86,9 +86,9 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
     print(is_string_series(df.content))
     print(df.dtypes)
 
-    undersample = RandomUnderSampler(sampling_strategy={0: 10000, 1: 10000})
-    df, labels = undersample.fit_resample(df, df.label)
-    print(len(df))
+    # undersample = RandomUnderSampler(sampling_strategy={0: 10000, 1: 10000})
+    # df, labels = undersample.fit_resample(df, df.label)
+    # print(len(df))
     print(df.label.value_counts())
 
     for i, row in tqdm(df.iterrows(), total=df.shape[0]):
@@ -154,7 +154,7 @@ if __name__ == "__main__":
 
     # drop_na_and_save(dataset=Datasets.NELA_COVID_2021_DATASET_SAMPLED)
 
-    sample_and_save(dataset=Datasets.NELA_COVID_2021_DATASET)
-    sample_and_save(dataset=Datasets.NELA_COVID_2020_DATASET)
+    # sample_and_save(dataset=Datasets.NELA_COVID_2021_DATASET)
+    # sample_and_save(dataset=Datasets.NELA_COVID_2020_DATASET)
     sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020_DATASET)
-    sample_and_save(dataset=Datasets.NELA_CAPITOL_2021_DATASET)
+    # sample_and_save(dataset=Datasets.NELA_CAPITOL_2021_DATASET)

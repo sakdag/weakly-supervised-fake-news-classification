@@ -8,6 +8,7 @@ from src.preprocessing.read_raw_data import (
     save_to_csv,
     balanced_undersample,
 )
+from src.weak_labeling.model_based.adaboost.adaboost import train_adaboost_classifier, get_adaboost_labels
 from src.weak_labeling.model_based.xgboost.xgboost_preprocess import (
     preprocess_for_xgboost_test,
 )
@@ -23,9 +24,16 @@ def inject_xgboost_label(df_to_inject: pd.DataFrame) -> pd.DataFrame:
     df_to_inject["model_xgboost_label"] = xgb_pred
     return df_to_inject
 
+def inject_adaboost_label(df_to_inject: pd.DataFrame) -> pd.DataFrame:
+    adaboost_classifier, tfidf_vectorizer = train_adaboost_classifier(train_with=Datasets.NELA_COVID_2021_DATASET_SAMPLED)
+    adb_pred = get_adaboost_labels(adaboost_classifier, tfidf_vectorizer, df_to_inject)
+    df_to_inject["model_adaboost_label"] = adb_pred
+    return df_to_inject
+
 
 def inject_model_features(df_to_inject: pd.DataFrame) -> pd.DataFrame:
     df_to_inject = inject_xgboost_label(df_to_inject)
+    df_to_inject = inject_adaboost_label(df_to_inject)
     return df_to_inject
 
 

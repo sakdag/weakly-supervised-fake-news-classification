@@ -13,7 +13,7 @@ from src.weak_labeling.model_based.labeling_functions.model_based_lfs import (
     get_model_based_lfs,
 )
 from snorkel.labeling import LabelingFunction, PandasLFApplier, LFAnalysis
-from snorkel.labeling.model import LabelModel
+from snorkel.labeling.model import LabelModel, MajorityLabelVoter
 
 pd.set_option("display.max_columns", None)
 
@@ -21,7 +21,8 @@ pd.set_option("display.max_columns", None)
 def generate_labels(
     df: pd.DataFrame, lfs: List[LabelingFunction]
 ):
-    train, test = train_test_split(df, train_size=0.8)
+    df = df.sample(frac=1)
+    train, test = train_test_split(df, train_size=0.8, shuffle=False)
     print(f"{len(train)} - {len(test)}")
 
     applier = PandasLFApplier(lfs)
@@ -35,17 +36,28 @@ def generate_labels(
     label_model = LabelModel(cardinality=2, verbose=True)
     label_model.fit(L_train=l_train, n_epochs=500, log_freq=100, seed=1234)
 
-    # majority_acc = majority_model.score(L=L_test, Y=Y_test, tie_break_policy="random")[
-    #     "accuracy"
-    # ]
-    # print(f"{'Majority Vote Accuracy:':<25} {majority_acc * 100:.1f}%")
+    majority_model = MajorityLabelVoter()
+    majority_acc = majority_model.score(L=l_test, Y=test.label.values, tie_break_policy="random")[
+        "accuracy"
+    ]
+    print(f"{'Majority Vote Accuracy:':<25} {majority_acc * 100:.1f}%")
 
     label_model_acc = label_model.score(L=l_test, Y=test.label.values, tie_break_policy="random")[
         "accuracy"
     ]
     print(f"{'Label Model Accuracy:':<25} {label_model_acc * 100:.1f}%")
 
-    # df["predicted_labels"] = label_model.predict(l_train + l_test)
+    probabilistic_labels = label_model.predict_proba(np.concatenate([l_train, l_test]))
+    print(probabilistic_labels)
+
+    for idx, row in df.iterrows():
+        print(row[0])
+        print(row[1])
+        print(type(row[0]))
+        break
+
+    df["majority_vote_label"] = label_model.predict(np.concatenate([l_train, l_test]))
+    df["label_model_label"] = label_model.predict(np.concatenate([l_train, l_test]))
     return df
 
 
@@ -60,6 +72,6 @@ if __name__ == "__main__":
 
     df_with_predictions = generate_labels(a_df, labeling_functions)
 
-    save_to_csv(
-        df_with_predictions, Datasets.LABELED_NELA_ELECTIONS_DATASET_2020_SAMPLED
-    )
+    # save_to_csv(
+    #     df_with_predictions, Datasets.LABELED_NELA_ELECTIONS_DATASET_2020_SAMPLED
+    # )
