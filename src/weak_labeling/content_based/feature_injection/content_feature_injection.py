@@ -7,7 +7,8 @@ from src.preprocessing.read_raw_data import (
     balanced_undersample,
 )
 from src.weak_labeling.content_based.feature_injection.stylistic_features import (
-    append_stylistic_features, append_stylistic_features_parallel,
+    append_stylistic_features,
+    append_stylistic_features_parallel,
 )
 from src.weak_labeling.utils import get_injected_dataset_name
 import dask.dataframe as dd
@@ -38,4 +39,6 @@ if __name__ == "__main__":
     # run_content_feature_injection(dataset=Datasets.NELA_COVID_2021_DATASET_SAMPLED)
     # run_content_feature_injection(dataset=Datasets.NELA_COVID_2020_DATASET_SAMPLED)
     # run_content_feature_injection(dataset=Datasets.NELA_CAPITOL_2021_DATASET_SAMPLED, parallelize=True)
-    run_content_feature_injection(dataset=Datasets.NELA_ELECTIONS_2020_DATASET_SAMPLED, parallelize=False)
+    run_content_feature_injection(
+        dataset=Datasets.NELA_ELECTIONS_2020_DATASET_SAMPLED, parallelize=False
+    )

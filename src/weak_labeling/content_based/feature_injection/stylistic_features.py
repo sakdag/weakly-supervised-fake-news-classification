@@ -53,7 +53,7 @@ def append_stylistic_features_parallel(ddf: dd.DataFrame) -> pd.DataFrame:
             4: float,
             5: float,
             6: float,
-        }
+        },
     )
 
     res.columns = [

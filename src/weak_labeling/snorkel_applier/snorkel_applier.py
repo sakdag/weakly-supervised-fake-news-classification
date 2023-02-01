@@ -18,9 +18,7 @@ from snorkel.labeling.model import LabelModel, MajorityLabelVoter
 pd.set_option("display.max_columns", None)
 
 
-def generate_labels(
-    df: pd.DataFrame, lfs: List[LabelingFunction]
-):
+def generate_labels(df: pd.DataFrame, lfs: List[LabelingFunction]):
     df = df.sample(frac=1)
     train, test = train_test_split(df, train_size=0.8, shuffle=False)
     print(f"{len(train)} - {len(test)}")
@@ -37,14 +35,14 @@ def generate_labels(
     label_model.fit(L_train=l_train, n_epochs=500, log_freq=100, seed=1234)
 
     majority_model = MajorityLabelVoter()
-    majority_acc = majority_model.score(L=l_test, Y=test.label.values, tie_break_policy="random")[
-        "accuracy"
-    ]
+    majority_acc = majority_model.score(
+        L=l_test, Y=test.label.values, tie_break_policy="random"
+    )["accuracy"]
     print(f"{'Majority Vote Accuracy:':<25} {majority_acc * 100:.1f}%")
 
-    label_model_acc = label_model.score(L=l_test, Y=test.label.values, tie_break_policy="random")[
-        "accuracy"
-    ]
+    label_model_acc = label_model.score(
+        L=l_test, Y=test.label.values, tie_break_policy="random"
+    )["accuracy"]
     print(f"{'Label Model Accuracy:':<25} {label_model_acc * 100:.1f}%")
 
     probabilistic_labels = label_model.predict_proba(np.concatenate([l_train, l_test]))
