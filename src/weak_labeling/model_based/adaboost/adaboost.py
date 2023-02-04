@@ -8,16 +8,16 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 
-from src.preprocessing.consts import Datasets
-from src.preprocessing.read_raw_data import read_raw_data
+from src.preprocessing.consts import Datasets, Dataset
+from src.preprocessing.read_raw_data import read_raw_data, read_csv
 
 stop = stopwords.words("english")
 
 
 def train_adaboost_classifier(
-    train_with: Datasets = Datasets.NELA_COVID_2021_DATASET_SAMPLED,
+    train_with: Dataset = Datasets.NELA_COVID_2021,
 ) -> Tuple[AdaBoostClassifier, TfidfVectorizer]:
-    df = read_raw_data(dataset=train_with)
+    df = read_csv(path=train_with.sampled_path)
 
     df["title_without_stopwords"] = df["title"].apply(
         lambda x: " ".join([word for word in x.split() if word not in (stop)])

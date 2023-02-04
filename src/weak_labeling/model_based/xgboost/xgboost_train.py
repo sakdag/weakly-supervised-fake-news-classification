@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 from xgboost import XGBClassifier
 
 from src.preprocessing.consts import Datasets
-from src.preprocessing.read_raw_data import read_raw_data
+from src.preprocessing.read_raw_data import read_raw_data, read_csv
 from src.utils.path_utils import get_project_root
 from src.weak_labeling.model_based.xgboost.xgboost_preprocess import (
     preprocess_for_xgboost_train,
@@ -59,5 +59,5 @@ def load_xgb(date: datetime.date):
 
 
 if __name__ == "__main__":
-    covid_df: pd.DataFrame = read_raw_data(Datasets.NELA_COVID_2021_DATASET_SAMPLED)
+    covid_df: pd.DataFrame = read_csv(Datasets.NELA_COVID_2021.sampled_path)
     train_xgb(covid_df, use_saved=True, save_date=datetime.date(2023, 1, 22))

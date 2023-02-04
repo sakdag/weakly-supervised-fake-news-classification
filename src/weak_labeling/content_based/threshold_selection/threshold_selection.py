@@ -4,7 +4,7 @@ import pandas as pd
 
 from src.preprocessing.cleanup import separate_real_and_fake
 from src.preprocessing.consts import Datasets
-from src.preprocessing.read_raw_data import read_raw_data, save_to_csv
+from src.preprocessing.read_raw_data import read_csv
 from src.weak_labeling.consts.content_features import ContentFeatures
 from src.weak_labeling.content_based.threshold_selection.consts import (
     FEATURE_PERCENTILES,
@@ -13,7 +13,6 @@ from src.weak_labeling.content_based.threshold_selection.consts import (
     LOWER_PERCENTILES,
 )
 from src.weak_labeling.content_based.threshold_selection.utils import (
-    get_thresholds_json,
     update_and_save_thresholds_json,
 )
 
@@ -118,5 +117,5 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    df = read_raw_data(Datasets.INJECTED_NELA_COVID_2021_DATASET_SAMPLED)
+    df = read_csv(Datasets.NELA_COVID_2021.injected_path)
     select_thresholds_for_content_features(df)

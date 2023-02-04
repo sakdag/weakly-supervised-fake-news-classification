@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from src.preprocessing.consts import Datasets
-from src.preprocessing.read_raw_data import read_raw_data, save_to_csv
+from src.preprocessing.read_raw_data import read_raw_data, save_to_csv, read_csv
 from src.weak_labeling.content_based.labeling_functions.lf_creation import (
     create_content_lfs,
 )
@@ -66,10 +66,10 @@ if __name__ == "__main__":
 
     print(labeling_functions)
 
-    a_df = read_raw_data(Datasets.INJECTED_NELA_ELECTIONS_DATASET_2020_SAMPLED)
+    a_df = read_csv(Datasets.NELA_ELECTIONS_2020.injected_path)
 
     df_with_predictions = generate_labels(a_df, labeling_functions)
 
-    # save_to_csv(
-    #     df_with_predictions, Datasets.LABELED_NELA_ELECTIONS_DATASET_2020_SAMPLED
-    # )
+    save_to_csv(
+        df_with_predictions, Datasets.NELA_ELECTIONS_2020.weak_labeled_path
+    )

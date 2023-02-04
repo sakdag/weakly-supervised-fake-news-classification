@@ -6,7 +6,7 @@ from imblearn.under_sampling import RandomUnderSampler
 from tqdm import tqdm
 
 from src.preprocessing.cleanup import cleanup_df
-from src.preprocessing.consts import Datasets, DATA_FOLDER_PREFIX
+from src.preprocessing.consts import Datasets, DATA_FOLDER_PREFIX, Dataset, NELA_SOURCE_LABELS
 import sqlite3
 import pandas as pd
 
@@ -15,50 +15,49 @@ from src.utils.path_utils import get_project_root
 
 
 def read_raw_data(
-    dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET,
+    dataset: Dataset = Datasets.NELA_ELECTIONS_2020,
 ) -> pandas.DataFrame:
-    dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, dataset.value)
-    print(f"Reading dataset from path: {dataset_path}")
-    if dataset.value.endswith("csv"):
+    dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, dataset.raw_path)
+    print(f"Reading raw dataset from path: {dataset_path}")
+    if dataset_path.endswith("csv"):
         df = pd.read_csv(dataset_path, delimiter=",", encoding="utf-8")
     else:
         conn = sqlite3.connect(dataset_path)
         query = "SELECT * FROM newsdata"
         df = pd.read_sql_query(query, conn)
-    print(f"Dataframe size: {len(df)}")
+    print(f"Read dataset, dataframe size: {len(df)}")
     return df
 
 
-def save_to_csv(df: pd.DataFrame, dataset: Datasets):
+def read_csv(
+    path: str,
+) -> pandas.DataFrame:
+    dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, path)
+    print(f"Reading dataset from path: {dataset_path}")
+    df = pd.read_csv(dataset_path, delimiter=",", encoding="utf-8")
+    print(f"Read dataset, dataframe size: {len(df)}")
+    return df
+
+
+def save_to_csv(df: pd.DataFrame, path: str):
     dataset_path = os.path.join(
         get_project_root(),
         DATA_FOLDER_PREFIX,
-        dataset.value,
+        path,
     )
     print(f"Saving dataframe to: {dataset_path}")
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
 
 
-def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
+def sample_and_save(dataset: Dataset = Datasets.NELA_ELECTIONS_2020):
     df = read_raw_data(dataset)
-    if dataset == Datasets.NELA_ELECTIONS_2020_DATASET:
-        sampled_dataset = Datasets.NELA_ELECTIONS_2020_DATASET_SAMPLED
-    elif dataset == Datasets.NELA_CAPITOL_2021_DATASET:
-        sampled_dataset = Datasets.NELA_CAPITOL_2021_DATASET_SAMPLED
-    elif dataset == Datasets.NELA_COVID_2020_DATASET:
-        sampled_dataset = Datasets.NELA_COVID_2020_DATASET_SAMPLED
-    elif dataset == Datasets.NELA_COVID_2021_DATASET:
-        sampled_dataset = Datasets.NELA_COVID_2021_DATASET_SAMPLED
-    else:
-        print(f"Cant sample dataset: {dataset}")
-        return
 
     dataset_path = os.path.join(
-        get_project_root(), DATA_FOLDER_PREFIX, sampled_dataset.value
+        get_project_root(), DATA_FOLDER_PREFIX, dataset.sampled_path
     )
     print(dataset_path)
 
-    labels_df = read_raw_data(Datasets.NELA_SOURCE_LABELS)
+    labels_df = read_raw_data(NELA_SOURCE_LABELS)
     # print(labels_df)
     labels_df = labels_df[labels_df.label != 2]
     # print(labels_df)
@@ -103,7 +102,7 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
 
     # Fixing string bug, read and write again
-    df = read_raw_data(dataset=sampled_dataset)
+    df = read_csv(dataset_path)
     df.dropna(inplace=True)
     print(len(df))
 
@@ -120,6 +119,9 @@ def sample_and_save(dataset: Datasets = Datasets.NELA_ELECTIONS_2020_DATASET):
     # )
     # print(undersampled_df["label"].value_counts())
 
+    df = df[df['content'].str.split().str.len().gt(150)]
+    print(len(df))
+
     print(f"Saving dataset to path: {dataset_path}")
     df = df.sample(frac=1)
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
@@ -133,28 +135,31 @@ def balanced_undersample(df: pd.DataFrame, n: int):
     return undersampled_df
 
 
-def drop_na_and_save(dataset: Datasets):
-    df = read_raw_data(dataset)
-
-    dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, dataset.value)
-
+def drop_na_and_save(path: str):
+    df = read_csv(path)
     df.dropna(inplace=True)
     print(len(df))
+    save_to_csv(df, path)
 
-    print(f"Saving dataset to path: {dataset_path}")
-    df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
+def drop_less_than_100_words_and_save(path: str):
+    df = read_csv(path)
+    df = df[df['content'].str.split().str.len().gt(150)]
+    print(len(df))
+    save_to_csv(df, path)
 
 
 if __name__ == "__main__":
-    # df = read_raw_data(dataset=Datasets.NELA_COVID_DATASET_SAMPLED)
+    # df = read_csv(path=Datasets.NELA_COVID_2020.sampled_path)
     # print(len(df))
     # print(is_string_series(df.title))
     # print(is_string_series(df.content))
     # print(df.dtypes)
 
-    # drop_na_and_save(dataset=Datasets.NELA_COVID_2021_DATASET_SAMPLED)
+    # drop_na_and_save(path=Datasets.NELA_COVID_2021.sampled_path)
 
-    # sample_and_save(dataset=Datasets.NELA_COVID_2021_DATASET)
-    # sample_and_save(dataset=Datasets.NELA_COVID_2020_DATASET)
-    sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020_DATASET)
-    # sample_and_save(dataset=Datasets.NELA_CAPITOL_2021_DATASET)
+    # sample_and_save(dataset=Datasets.NELA_COVID_2021)
+    # sample_and_save(dataset=Datasets.NELA_COVID_2020)
+    # sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020)
+    # sample_and_save(dataset=Datasets.NELA_CAPITOL_2021)
+
+    drop_less_than_100_words_and_save(path=Datasets.NELA_ELECTIONS_2020.injected_path)

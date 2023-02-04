@@ -1,4 +1,5 @@
 from statistics import mean
+from typing import List
 
 import numpy as np
 import pandas as pd
@@ -10,7 +11,10 @@ from src.weak_labeling.consts.globals import NLP
 import dask.dataframe as dd
 
 
-def append_stylistic_features(df: pd.DataFrame) -> pd.DataFrame:
+def append_stylistic_features(df: pd.DataFrame, features = List[str]) -> pd.DataFrame:
+    if not features:
+        return df
+
     # Initialize empty columns to fill while iterating
     tqdm.pandas()
 
@@ -18,22 +22,55 @@ def append_stylistic_features(df: pd.DataFrame) -> pd.DataFrame:
         append_stylistic_features_helper,
         axis=1,
         result_type="expand",
+        features_to_apply=features,
     )
 
-    res.columns = [
-        ContentFeatures.CONTENT_WORD_COUNT,
-        ContentFeatures.CONTENT_WORDS_PER_SENTENCE,
-        ContentFeatures.CONTENT_STOPWORDS_PER_SENTENCE,
-        ContentFeatures.CONTENT_UNIQUE_WORDS_RATIO,
-        ContentFeatures.CONTENT_UNIQUE_WORDS_COUNT,
-        ContentFeatures.CONTENT_AVERAGE_SENTENCE_LENGTH,
-        ContentFeatures.TITLE_WORD_COUNT,
-    ]
+    res.columns = features
 
     full = df.merge(res, left_index=True, right_index=True)
     print(full)
 
     return full
+
+
+def append_stylistic_features_helper(row):
+    # Content
+    content_spacy = NLP(row.content)
+    title_spacy = NLP(row.title)
+
+    num_of_stopwords = 0
+    for token in content_spacy:
+        if token.is_stop:
+            num_of_stopwords += 1
+
+    sentence_lengths = []
+    num_of_sentences = 0
+    for sentence in content_spacy.sents:
+        num_of_sentences += 1
+        sentence_lengths.append(len(sentence))
+
+    words_lower = [word.text.lower() for word in content_spacy]
+    unique_words = set(words_lower)
+
+    features_to_return = []
+
+    # content_word_count
+    content_word_count = len(content_spacy)
+    # title_word_count
+    features_to_return.append(len(title_spacy))
+
+    # content_word_per_sentence
+    features_to_return.append(content_word_count / num_of_sentences)
+    # content_stopwords_per_sentence
+    features_to_return.append(num_of_stopwords / num_of_sentences)
+    # content_unique_words_ratio
+    features_to_return.append(len(unique_words) / content_word_count)
+    # content_unique_words_count
+    features_to_return.append(len(unique_words))
+    # content_average_sentence_length
+    features_to_return.append(mean(sentence_lengths))
+
+    return tuple(features_to_return)
 
 
 def append_stylistic_features_parallel(ddf: dd.DataFrame) -> pd.DataFrame:
@@ -73,44 +110,3 @@ def append_stylistic_features_parallel(ddf: dd.DataFrame) -> pd.DataFrame:
     print(len(final_res))
 
     return final_res
-
-
-def append_stylistic_features_helper(row):
-    # Content
-    content_spacy = NLP(row.content)
-    content_word_count = len(content_spacy)
-
-    num_of_stopwords = 0
-    for token in content_spacy:
-        if token.is_stop:
-            num_of_stopwords += 1
-
-    sentence_lengths = []
-    num_of_sentences = 0
-    for sentence in content_spacy.sents:
-        num_of_sentences += 1
-        sentence_lengths.append(len(sentence))
-
-    words_lower = [word.text.lower() for word in content_spacy]
-    unique_words = set(words_lower)
-
-    # Word per sentence
-    content_word_per_sentence = content_word_count / num_of_sentences
-    content_stopwords_per_sentence = num_of_stopwords / num_of_sentences
-    content_unique_words_ratio = len(unique_words) / content_word_count
-    content_unique_words_count = len(unique_words)
-    content_average_sentence_length = mean(sentence_lengths)
-
-    # Title
-    title_spacy = NLP(row.title)
-    title_word_count = len(title_spacy)
-
-    return (
-        content_word_count,
-        content_word_per_sentence,
-        content_stopwords_per_sentence,
-        content_unique_words_ratio,
-        content_unique_words_count,
-        content_average_sentence_length,
-        title_word_count,
-    )
