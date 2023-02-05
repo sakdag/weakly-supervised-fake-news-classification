@@ -55,15 +55,7 @@ def run_model_feature_injection(dataset: Dataset, zero: bool = False):
 
 
 if __name__ == "__main__":
-    run_model_feature_injection(
-        dataset=Datasets.NELA_ELECTIONS_2020, zero=False
-    )
-    run_model_feature_injection(
-        dataset=Datasets.NELA_COVID_2021, zero=False
-    )
-    run_model_feature_injection(
-        dataset=Datasets.NELA_COVID_2020, zero=False
-    )
-    run_model_feature_injection(
-        dataset=Datasets.NELA_CAPITOL_2021, zero=False
-    )
+    run_model_feature_injection(dataset=Datasets.NELA_ELECTIONS_2020, zero=False)
+    run_model_feature_injection(dataset=Datasets.NELA_COVID_2021, zero=False)
+    run_model_feature_injection(dataset=Datasets.NELA_COVID_2020, zero=False)
+    run_model_feature_injection(dataset=Datasets.NELA_CAPITOL_2021, zero=False)

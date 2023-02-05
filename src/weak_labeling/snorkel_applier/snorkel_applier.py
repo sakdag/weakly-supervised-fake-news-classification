@@ -70,6 +70,4 @@ if __name__ == "__main__":
 
     df_with_predictions = generate_labels(a_df, labeling_functions)
 
-    save_to_csv(
-        df_with_predictions, Datasets.NELA_ELECTIONS_2020.weak_labeled_path
-    )
+    save_to_csv(df_with_predictions, Datasets.NELA_ELECTIONS_2020.weak_labeled_path)

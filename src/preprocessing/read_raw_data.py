@@ -6,7 +6,12 @@ from imblearn.under_sampling import RandomUnderSampler
 from tqdm import tqdm
 
 from src.preprocessing.cleanup import cleanup_df
-from src.preprocessing.consts import Datasets, DATA_FOLDER_PREFIX, Dataset, NELA_SOURCE_LABELS
+from src.preprocessing.consts import (
+    Datasets,
+    DATA_FOLDER_PREFIX,
+    Dataset,
+    NELA_SOURCE_LABELS,
+)
 import sqlite3
 import pandas as pd
 
@@ -17,7 +22,9 @@ from src.utils.path_utils import get_project_root
 def read_raw_data(
     dataset: Dataset = Datasets.NELA_ELECTIONS_2020,
 ) -> pandas.DataFrame:
-    dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, dataset.raw_path)
+    dataset_path = os.path.join(
+        get_project_root(), DATA_FOLDER_PREFIX, dataset.raw_path
+    )
     print(f"Reading raw dataset from path: {dataset_path}")
     if dataset_path.endswith("csv"):
         df = pd.read_csv(dataset_path, delimiter=",", encoding="utf-8")
@@ -119,7 +126,7 @@ def sample_and_save(dataset: Dataset = Datasets.NELA_ELECTIONS_2020):
     # )
     # print(undersampled_df["label"].value_counts())
 
-    df = df[df['content'].str.split().str.len().gt(150)]
+    df = df[df["content"].str.split().str.len().gt(150)]
     print(len(df))
 
     print(f"Saving dataset to path: {dataset_path}")
@@ -141,9 +148,10 @@ def drop_na_and_save(path: str):
     print(len(df))
     save_to_csv(df, path)
 
+
 def drop_less_than_100_words_and_save(path: str):
     df = read_csv(path)
-    df = df[df['content'].str.split().str.len().gt(150)]
+    df = df[df["content"].str.split().str.len().gt(150)]
     print(len(df))
     save_to_csv(df, path)
 

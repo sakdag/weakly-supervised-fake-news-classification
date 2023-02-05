@@ -41,10 +41,13 @@ def run_content_feature_injection(
     if stylistic_features:
         injected_df = append_stylistic_features(
             injected_df,
-             ContentFeatures.get_stylistic_count_features() + ContentFeatures.get_stylistic_ratio_features()
+            ContentFeatures.get_stylistic_count_features()
+            + ContentFeatures.get_stylistic_ratio_features(),
         )
     if readability_features:
-        injected_df = append_readability_features(injected_df, ContentFeatures.get_readability_features())
+        injected_df = append_readability_features(
+            injected_df, ContentFeatures.get_readability_features()
+        )
 
     print(injected_df.head())
 

@@ -4,6 +4,7 @@ from dataclasses import dataclass
 DATA_FOLDER_PREFIX = "data"
 NELA_SOURCE_LABELS = "raw/nela/source-labels.csv"
 
+
 @dataclass
 class Dataset:
     raw_path: str

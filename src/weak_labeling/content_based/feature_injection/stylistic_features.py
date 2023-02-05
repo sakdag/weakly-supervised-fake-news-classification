@@ -11,7 +11,7 @@ from src.weak_labeling.consts.globals import NLP
 import dask.dataframe as dd
 
 
-def append_stylistic_features(df: pd.DataFrame, features = List[str]) -> pd.DataFrame:
+def append_stylistic_features(df: pd.DataFrame, features=List[str]) -> pd.DataFrame:
     if not features:
         return df
 

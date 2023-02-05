@@ -7,7 +7,7 @@ from readability import Readability
 from src.weak_labeling.consts.content_features import ContentFeatures
 
 
-def append_readability_features(df: pd.DataFrame, features = List[str]) -> pd.DataFrame:
+def append_readability_features(df: pd.DataFrame, features=List[str]) -> pd.DataFrame:
     if not features:
         return df
 
