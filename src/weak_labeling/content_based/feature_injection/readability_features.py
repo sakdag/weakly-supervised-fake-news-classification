@@ -38,7 +38,7 @@ def append_readability_features_helper(row, **kwargs):
         features_to_return.append(readability.gunning_fog().score)
     if ContentFeatures.CONTENT_AUTOMATED_READABILITY_INDEX in features:
         features_to_return.append(readability.ari().score)
-    if ContentFeatures.CONTENT_FLESH_KINCAID_INDEX in features:
+    if ContentFeatures.CONTENT_FLESCH_KINCAID_INDEX in features:
         features_to_return.append(readability.flesch_kincaid().score)
 
     return tuple(features_to_return)

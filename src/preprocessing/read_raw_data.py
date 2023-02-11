@@ -64,7 +64,8 @@ def sample_and_save(dataset: Dataset = Datasets.NELA_ELECTIONS_2020):
     )
     print(dataset_path)
 
-    labels_df = read_raw_data(NELA_SOURCE_LABELS)
+    nela_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, NELA_SOURCE_LABELS)
+    labels_df = read_csv(nela_path)
     # print(labels_df)
     labels_df = labels_df[labels_df.label != 2]
     # print(labels_df)
@@ -165,9 +166,9 @@ if __name__ == "__main__":
 
     # drop_na_and_save(path=Datasets.NELA_COVID_2021.sampled_path)
 
-    # sample_and_save(dataset=Datasets.NELA_COVID_2021)
+    sample_and_save(dataset=Datasets.NELA_COVID_2021)
     # sample_and_save(dataset=Datasets.NELA_COVID_2020)
     # sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020)
-    # sample_and_save(dataset=Datasets.NELA_CAPITOL_2021)
+    sample_and_save(dataset=Datasets.NELA_CAPITOL_2021)
 
-    drop_less_than_100_words_and_save(path=Datasets.NELA_ELECTIONS_2020.injected_path)
+    # drop_less_than_100_words_and_save(path=Datasets.NELA_ELECTIONS_2020.injected_path)

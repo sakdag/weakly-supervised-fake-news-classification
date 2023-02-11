@@ -59,5 +59,5 @@ def load_xgb(date: datetime.date):
 
 
 if __name__ == "__main__":
-    covid_df: pd.DataFrame = read_csv(Datasets.NELA_COVID_2021.sampled_path)
-    train_xgb(covid_df, use_saved=True, save_date=datetime.date(2023, 1, 22))
+    covid_df: pd.DataFrame = read_csv(Datasets.NELA_COVID_2020.sampled_path)
+    train_xgb(covid_df, use_saved=False, save_date=datetime.date(2023, 2, 7))
