@@ -50,8 +50,8 @@ def run_content_feature_injection(
 
     # injected_df = injected_df.sample(n=100)
 
-    # if zero:
-    #     injected_df = balanced_undersample(df=injected_df, n=10000)
+    if zero:
+        injected_df = balanced_undersample(df=injected_df, n=100000)
     print(injected_df.head())
 
     stylistic_feature_list = []
@@ -88,8 +88,8 @@ def run_content_feature_injection(
 
 if __name__ == "__main__":
     datasets = [
-        Datasets.NELA_COVID_2021,
         Datasets.NELA_ELECTIONS_2020,
+        Datasets.NELA_COVID_2021,
         # Datasets.NELA_COVID_2020,
         # Datasets.NELA_CAPITOL_2021,
     ]

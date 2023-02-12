@@ -63,14 +63,17 @@ class ContentFeatures:
     CONTENT_FLESCH_KINCAID_INDEX = "content_flesch_kincaid_index"
 
     # Calculated features
-    CONTENT_TITLE_BODY_SIMILARITY = "content_title_body_similarity"
+    # CONTENT_TITLE_BODY_SIMILARITY = "content_title_body_similarity"
 
     @classmethod
     def get_all(cls):
         all_features = []
         all_features.extend(cls.get_stylistic_count_features())
         all_features.extend(cls.get_stylistic_ratio_features())
+        all_features.extend(cls.get_pos_tagging_features())
+        all_features.extend(cls.get_punctuation_features())
         all_features.extend(cls.get_readability_features())
+        # all_features.extend(cls.get_calculated_features())
         return all_features
 
     @classmethod
@@ -141,8 +144,8 @@ class ContentFeatures:
             cls.CONTENT_FLESCH_KINCAID_INDEX,
         ]
 
-    @classmethod
-    def get_calculated_features(cls):
-        return [
-            cls.CONTENT_TITLE_BODY_SIMILARITY,
-        ]
+    # @classmethod
+    # def get_calculated_features(cls):
+    #     return [
+    #         cls.CONTENT_TITLE_BODY_SIMILARITY,
+    #     ]

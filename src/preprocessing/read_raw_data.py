@@ -136,7 +136,15 @@ def sample_and_save(dataset: Dataset = Datasets.NELA_ELECTIONS_2020):
 
 
 def balanced_undersample(df: pd.DataFrame, n: int):
-    undersample = RandomUnderSampler(sampling_strategy={0: int(n / 2), 1: int(n / 2)})
+    min_label_count = int(n / 2)
+    label_value_counts = df.label.value_counts()
+    if label_value_counts[0] < min_label_count:
+        min_label_count = label_value_counts[0]
+    if label_value_counts[1] < min_label_count:
+        min_label_count = label_value_counts[1]
+    undersample = RandomUnderSampler(
+        sampling_strategy={0: min_label_count, 1: min_label_count}
+    )
     undersampled_df, labels = undersample.fit_resample(df, df.label)
     print(f"Dataframe size: {len(undersampled_df)}")
     print(undersampled_df.label.value_counts())
