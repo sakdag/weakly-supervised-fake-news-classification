@@ -18,7 +18,7 @@ from src.weak_labeling.model_based.xgboost.xgboost_train import load_xgb
 
 
 def inject_xgboost_label(df_to_inject: pd.DataFrame) -> pd.DataFrame:
-    xgb = load_xgb(date=datetime.date(2023, 1, 22))
+    xgb = load_xgb(date=datetime.date(2023, 2, 18))
     test_data = df_to_inject.content
     features = preprocess_for_xgboost_test(test_data)
     xgb_pred = xgb.predict(features)
@@ -57,5 +57,5 @@ def run_model_feature_injection(dataset: Dataset, zero: bool = False):
 if __name__ == "__main__":
     run_model_feature_injection(dataset=Datasets.NELA_ELECTIONS_2020, zero=False)
     run_model_feature_injection(dataset=Datasets.NELA_COVID_2021, zero=False)
-    run_model_feature_injection(dataset=Datasets.NELA_COVID_2020, zero=False)
-    run_model_feature_injection(dataset=Datasets.NELA_CAPITOL_2021, zero=False)
+    # run_model_feature_injection(dataset=Datasets.NELA_COVID_2020, zero=False)
+    # run_model_feature_injection(dataset=Datasets.NELA_CAPITOL_2021, zero=False)

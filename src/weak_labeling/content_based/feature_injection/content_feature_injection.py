@@ -8,6 +8,9 @@ from src.preprocessing.read_raw_data import (
     balanced_undersample,
 )
 from src.weak_labeling.consts.content_features import ContentFeatures
+from src.weak_labeling.content_based.feature_injection.calculated_features import (
+    append_calculated_features,
+)
 from src.weak_labeling.content_based.feature_injection.readability_features import (
     append_readability_features,
 )
@@ -25,18 +28,18 @@ def normalize_content_features(df: pd.DataFrame, features: list) -> pd.DataFrame
 def run_content_feature_injection(
     dataset: Dataset,
     zero: bool = False,
-    parallelize: bool = False,
-    stylistic_features: bool = True,
-    readability_features: bool = True,
-    pos_tagging_features: bool = True,
-    calculated_features: bool = True,
+    sample_size: int = 10000,
+    stylistic_features: bool = False,
+    readability_features: bool = False,
+    pos_tagging_features: bool = False,
+    calculated_features: bool = False,
 ):
     """
     Injects content features into given dataset
     :param dataset: Input dataset containing content and title columns
     :param zero: If True, eliminates all previously injected features and starts from scratch.
                  By default, this is false meaning old features in dataset will not be eliminated
-    :param parallelize: If provided, feature injection utilizes Dask to parallelize the df apply
+    :param sample_size: If zero is enabled, samples the data according to given value, default: 10000
     :param stylistic_features: flag to enable/disable injecting stylistic content features
     :param readability_features: flag to enable/disable injecting readability content features
     :param pos_tagging_features: flag to enable/disable injecting pos_tagging content features
@@ -51,37 +54,54 @@ def run_content_feature_injection(
     # injected_df = injected_df.sample(n=100)
 
     if zero:
-        injected_df = balanced_undersample(df=injected_df, n=100000)
+        injected_df = balanced_undersample(df=injected_df, n=sample_size)
     print(injected_df.head())
 
     stylistic_feature_list = []
-    if stylistic_features:
-        stylistic_feature_list.extend(ContentFeatures.get_stylistic_count_features())
-        stylistic_feature_list.extend(ContentFeatures.get_stylistic_ratio_features())
-    if pos_tagging_features:
-        stylistic_feature_list.extend(ContentFeatures.get_pos_tagging_features())
-        stylistic_feature_list.extend(ContentFeatures.get_punctuation_features())
 
-    all_features = []
+    # Content
+    if stylistic_features:
+        stylistic_feature_list.extend(
+            ContentFeatures.get_stylistic_count_features_content()
+        )
+        stylistic_feature_list.extend(
+            ContentFeatures.get_stylistic_ratio_features_content()
+        )
+    if pos_tagging_features:
+        stylistic_feature_list.extend(
+            ContentFeatures.get_pos_tagging_features_content()
+        )
+        stylistic_feature_list.extend(
+            ContentFeatures.get_punctuation_features_content()
+        )
+
+    # Title
+    if stylistic_features:
+        stylistic_feature_list.extend(
+            ContentFeatures.get_stylistic_count_features_title()
+        )
+        stylistic_feature_list.extend(
+            ContentFeatures.get_stylistic_ratio_features_title()
+        )
+    if pos_tagging_features:
+        stylistic_feature_list.extend(ContentFeatures.get_pos_tagging_features_title())
+        stylistic_feature_list.extend(ContentFeatures.get_punctuation_features_title())
+
     if stylistic_feature_list:
-        all_features.extend(stylistic_feature_list)
         injected_df = append_stylistic_features(
             injected_df,
             stylistic_feature_list,
         )
     if readability_features:
-        all_features.extend(ContentFeatures.get_readability_features())
         injected_df = append_readability_features(
-            injected_df, ContentFeatures.get_readability_features()
+            injected_df, ContentFeatures.get_readability_features_content()
         )
     if calculated_features:
-        all_features.extend(ContentFeatures.get_calculated_features())
-        pass
+        injected_df = append_calculated_features(
+            injected_df, ContentFeatures.get_calculated_features()
+        )
 
     print(injected_df.head())
-
-    # injected_df = normalize_content_features(injected_df, all_features)
-    # print(injected_df.head())
 
     save_to_csv(injected_df, dataset.injected_path)
 
@@ -97,7 +117,7 @@ if __name__ == "__main__":
         run_content_feature_injection(
             dataset=dataset,
             zero=True,
-            parallelize=False,
+            sample_size=50000,
             stylistic_features=True,
             pos_tagging_features=True,
             readability_features=True,
