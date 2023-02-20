@@ -1,6 +1,7 @@
 class ModelFeatures:
     XGBOOST = "xgboost"
     ADABOOST = "adaboost"
+    LOGISTIC_REGRESSION = "logistic_regression"
 
     @staticmethod
     def get_all():
