@@ -35,26 +35,26 @@ def find_threshold_for_feature(
         percentiles_to_process = (
             UPPER_PERCENTILES if direction == Direction.UPPER else LOWER_PERCENTILES
         )
-    # real_max_diff = abs(
-    #     percentiles_dict[FEATURE_PERCENTILES[0]]["real"]
-    #     - percentiles_dict[FEATURE_PERCENTILES[-1]]["real"]
-    # )
-    # fake_max_diff = abs(
-    #     percentiles_dict[FEATURE_PERCENTILES[0]]["fake"]
-    #     - percentiles_dict[FEATURE_PERCENTILES[-1]]["fake"]
-    # )
-    # total_max_diff = min(real_max_diff, fake_max_diff)
-    #
-    # print(total_max_diff)
-    # print(real_max_diff)
-    # print(fake_max_diff)
+    real_max_diff = abs(
+        percentiles_dict[FEATURE_PERCENTILES[0]]["real"]
+        - percentiles_dict[FEATURE_PERCENTILES[-1]]["real"]
+    )
+    fake_max_diff = abs(
+        percentiles_dict[FEATURE_PERCENTILES[0]]["fake"]
+        - percentiles_dict[FEATURE_PERCENTILES[-1]]["fake"]
+    )
+    total_max_diff = min(real_max_diff, fake_max_diff)
+
+    print(total_max_diff)
+    print(real_max_diff)
+    print(fake_max_diff)
 
     print(percentiles_dict)
 
     for percentile in percentiles_to_process:
         if abs(percentiles_dict[percentile]["diff"]) > (
-            1 / 200
-        ):  # (total_max_diff / 18)
+            (total_max_diff / 18)
+        ):  # 1 / 200
             if percentiles_dict[percentile]["diff"] > 0:
                 side = "real" if direction == Direction.UPPER else "fake"
                 threshold = percentiles_dict[percentile]["real"]
@@ -104,7 +104,7 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
                 }
 
         feature_thresholds = {}
-        if feature in ContentFeatures.get_stylistic_count_features():
+        if feature in ContentFeatures.get_stylistic_count_features_content() or feature in ContentFeatures.get_stylistic_count_features_title():
             threshold = find_threshold_for_feature(
                 feature=feature,
                 percentiles_dict=percentiles_dict,
@@ -138,6 +138,6 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
 
 if __name__ == "__main__":
     df = read_csv(Datasets.NELA_COVID_2021.injected_path)
-    df = normalize_content_features(df, features=ContentFeatures.get_all())
+    # df = normalize_content_features(df, features=ContentFeatures.get_all())
     print(df.columns)
     select_thresholds_for_content_features(df)

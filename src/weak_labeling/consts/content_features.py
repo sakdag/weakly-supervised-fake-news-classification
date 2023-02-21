@@ -36,7 +36,7 @@ class ContentFeatures:
     # Punctuation features
     CONTENT_PUNCTUATION_RATIO = "content_punctuation_ratio"
     CONTENT_PERIOD_RATIO = "content_period_ratio"
-    CONTENT_QUESTION_MARK_RATIO = "content_question_mark_ratio"
+    CONTENT_QUESTION_MARK_RATIO = "content_question_mark_ration"
     CONTENT_EXCLAMATION_POINT_RATIO = "content_exclamation_point_ratio"
     CONTENT_COMMA_RATIO = "content_comma_ratio"
     CONTENT_COLON_RATIO = "content_colon_ratio"
@@ -107,7 +107,7 @@ class ContentFeatures:
         all_features.extend(cls.get_readability_features_content())
 
         # Calculated
-        all_features.extend(cls.get_calculated_features())
+        # all_features.extend(cls.get_calculated_features())
         return all_features
 
     @classmethod
