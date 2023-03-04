@@ -77,7 +77,7 @@ def find_threshold_for_feature(
     return None
 
 
-def select_thresholds_for_content_features(injected_df: pd.DataFrame):
+def get_thresholds_for_content_features(injected_df: pd.DataFrame):
     real_df, fake_df = separate_real_and_fake(injected_df)
 
     real_desc = real_df.describe(percentiles=FEATURE_PERCENTILES)
@@ -136,11 +136,15 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
 
         thresholds[feature] = feature_thresholds
 
-    update_and_save_thresholds_json(updated_thresholds=thresholds)
+    return thresholds
 
 
 if __name__ == "__main__":
-    df = read_csv(Datasets.NELA_COVID_2021.injected_path)
+    # dataset = Datasets.NELA_ELECTIONS_SUBSET_2020
+    dataset = Datasets.NELA_COVID_2021
+    df = read_csv(dataset.injected_path)
     # df = normalize_content_features(df, features=ContentFeatures.get_all())
     print(df.columns)
-    select_thresholds_for_content_features(df)
+    thresholds = get_thresholds_for_content_features(df)
+
+    update_and_save_thresholds_json(updated_thresholds=thresholds, dataset=dataset)

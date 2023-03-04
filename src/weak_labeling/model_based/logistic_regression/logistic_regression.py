@@ -68,6 +68,9 @@ def get_logistic_regression_labels(
 
 
 if __name__ == "__main__":
+    # train_logistic_regression_model(
+    #     Datasets.NELA_COVID_2021, save=True, save_identifier="test1"
+    # )
     train_logistic_regression_model(
-        Datasets.NELA_COVID_2021, save=True, save_identifier="test1"
+        Datasets.NELA_ELECTIONS_SUBSET_2020, save=True, save_identifier="test1"
     )

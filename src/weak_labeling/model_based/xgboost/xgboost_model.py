@@ -115,4 +115,7 @@ def train_xgb_model(
 
 
 if __name__ == "__main__":
-    train_xgb_model(Datasets.NELA_COVID_2021, save_identifier="test1", optimize=False)
+    # train_xgb_model(Datasets.NELA_COVID_2021, save_identifier="test1", optimize=False)
+    train_xgb_model(
+        Datasets.NELA_ELECTIONS_SUBSET_2020, save_identifier="test1", optimize=False
+    )

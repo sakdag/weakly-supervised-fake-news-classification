@@ -125,6 +125,9 @@ def get_adaboost_labels(
 
 
 if __name__ == "__main__":
+    # train_adaboost_model(
+    #     Datasets.NELA_COVID_2021, save_identifier="test1", optimize=False
+    # )
     train_adaboost_model(
-        Datasets.NELA_COVID_2021, save_identifier="test1", optimize=False
+        Datasets.NELA_ELECTIONS_SUBSET_2020, save_identifier="test1", optimize=False
     )
