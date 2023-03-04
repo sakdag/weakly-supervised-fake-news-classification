@@ -29,7 +29,7 @@ def generate_labels(df: pd.DataFrame, lfs: List[LabelingFunction], top_n: int = 
     l_test = applier.apply(df=test)
 
     analysis = LFAnalysis(L=l_train, lfs=lfs).lf_summary(Y=train.label.values)
-    print(tabulate(analysis, headers='keys', tablefmt='psql'))
+    print(tabulate(analysis, headers="keys", tablefmt="psql"))
 
     if top_n != -1:
         sorted_analysis = analysis.sort_values("Emp. Acc.", ascending=False)
@@ -41,7 +41,7 @@ def generate_labels(df: pd.DataFrame, lfs: List[LabelingFunction], top_n: int = 
         l_test = applier.apply(df=test)
 
         analysis = LFAnalysis(L=l_train, lfs=best_lfs).lf_summary(Y=train.label.values)
-        print(tabulate(analysis, headers='keys', tablefmt='psql'))
+        print(tabulate(analysis, headers="keys", tablefmt="psql"))
 
     label_model = LabelModel(cardinality=2, verbose=True)
     label_model.fit(L_train=l_train, n_epochs=500, log_freq=100, seed=1234)

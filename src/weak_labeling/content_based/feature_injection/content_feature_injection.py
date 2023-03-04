@@ -28,7 +28,7 @@ def normalize_content_features(df: pd.DataFrame, features: list) -> pd.DataFrame
 def run_content_feature_injection(
     dataset: Dataset,
     zero: bool = False,
-    sample_size: int = 10000,
+    sample_size: int = -1,
     stylistic_features: bool = False,
     readability_features: bool = False,
     pos_tagging_features: bool = False,
@@ -53,7 +53,7 @@ def run_content_feature_injection(
 
     # injected_df = injected_df.sample(n=100)
 
-    if zero:
+    if zero and sample_size > 0:
         injected_df = balanced_undersample(df=injected_df, n=sample_size)
     print(injected_df.head())
 
@@ -108,10 +108,11 @@ def run_content_feature_injection(
 
 if __name__ == "__main__":
     datasets = [
-        Datasets.NELA_ELECTIONS_2020,
-        Datasets.NELA_COVID_2021,
+        # Datasets.NELA_ELECTIONS_2020,
+        # Datasets.NELA_COVID_2021,
         # Datasets.NELA_COVID_2020,
         # Datasets.NELA_CAPITOL_2021,
+        Datasets.NELA_ELECTIONS_SUBSET_2020,
     ]
     for dataset in datasets:
         run_content_feature_injection(

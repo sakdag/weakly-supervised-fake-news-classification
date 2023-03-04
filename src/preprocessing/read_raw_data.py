@@ -165,6 +165,14 @@ def drop_less_than_100_words_and_save(path: str):
     save_to_csv(df, path)
 
 
+def save_subset_of_dataset(
+    source_dataset: Dataset, dest_dataset: Dataset, n: int = 2000
+):
+    source_df = read_csv(source_dataset.sampled_path)
+    subset_df = balanced_undersample(source_df, n)
+    save_to_csv(subset_df, dest_dataset.sampled_path)
+
+
 if __name__ == "__main__":
     # df = read_csv(path=Datasets.NELA_COVID_2020.sampled_path)
     # print(len(df))
@@ -174,9 +182,15 @@ if __name__ == "__main__":
 
     # drop_na_and_save(path=Datasets.NELA_COVID_2021.sampled_path)
 
-    sample_and_save(dataset=Datasets.NELA_COVID_2021)
+    # sample_and_save(dataset=Datasets.NELA_COVID_2021)
     # sample_and_save(dataset=Datasets.NELA_COVID_2020)
     # sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020)
-    sample_and_save(dataset=Datasets.NELA_CAPITOL_2021)
+    # sample_and_save(dataset=Datasets.NELA_CAPITOL_2021)
+
+    save_subset_of_dataset(
+        source_dataset=Datasets.NELA_ELECTIONS_2020,
+        dest_dataset=Datasets.NELA_ELECTIONS_SUBSET_2020,
+        n=2000,
+    )
 
     # drop_less_than_100_words_and_save(path=Datasets.NELA_ELECTIONS_2020.injected_path)

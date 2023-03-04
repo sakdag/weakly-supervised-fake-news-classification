@@ -43,3 +43,10 @@ class Datasets:
         injected_path="feature_injected/nela/nela-capitol-2021-sampled.csv",
         weak_labeled_path="with_weak_labels/nela/nela-capitol-2021-sampled.csv",
     )
+    NELA_ELECTIONS_SUBSET_2020 = Dataset(
+        name="elections-subset-2020",
+        raw_path="raw/nela/nela-elections-2020.db",
+        sampled_path="raw/nela/nela-elections-subset-2020-sampled.csv",
+        injected_path="feature_injected/nela/nela-elections-subset-2020-sampled.csv",
+        weak_labeled_path="with_weak_labels/nela/nela-elections-subset-2020-sampled.csv",
+    )

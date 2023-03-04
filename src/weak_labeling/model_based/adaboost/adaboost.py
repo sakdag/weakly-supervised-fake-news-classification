@@ -43,7 +43,7 @@ def train_adaboost_model(
 
     # Save vectorizer
     tfidf_vect_file_name = get_model_file_name(
-        "tfidf_vectorizer", dataset, save_identifier
+        "tfidf_vectorizer", dataset, f"adaboost-{save_identifier}"
     )
     pickle.dump(tfidf_vect, open(tfidf_vect_file_name, "wb"))
 

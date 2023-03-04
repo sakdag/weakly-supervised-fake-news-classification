@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
 from src.preprocessing.consts import Datasets, Dataset
-from src.preprocessing.read_raw_data import read_csv
+from src.preprocessing.read_raw_data import read_csv, balanced_undersample
 from src.weak_labeling.consts.model_features import ModelFeatures
 from src.weak_labeling.model_based.utils import get_model_file_name
 from sklearn.model_selection import train_test_split
@@ -14,9 +14,12 @@ from sklearn.model_selection import train_test_split
 
 def train_logistic_regression_model(
     dataset: Dataset,
+    save: bool,
     save_identifier: str,
 ):
     df: pd.DataFrame = read_csv(dataset.injected_path)
+
+    df = balanced_undersample(df, n=2000)
 
     sentences = df["content"].values
     y = df["label"].values
@@ -30,10 +33,11 @@ def train_logistic_regression_model(
     tfidf_test = tfidf_vect.transform(sentences_test)
 
     # Save vectorizer
-    tfidf_vect_file_name = get_model_file_name(
-        "tfidf_vectorizer", dataset, save_identifier
-    )
-    pickle.dump(tfidf_vect, open(tfidf_vect_file_name, "wb"))
+    if save:
+        tfidf_vect_file_name = get_model_file_name(
+            "tfidf_vectorizer", dataset, f"logistic_regression-{save_identifier}"
+        )
+        pickle.dump(tfidf_vect, open(tfidf_vect_file_name, "wb"))
 
     lr_classifier = LogisticRegression()
     lr_classifier.fit(tfidf_train, y_train)
@@ -41,10 +45,11 @@ def train_logistic_regression_model(
 
     print("Accuracy:", score)
 
-    logistic_regression_file_name = get_model_file_name(
-        ModelFeatures.LOGISTIC_REGRESSION, dataset, save_identifier
-    )
-    pickle.dump(lr_classifier, open(logistic_regression_file_name, "wb"))
+    if save:
+        logistic_regression_file_name = get_model_file_name(
+            ModelFeatures.LOGISTIC_REGRESSION, dataset, save_identifier
+        )
+        pickle.dump(lr_classifier, open(logistic_regression_file_name, "wb"))
 
 
 def get_logistic_regression_labels(
@@ -63,4 +68,6 @@ def get_logistic_regression_labels(
 
 
 if __name__ == "__main__":
-    train_logistic_regression_model(Datasets.NELA_COVID_2021, save_identifier="test1")
+    train_logistic_regression_model(
+        Datasets.NELA_COVID_2021, save=True, save_identifier="test1"
+    )

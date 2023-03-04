@@ -104,7 +104,10 @@ def select_thresholds_for_content_features(injected_df: pd.DataFrame):
                 }
 
         feature_thresholds = {}
-        if feature in ContentFeatures.get_stylistic_count_features_content() or feature in ContentFeatures.get_stylistic_count_features_title():
+        if (
+            feature in ContentFeatures.get_stylistic_count_features_content()
+            or feature in ContentFeatures.get_stylistic_count_features_title()
+        ):
             threshold = find_threshold_for_feature(
                 feature=feature,
                 percentiles_dict=percentiles_dict,

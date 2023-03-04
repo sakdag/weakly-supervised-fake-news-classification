@@ -15,7 +15,7 @@ from src.weak_labeling.model_based.logistic_regression.logistic_regression impor
     get_logistic_regression_labels,
 )
 from src.weak_labeling.model_based.utils import load_model
-from src.weak_labeling.model_based.xgboost.xgboost import (
+from src.weak_labeling.model_based.xgboost.xgboost_model import (
     preprocess_for_xgboost_test,
 )
 
@@ -46,7 +46,7 @@ def inject_adaboost_label(
     tfidf_vectorizer = load_model(
         model_feature="tfidf_vectorizer",
         dataset=train_dataset,
-        identifier=identifier,
+        identifier=f"adaboost-{identifier}",
     )
     adb_pred = get_adaboost_labels(adaboost_classifier, tfidf_vectorizer, df_to_inject)
     df_to_inject["model_adaboost_label"] = adb_pred
@@ -64,7 +64,7 @@ def inject_logistic_regression_label(
     tfidf_vectorizer = load_model(
         model_feature="tfidf_vectorizer",
         dataset=train_dataset,
-        identifier=identifier,
+        identifier=f"logistic_regression-{identifier}",
     )
     adb_pred = get_logistic_regression_labels(
         lr_classifier, tfidf_vectorizer, df_to_inject
