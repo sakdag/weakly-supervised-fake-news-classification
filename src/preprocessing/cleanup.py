@@ -1,5 +1,16 @@
 import pandas as pd
+from gensim import utils
+import gensim.parsing.preprocessing as gsp
 
+GENSIM_FILTERS = [
+    gsp.strip_tags,
+    gsp.strip_punctuation,
+    gsp.strip_multiple_whitespaces,
+    gsp.strip_numeric,
+    gsp.remove_stopwords,
+    gsp.strip_short,
+    gsp.stem_text
+]
 
 def cleanup_df(df: pd.DataFrame):
     copied_df = df.copy(deep=True)
@@ -15,3 +26,11 @@ def separate_real_and_fake(df: pd.DataFrame):
     fake_df = df[~mask]
     print(f"len(real_df): {len(real_df)}, len(fake_df): {len(fake_df)}")
     return real_df, fake_df
+
+
+def clean_text(s: str) -> str:
+    s = s.lower()
+    s = utils.to_unicode(s)
+    for f in GENSIM_FILTERS:
+        s = f(s)
+    return s

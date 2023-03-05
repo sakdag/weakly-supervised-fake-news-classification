@@ -47,18 +47,20 @@ def generate_labels(df: pd.DataFrame, lfs: List[LabelingFunction], top_n: int = 
     label_model.fit(L_train=l_train, n_epochs=500, log_freq=100, seed=1234)
 
     majority_model = MajorityLabelVoter()
-    majority_acc = majority_model.score(
-        L=l_test, Y=test.label.values, tie_break_policy="random"
-    )["accuracy"]
-    print(f"{'Majority Vote Accuracy:':<25} {majority_acc * 100:.1f}%")
+    majority_model_score = majority_model.score(
+        L=l_test, Y=test.label.values, tie_break_policy="abstain"
+    )
+    print(f"{'Majority Vote Accuracy:':<25} {majority_model_score['accuracy'] * 100:.1f}%")
+    print(majority_model_score)
 
-    label_model_acc = label_model.score(
-        L=l_test, Y=test.label.values, tie_break_policy="random"
-    )["accuracy"]
-    print(f"{'Label Model Accuracy:':<25} {label_model_acc * 100:.1f}%")
+    label_model_score = label_model.score(
+        L=l_test, Y=test.label.values, tie_break_policy="abstain"
+    )
+    print(f"{'Label Model Accuracy:':<25} {label_model_score['accuracy'] * 100:.1f}%")
+    print(label_model_score)
 
-    probabilistic_labels = label_model.predict_proba(np.concatenate([l_train, l_test]))
-    print(probabilistic_labels)
+    # probabilistic_labels = label_model.predict_proba(np.concatenate([l_train, l_test]))
+    # print(probabilistic_labels)
 
     # for idx, row in df.iterrows():
     #     print(row[0])
@@ -72,15 +74,15 @@ def generate_labels(df: pd.DataFrame, lfs: List[LabelingFunction], top_n: int = 
 
 
 if __name__ == "__main__":
-    content_lfs = create_content_lfs()
-    model_based_lfs = get_model_based_lfs()
-    labeling_functions = content_lfs + model_based_lfs
+    content_lfs = create_content_lfs(dataset=Datasets.NELA_COVID_2021)
+    # model_based_lfs = get_model_based_lfs()
+    labeling_functions = content_lfs #+ model_based_lfs
 
     print(labeling_functions)
 
     a_df = read_csv(Datasets.NELA_ELECTIONS_2020.injected_path)
     # a_df = normalize_content_features(a_df, features=ContentFeatures.get_all())
 
-    df_with_predictions = generate_labels(a_df, labeling_functions, 8)
+    df_with_predictions = generate_labels(a_df, labeling_functions, 6)
 
     save_to_csv(df_with_predictions, Datasets.NELA_ELECTIONS_2020.weak_labeled_path)

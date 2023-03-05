@@ -1,3 +1,4 @@
+from src.preprocessing.consts import Dataset, Datasets
 from src.weak_labeling.consts.labels import Labels
 from src.weak_labeling.content_based.threshold_selection.utils import (
     get_thresholds_json,
@@ -45,8 +46,8 @@ def make_lower_fake_lf(feature, threshold):
     )
 
 
-def create_content_lfs():
-    thresholds_dict = get_thresholds_json()
+def create_content_lfs(dataset: Dataset):
+    thresholds_dict = get_thresholds_json(dataset)
 
     generated_lfs = []
     for feature in thresholds_dict.keys():
@@ -74,5 +75,5 @@ def create_content_lfs():
 
 
 if __name__ == "__main__":
-    lfs = create_content_lfs()
+    lfs = create_content_lfs(dataset=Datasets.NELA_ELECTIONS_SUBSET_2020)
     print(lfs)

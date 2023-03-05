@@ -1,17 +1,16 @@
 import pickle
-from typing import Tuple
 
 import pandas as pd
 from nltk.corpus import stopwords
-from sklearn import metrics
 from sklearn.ensemble import AdaBoostClassifier
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.tree import DecisionTreeClassifier
 
 from src.preprocessing.consts import Datasets, Dataset
-from src.preprocessing.read_raw_data import read_raw_data, read_csv
-from src.weak_labeling.consts.model_features import ModelFeatures
+from src.preprocessing.read_raw_data import read_csv
+from src.weak_labeling.consts.model_features import ModelFeatures, FeatureColumns
+from src.weak_labeling.model_based.common.get_vectors import get_tfidf_vectors
 from src.weak_labeling.model_based.utils import get_model_file_name
 
 stop = stopwords.words("english")
@@ -20,35 +19,20 @@ stop = stopwords.words("english")
 def train_adaboost_model(
     dataset: Dataset,
     save_identifier: str,
+    feature_column: str = FeatureColumns.CONTENT,
     optimize: bool = False,
 ):
     df: pd.DataFrame = read_csv(dataset.injected_path)
 
-    df["title_without_stopwords"] = df["title"].apply(
-        lambda x: " ".join([word for word in x.split() if word not in (stop)])
-    )
-    df["content_without_stopwords"] = df["content"].apply(
-        lambda x: " ".join([word for word in x.split()[:200] if word not in (stop)])
+    x_train, x_test, y_train, y_test = train_test_split(
+        df, df["label"], test_size=0.20
     )
 
-    y = df.label
-    df["x_train"] = df["title_without_stopwords"] + df["content_without_stopwords"]
-    x = df["x_train"]
-
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20)
-
-    tfidf_vect = TfidfVectorizer(stop_words="english")
-    tfidf_train = tfidf_vect.fit_transform(x_train)
-    tfidf_test = tfidf_vect.transform(x_test)
-
-    # Save vectorizer
-    tfidf_vect_file_name = get_model_file_name(
-        "tfidf_vectorizer", dataset, f"adaboost-{save_identifier}"
-    )
-    pickle.dump(tfidf_vect, open(tfidf_vect_file_name, "wb"))
+    train_vectors = get_tfidf_vectors(x_train, feature_column)
+    test_vectors = get_tfidf_vectors(x_test, feature_column)
 
     if optimize:
-        params = get_best_adaboost_parameters(tfidf_train, y_train)
+        params = get_best_adaboost_parameters(train_vectors, y_train)
     else:
         params = {
             "base_estimator__max_depth": 10,
@@ -66,13 +50,13 @@ def train_adaboost_model(
         learning_rate=params["learning_rate"],
         random_state=1,
     )
-    abc.fit(tfidf_train, y_train)
-    y_pred = abc.predict(tfidf_test)
-    abc_score = metrics.accuracy_score(y_test, y_pred)
-    print("accuracy: %0.3f" % abc_score)
+    abc.fit(train_vectors, y_train)
+    y_pred = abc.predict(test_vectors)
+    cr = classification_report(y_test, y_pred)
+    print(cr)
 
     adaboost_file_name = get_model_file_name(
-        ModelFeatures.ADABOOST, dataset, save_identifier
+        ModelFeatures.ADABOOST, feature_column, dataset, save_identifier
     )
     pickle.dump(abc, open(adaboost_file_name, "wb"))
 
@@ -99,35 +83,28 @@ def get_best_adaboost_parameters(
 
 
 def get_adaboost_labels(
-    adaboost_classifier, tfidf_vectorizer, df: pd.DataFrame
+    adaboost_classifier,
+    df: pd.DataFrame,
+    feature_column: str = FeatureColumns.CONTENT,
 ) -> pd.Series:
     test_df = df[["title", "content", "label"]].copy()
-    test_df["title_without_stopwords"] = test_df["title"].apply(
-        lambda x: " ".join([word for word in x.split() if word not in (stop)])
-    )
-    test_df["content_without_stopwords"] = test_df["content"].apply(
-        lambda x: " ".join([word for word in x.split()[:200] if word not in (stop)])
-    )
+    test_vectors = get_tfidf_vectors(test_df, feature_column)
 
-    y_test = test_df.label
-    test_df["x_train"] = (
-        test_df["title_without_stopwords"] + test_df["content_without_stopwords"]
-    )
-    x_test = test_df["x_train"]
-
-    tfidf_test = tfidf_vectorizer.transform(x_test)
-
-    y_test_pred = adaboost_classifier.predict(tfidf_test)
-    adab_score = metrics.accuracy_score(y_test, y_test_pred)
-
-    print("accuracy: %0.3f" % adab_score)
+    y_test_pred = adaboost_classifier.predict(test_vectors)
+    cr = classification_report(test_df["label"], y_test_pred)
+    print(cr)
     return y_test_pred
 
 
 if __name__ == "__main__":
-    # train_adaboost_model(
-    #     Datasets.NELA_COVID_2021, save_identifier="test1", optimize=False
-    # )
-    train_adaboost_model(
-        Datasets.NELA_ELECTIONS_SUBSET_2020, save_identifier="test1", optimize=False
-    )
+    datasets = [
+        # Datasets.NELA_COVID_2021,
+        Datasets.NELA_ELECTIONS_SUBSET_2020,
+    ]
+    for dataset in datasets:
+        for column in FeatureColumns.get_all():
+            train_adaboost_model(
+                dataset,
+                save_identifier="test1",
+                feature_column=column
+            )
