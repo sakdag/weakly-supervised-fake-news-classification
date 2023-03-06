@@ -27,9 +27,7 @@ def train_random_forest_model(
 ):
     df: pd.DataFrame = read_csv(dataset.injected_path)
 
-    x_train, x_test, y_train, y_test = train_test_split(
-        df, df["label"], test_size=0.20
-    )
+    x_train, x_test, y_train, y_test = train_test_split(df, df["label"], test_size=0.20)
 
     train_vectors = get_tfidf_vectors(x_train, feature_column)
     test_vectors = get_tfidf_vectors(x_test, feature_column)
@@ -42,7 +40,7 @@ def train_random_forest_model(
             "max_depth": 12,
             "min_samples_leaf": 1,
             "min_samples_split": 5,
-            "max_features": "sqrt"
+            "max_features": "sqrt",
         }
 
     dts = RandomForestClassifier(
@@ -51,7 +49,7 @@ def train_random_forest_model(
         min_samples_leaf=params["min_samples_leaf"],
         min_samples_split=params["min_samples_split"],
         max_features=params["max_features"],
-        random_state=42
+        random_state=42,
     )
     dts.fit(train_vectors, y_train)
     y_pred = dts.predict(test_vectors)
@@ -75,7 +73,7 @@ def get_best_random_forest_parameters(
         "max_depth": range(2, 20),
         "min_samples_leaf": range(1, 10),
         "min_samples_split": range(2, 10),
-        "max_features": ["sqrt", "log2"]
+        "max_features": ["sqrt", "log2"],
     }
 
     grid_search = GridSearchCV(rfc, parameters, verbose=3, scoring="f1", n_jobs=-1)
@@ -108,7 +106,5 @@ if __name__ == "__main__":
     for dataset in datasets:
         for column in FeatureColumns.get_all():
             train_random_forest_model(
-                dataset,
-                save_identifier="test1",
-                feature_column=column
+                dataset, save_identifier="test1", feature_column=column
             )

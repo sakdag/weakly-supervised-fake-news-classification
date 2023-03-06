@@ -22,9 +22,7 @@ def train_naive_bayes_model(
 ):
     df: pd.DataFrame = read_csv(dataset.injected_path)
 
-    x_train, x_test, y_train, y_test = train_test_split(
-        df, df["label"], test_size=0.20
-    )
+    x_train, x_test, y_train, y_test = train_test_split(df, df["label"], test_size=0.20)
 
     train_vectors = get_tfidf_vectors(x_train, feature_column)
     test_vectors = get_tfidf_vectors(x_test, feature_column)
@@ -63,7 +61,5 @@ if __name__ == "__main__":
     for dataset in datasets:
         for column in FeatureColumns.get_all():
             train_naive_bayes_model(
-                dataset,
-                save_identifier="test1",
-                feature_column=column
+                dataset, save_identifier="test1", feature_column=column
             )

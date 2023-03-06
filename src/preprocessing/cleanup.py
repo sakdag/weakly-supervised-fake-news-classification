@@ -9,8 +9,9 @@ GENSIM_FILTERS = [
     gsp.strip_numeric,
     gsp.remove_stopwords,
     gsp.strip_short,
-    gsp.stem_text
+    gsp.stem_text,
 ]
+
 
 def cleanup_df(df: pd.DataFrame):
     copied_df = df.copy(deep=True)

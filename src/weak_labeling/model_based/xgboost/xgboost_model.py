@@ -92,9 +92,7 @@ def train_xgb_model(
 ):
     df: pd.DataFrame = read_csv(dataset.injected_path)
 
-    x_train, x_test, y_train, y_test = train_test_split(
-        df, df["label"], test_size=0.20
-    )
+    x_train, x_test, y_train, y_test = train_test_split(df, df["label"], test_size=0.20)
 
     train_vectors = get_tfidf_vectors(x_train, feature_column)
     test_vectors = get_tfidf_vectors(x_test, feature_column)
@@ -117,8 +115,11 @@ def train_xgb_model(
     cr = classification_report(y_test, xgb_pred)
     print(cr)
 
-    xgb_file_name = get_model_file_name(ModelFeatures.XGBOOST, feature_column, dataset, save_identifier)
+    xgb_file_name = get_model_file_name(
+        ModelFeatures.XGBOOST, feature_column, dataset, save_identifier
+    )
     pickle.dump(xgb, open(xgb_file_name, "wb"))
+
 
 def get_xgboost_labels(
     xgboost_classifier,
@@ -141,8 +142,4 @@ if __name__ == "__main__":
     ]
     for dataset in datasets:
         for column in FeatureColumns.get_all():
-            train_xgb_model(
-                dataset,
-                save_identifier="test1",
-                feature_column=column
-            )
+            train_xgb_model(dataset, save_identifier="test1", feature_column=column)

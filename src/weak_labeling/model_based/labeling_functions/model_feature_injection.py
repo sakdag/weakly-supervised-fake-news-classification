@@ -13,7 +13,9 @@ from src.weak_labeling.model_based.logistic_regression.logistic_regression impor
     get_logistic_regression_labels,
 )
 from src.weak_labeling.model_based.naive_bayes.naive_bayes import get_naive_bayes_labels
-from src.weak_labeling.model_based.random_forest.random_forest import get_random_forest_labels
+from src.weak_labeling.model_based.random_forest.random_forest import (
+    get_random_forest_labels,
+)
 from src.weak_labeling.model_based.utils import load_model
 from src.weak_labeling.model_based.xgboost.xgboost_model import (
     get_xgboost_labels,
@@ -38,31 +40,29 @@ def inject_model_feature(
         predictions = get_xgboost_labels(
             xgboost_classifier=classifier,
             df=df_to_inject,
-            feature_column=feature_column
+            feature_column=feature_column,
         )
     elif model_feature.startswith("adaboost"):
         predictions = get_adaboost_labels(
             adaboost_classifier=classifier,
             df=df_to_inject,
-            feature_column=feature_column
+            feature_column=feature_column,
         )
     elif model_feature.startswith("logistic_regression"):
         predictions = get_logistic_regression_labels(
-            lr_classifier=classifier,
-            df=df_to_inject,
-            feature_column=feature_column
+            lr_classifier=classifier, df=df_to_inject, feature_column=feature_column
         )
     elif model_feature.startswith("random_forest"):
         predictions = get_random_forest_labels(
             random_forest_classifier=classifier,
             df=df_to_inject,
-            feature_column=feature_column
+            feature_column=feature_column,
         )
     elif model_feature.startswith("naive_bayes"):
         predictions = get_naive_bayes_labels(
             naive_bayes_classifier=classifier,
             df=df_to_inject,
-            feature_column=feature_column
+            feature_column=feature_column,
         )
     else:
         print(f"Unknown model_feature is provided: {model_feature}")
@@ -77,13 +77,15 @@ def inject_model_features(
 ) -> pd.DataFrame:
     for feature in ModelFeatures.get_active_features():
         for column in FeatureColumns.get_all():
-            print(f"Inject model_feature train_dataset: {train_dataset.name}, feature: {feature}, feature_column: {column}")
+            print(
+                f"Inject model_feature train_dataset: {train_dataset.name}, feature: {feature}, feature_column: {column}"
+            )
             df_to_inject = inject_model_feature(
                 df_to_inject=df_to_inject,
                 train_dataset=train_dataset,
                 model_feature=feature,
                 feature_column=column,
-                identifier=identifier
+                identifier=identifier,
             )
     return df_to_inject
 

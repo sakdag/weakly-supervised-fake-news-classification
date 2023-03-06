@@ -11,6 +11,6 @@ def get_tfidf_vectors(
     max_features: int = -1,
 ):
     text_col = df[feature_column]
-    cleaned_text_col = text_col.apply(lambda t : clean_text(t))
+    cleaned_text_col = text_col.apply(lambda t: clean_text(t))
     tfidf_vectorizer = load_tfidf_vectorizer(feature_column, max_features)
     return tfidf_vectorizer.transform(cleaned_text_col)

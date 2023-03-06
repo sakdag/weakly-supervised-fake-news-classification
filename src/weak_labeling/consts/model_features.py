@@ -25,7 +25,7 @@ class ModelFeatures:
             cls.ADABOOST,
             cls.LOGISTIC_REGRESSION,
             cls.RANDOM_FOREST,
-            cls.NAIVE_BAYES
+            cls.NAIVE_BAYES,
         ]
 
     @staticmethod

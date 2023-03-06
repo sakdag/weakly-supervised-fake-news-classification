@@ -50,7 +50,9 @@ def generate_labels(df: pd.DataFrame, lfs: List[LabelingFunction], top_n: int = 
     majority_model_score = majority_model.score(
         L=l_test, Y=test.label.values, tie_break_policy="abstain"
     )
-    print(f"{'Majority Vote Accuracy:':<25} {majority_model_score['accuracy'] * 100:.1f}%")
+    print(
+        f"{'Majority Vote Accuracy:':<25} {majority_model_score['accuracy'] * 100:.1f}%"
+    )
     print(majority_model_score)
 
     label_model_score = label_model.score(
@@ -76,7 +78,7 @@ def generate_labels(df: pd.DataFrame, lfs: List[LabelingFunction], top_n: int = 
 if __name__ == "__main__":
     content_lfs = create_content_lfs(dataset=Datasets.NELA_COVID_2021)
     # model_based_lfs = get_model_based_lfs()
-    labeling_functions = content_lfs #+ model_based_lfs
+    labeling_functions = content_lfs  # + model_based_lfs
 
     print(labeling_functions)
 
