@@ -18,35 +18,35 @@ class Datasets:
     NELA_COVID_2020 = Dataset(
         name="covid-2020",
         raw_path="raw/nela/nela-covid-2020.db",
-        sampled_path="raw/nela/nela-covid-2020-sampled.csv",
-        injected_path="feature_injected/nela/nela-covid-2020-sampled.csv",
-        weak_labeled_path="with_weak_labels/nela/nela-covid-2020-sampled.csv",
+        sampled_path="raw/nela/nela-covid-2020",
+        injected_path="feature_injected/nela/nela-covid-2020",
+        weak_labeled_path="with_weak_labels/nela/nela-covid-2020",
     )
     NELA_COVID_2021 = Dataset(
         name="covid-2021",
         raw_path="raw/nela/nela-covid-2021.db",
-        sampled_path="raw/nela/nela-covid-2021-sampled.csv",
-        injected_path="feature_injected/nela/nela-covid-2021-sampled.csv",
-        weak_labeled_path="with_weak_labels/nela/nela-covid-2021-sampled.csv",
+        sampled_path="raw/nela/nela-covid-2021",
+        injected_path="feature_injected/nela/nela-covid-2021",
+        weak_labeled_path="with_weak_labels/nela/nela-covid-2021",
     )
     NELA_ELECTIONS_2020 = Dataset(
         name="elections-2020",
         raw_path="raw/nela/nela-elections-2020.db",
-        sampled_path="raw/nela/nela-elections-2020-sampled.csv",
-        injected_path="feature_injected/nela/nela-elections-2020-sampled.csv",
-        weak_labeled_path="with_weak_labels/nela/nela-elections-2020-sampled.csv",
+        sampled_path="raw/nela/nela-elections-2020",
+        injected_path="feature_injected/nela/nela-elections-2020",
+        weak_labeled_path="with_weak_labels/nela/nela-elections-2020",
     )
     NELA_CAPITOL_2021 = Dataset(
         name="capitol-2021",
         raw_path="raw/nela/nela-capitol-2021.db",
-        sampled_path="raw/nela/nela-capitol-2021-sampled.csv",
-        injected_path="feature_injected/nela/nela-capitol-2021-sampled.csv",
-        weak_labeled_path="with_weak_labels/nela/nela-capitol-2021-sampled.csv",
+        sampled_path="raw/nela/nela-capitol-2021",
+        injected_path="feature_injected/nela/nela-capitol-2021",
+        weak_labeled_path="with_weak_labels/nela/nela-capitol-2021",
     )
     NELA_ELECTIONS_SUBSET_2020 = Dataset(
         name="elections-subset-2020",
         raw_path="raw/nela/nela-elections-2020.db",
-        sampled_path="raw/nela/nela-elections-subset-2020-sampled.csv",
-        injected_path="feature_injected/nela/nela-elections-subset-2020-sampled.csv",
-        weak_labeled_path="with_weak_labels/nela/nela-elections-subset-2020-sampled.csv",
+        sampled_path="raw/nela/nela-elections-subset-2020",
+        injected_path="feature_injected/nela/nela-elections-subset-2020",
+        weak_labeled_path="with_weak_labels/nela/nela-elections-subset-2020",
     )

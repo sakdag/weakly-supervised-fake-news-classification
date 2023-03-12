@@ -39,7 +39,7 @@ def read_raw_data(
 def read_csv(
     path: str,
 ) -> pandas.DataFrame:
-    dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, path)
+    dataset_path = os.path.join(get_project_root(), DATA_FOLDER_PREFIX, f"{path}.csv")
     print(f"Reading dataset from path: {dataset_path}")
     df = pd.read_csv(dataset_path, delimiter=",", encoding="utf-8")
     print(f"Read dataset, dataframe size: {len(df)}")
@@ -50,7 +50,57 @@ def save_to_csv(df: pd.DataFrame, path: str):
     dataset_path = os.path.join(
         get_project_root(),
         DATA_FOLDER_PREFIX,
-        path,
+        f"{path}.csv",
+    )
+    print(f"Saving dataframe to: {dataset_path}")
+    df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
+
+
+def read_model_feature_injected_csv(
+    path: str,
+    train_df_name: str,
+) -> pandas.DataFrame:
+    dataset_path = os.path.join(
+        get_project_root(),
+        DATA_FOLDER_PREFIX,
+        f"{path}-injected-with-{train_df_name}.csv",
+    )
+    print(f"Reading dataset from path: {dataset_path}")
+    df = pd.read_csv(dataset_path, delimiter=",", encoding="utf-8")
+    print(f"Read dataset, dataframe size: {len(df)}")
+    return df
+
+
+def save_model_feature_injected_csv(df: pd.DataFrame, path: str, train_df_name: str):
+    dataset_path = os.path.join(
+        get_project_root(),
+        DATA_FOLDER_PREFIX,
+        f"{path}-injected-with-{train_df_name}.csv",
+    )
+    print(f"Saving dataframe to: {dataset_path}")
+    df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
+
+
+def read_weak_labeled_csv(
+    path: str,
+    train_df_name: str,
+) -> pandas.DataFrame:
+    dataset_path = os.path.join(
+        get_project_root(),
+        DATA_FOLDER_PREFIX,
+        f"{path}-labeled-with-{train_df_name}.csv",
+    )
+    print(f"Reading dataset from path: {dataset_path}")
+    df = pd.read_csv(dataset_path, delimiter=",", encoding="utf-8")
+    print(f"Read dataset, dataframe size: {len(df)}")
+    return df
+
+
+def save_weak_labeled_csv(df: pd.DataFrame, path: str, train_df_name: str):
+    dataset_path = os.path.join(
+        get_project_root(),
+        DATA_FOLDER_PREFIX,
+        f"{path}-labeled-with-{train_df_name}.csv",
     )
     print(f"Saving dataframe to: {dataset_path}")
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)

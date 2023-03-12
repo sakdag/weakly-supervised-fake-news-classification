@@ -2,8 +2,9 @@ import pandas as pd
 
 from src.preprocessing.consts import Datasets, Dataset
 from src.preprocessing.read_raw_data import (
-    save_to_csv,
     read_csv,
+    read_weak_labeled_csv,
+    save_model_feature_injected_csv,
 )
 from src.weak_labeling.consts.model_features import ModelFeatures, FeatureColumns
 from src.weak_labeling.model_based.adaboost.adaboost import (
@@ -91,12 +92,12 @@ def inject_model_features(
 
 
 def run_model_feature_injection(
-    dataset: Dataset, train_dataset: Dataset, identifier: str, zero: bool = False
+    a_dataset: Dataset, train_dataset: Dataset, identifier: str, zero: bool = False
 ):
     if zero:
-        df = read_csv(dataset.sampled_path)
+        df = read_csv(a_dataset.injected_path)
     else:
-        df = read_csv(dataset.injected_path)
+        df = read_weak_labeled_csv(a_dataset.injected_path, train_dataset.name)
     print(df.head())
 
     injected_df = inject_model_features(
@@ -104,7 +105,7 @@ def run_model_feature_injection(
     )
     print(injected_df.head())
 
-    save_to_csv(injected_df, dataset.injected_path)
+    save_model_feature_injected_csv(injected_df, a_dataset.injected_path, train_dataset.name)
 
 
 if __name__ == "__main__":
@@ -116,8 +117,8 @@ if __name__ == "__main__":
     ]
     for dataset in datasets:
         run_model_feature_injection(
-            dataset=dataset,
+            a_dataset=dataset,
             train_dataset=Datasets.NELA_COVID_2021,
             identifier="test1",
-            zero=False,
+            zero=True,
         )
