@@ -1,6 +1,6 @@
 class FeatureColumns:
-    TITLE = "title"
     CONTENT = "content"
+    TITLE = "title"
 
     @staticmethod
     def get_all():

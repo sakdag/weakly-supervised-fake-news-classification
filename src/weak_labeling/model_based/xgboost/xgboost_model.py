@@ -8,7 +8,8 @@ from xgboost import XGBClassifier
 
 from src.preprocessing.cleanup import cleanup_df
 from src.preprocessing.consts import Datasets, Dataset
-from src.preprocessing.read_raw_data import read_csv
+from src.preprocessing.read_raw_data import read_csv, balanced_undersample
+from src.utils.time_utils import report_time
 from src.weak_labeling.consts.model_features import ModelFeatures, FeatureColumns
 from src.weak_labeling.model_based.common.get_vectors import get_tfidf_vectors
 from src.weak_labeling.model_based.utils import get_model_file_name
@@ -60,8 +61,8 @@ def get_best_xgb_parameters(
 ):
     parameters = {
         "max_depth": range(2, 10, 1),
-        "n_estimators": range(60, 1000, 188),
-        "learning_rate": [0.15, 0.1, 0.01, 0.05],
+        "n_estimators": range(60, 220, 40),
+        "learning_rate": [0.1, 0.01, 0.05],
     }
     xgb = XGBClassifier(
         eval_metric="auc",
@@ -88,9 +89,18 @@ def train_xgb_model(
     dataset: Dataset,
     save_identifier: str,
     feature_column: str = FeatureColumns.CONTENT,
+    undersample: bool = False,
     optimize: bool = False,
 ):
     df: pd.DataFrame = read_csv(dataset.injected_path)
+
+    if undersample:
+        df = balanced_undersample(df, min(df["label"].value_counts()) * 2)
+        print(f"Undersampled, dataframe size: {len(df)}")
+
+    # TODO: For testing, remove later
+    # df = balanced_undersample(df, 20000)
+    # print(f"Undersampled, dataframe size: {len(df)}")
 
     x_train, x_test, y_train, y_test = train_test_split(df, df["label"], test_size=0.20)
 
@@ -135,11 +145,24 @@ def get_xgboost_labels(
     return y_test_pred
 
 
-if __name__ == "__main__":
+@report_time
+def run():
     datasets = [
+        # Datasets.NELA_ELECTIONS_2020,
         # Datasets.NELA_COVID_2021,
-        Datasets.NELA_ELECTIONS_SUBSET_2020,
+        # Datasets.NELA_ELECTIONS_SUBSET_2020,
+        Datasets.NELA_COVID_COMBINED
     ]
     for dataset in datasets:
         for column in FeatureColumns.get_all():
-            train_xgb_model(dataset, save_identifier="test1", feature_column=column)
+            train_xgb_model(
+                dataset,
+                save_identifier="final",
+                feature_column=column,
+                undersample=True,
+                optimize=False,
+            )
+
+
+if __name__ == "__main__":
+    run()

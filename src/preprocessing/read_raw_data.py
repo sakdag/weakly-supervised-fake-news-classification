@@ -1,5 +1,6 @@
 import os
 import re
+import time
 
 import pandas
 from imblearn.under_sampling import RandomUnderSampler
@@ -157,7 +158,7 @@ def sample_and_save(dataset: Dataset = Datasets.NELA_ELECTIONS_2020):
         df.at[i, "title"] = row["title"].encode("ascii", errors="ignore").decode()
 
     print(f"Saving dataset to path: {dataset_path}")
-    df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
+    save_to_csv(df, dataset_path)
 
     # Fixing string bug, read and write again
     df = read_csv(dataset_path)
@@ -182,12 +183,13 @@ def sample_and_save(dataset: Dataset = Datasets.NELA_ELECTIONS_2020):
 
     print(f"Saving dataset to path: {dataset_path}")
     df = df.sample(frac=1)
-    df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
+    save_to_csv(df, dataset_path)
 
 
-def balanced_undersample(df: pd.DataFrame, n: int):
+def balanced_undersample(df: pd.DataFrame, n: int, label_column: str = "label"):
+    df = df.sample(frac=1).reset_index(drop=True)
     min_label_count = int(n / 2)
-    label_value_counts = df.label.value_counts()
+    label_value_counts = df[label_column].value_counts()
     if label_value_counts[0] < min_label_count:
         min_label_count = label_value_counts[0]
     if label_value_counts[1] < min_label_count:
@@ -195,9 +197,9 @@ def balanced_undersample(df: pd.DataFrame, n: int):
     undersample = RandomUnderSampler(
         sampling_strategy={0: min_label_count, 1: min_label_count}
     )
-    undersampled_df, labels = undersample.fit_resample(df, df.label)
+    undersampled_df, labels = undersample.fit_resample(df, df[label_column])
     print(f"Dataframe size: {len(undersampled_df)}")
-    print(undersampled_df.label.value_counts())
+    print(undersampled_df[label_column].value_counts())
     return undersampled_df
 
 
@@ -218,9 +220,25 @@ def drop_less_than_100_words_and_save(path: str):
 def save_subset_of_dataset(
     source_dataset: Dataset, dest_dataset: Dataset, n: int = 2000
 ):
-    source_df = read_csv(source_dataset.sampled_path)
+    source_df = read_csv(source_dataset.injected_path)
     subset_df = balanced_undersample(source_df, n)
-    save_to_csv(subset_df, dest_dataset.sampled_path)
+    save_to_csv(subset_df, dest_dataset.injected_path)
+    subset_df_new = subset_df[["id", "content", "title", "label"]].copy()
+    subset_df_new.sample(frac=1).reset_index(drop=True)
+    save_to_csv(subset_df_new, dest_dataset.sampled_path)
+
+
+def combine_and_save_datasets(
+    dataset_1: Dataset, dataset_2: Dataset, dest_dataset: Dataset
+):
+    df_1 = read_csv(dataset_1.injected_path)
+    df_2 = read_csv(dataset_2.injected_path)
+    combined_df = pd.concat([df_1, df_2], axis=0)
+    save_to_csv(combined_df, dest_dataset.injected_path)
+
+    combined_df_new = combined_df[["id", "content", "title", "label"]].copy()
+    combined_df_new.sample(frac=1).reset_index(drop=True)
+    save_to_csv(combined_df_new, dest_dataset.sampled_path)
 
 
 if __name__ == "__main__":
@@ -232,15 +250,21 @@ if __name__ == "__main__":
 
     # drop_na_and_save(path=Datasets.NELA_COVID_2021.sampled_path)
 
+    # sample_and_save(dataset=Datasets.NELA_CAPITOL_2021)
     # sample_and_save(dataset=Datasets.NELA_COVID_2021)
     # sample_and_save(dataset=Datasets.NELA_COVID_2020)
-    sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020)
-    # sample_and_save(dataset=Datasets.NELA_CAPITOL_2021)
+    # sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020)
 
     # save_subset_of_dataset(
     #     source_dataset=Datasets.NELA_ELECTIONS_2020,
     #     dest_dataset=Datasets.NELA_ELECTIONS_SUBSET_2020,
     #     n=2000,
     # )
+
+    combine_and_save_datasets(
+        dataset_1=Datasets.NELA_COVID_2020,
+        dataset_2=Datasets.NELA_COVID_2021,
+        dest_dataset=Datasets.NELA_COVID_COMBINED,
+    )
 
     # drop_less_than_100_words_and_save(path=Datasets.NELA_ELECTIONS_2020.injected_path)

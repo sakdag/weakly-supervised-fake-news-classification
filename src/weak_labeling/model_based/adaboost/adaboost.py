@@ -8,7 +8,8 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.tree import DecisionTreeClassifier
 
 from src.preprocessing.consts import Datasets, Dataset
-from src.preprocessing.read_raw_data import read_csv
+from src.preprocessing.read_raw_data import read_csv, balanced_undersample
+from src.utils.time_utils import report_time
 from src.weak_labeling.consts.model_features import ModelFeatures, FeatureColumns
 from src.weak_labeling.model_based.common.get_vectors import get_tfidf_vectors
 from src.weak_labeling.model_based.utils import get_model_file_name
@@ -20,9 +21,14 @@ def train_adaboost_model(
     dataset: Dataset,
     save_identifier: str,
     feature_column: str = FeatureColumns.CONTENT,
+    undersample: bool = False,
     optimize: bool = False,
 ):
     df: pd.DataFrame = read_csv(dataset.injected_path)
+
+    if undersample:
+        df = balanced_undersample(df, min(df["label"].value_counts()) * 2)
+        print(f"Undersampled, dataframe size: {len(df)}")
 
     x_train, x_test, y_train, y_test = train_test_split(df, df["label"], test_size=0.20)
 
@@ -94,13 +100,24 @@ def get_adaboost_labels(
     return y_test_pred
 
 
-if __name__ == "__main__":
+@report_time
+def run():
     datasets = [
+        # Datasets.NELA_ELECTIONS_2020,
         # Datasets.NELA_COVID_2021,
         Datasets.NELA_ELECTIONS_SUBSET_2020,
+        Datasets.NELA_COVID_COMBINED,
     ]
     for dataset in datasets:
         for column in FeatureColumns.get_all():
             train_adaboost_model(
-                dataset, save_identifier="test1", feature_column=column
+                dataset,
+                save_identifier="final",
+                feature_column=column,
+                undersample=True,
+                optimize=False,
             )
+
+
+if __name__ == "__main__":
+    run()

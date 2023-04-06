@@ -2,7 +2,7 @@ import enum
 from dataclasses import dataclass
 
 DATA_FOLDER_PREFIX = "data"
-NELA_SOURCE_LABELS = "raw/nela/source-labels.csv"
+NELA_SOURCE_LABELS = "raw/nela/source-labels"
 
 
 @dataclass
@@ -49,4 +49,11 @@ class Datasets:
         sampled_path="raw/nela/nela-elections-subset-2020",
         injected_path="feature_injected/nela/nela-elections-subset-2020",
         weak_labeled_path="with_weak_labels/nela/nela-elections-subset-2020",
+    )
+    NELA_COVID_COMBINED = Dataset(
+        name="covid-combined",
+        raw_path="raw/nela/nela-covid-2021.db",
+        sampled_path="raw/nela/nela-covid-combined",
+        injected_path="feature_injected/nela/nela-covid-combined",
+        weak_labeled_path="with_weak_labels/nela/nela-covid-combined",
     )

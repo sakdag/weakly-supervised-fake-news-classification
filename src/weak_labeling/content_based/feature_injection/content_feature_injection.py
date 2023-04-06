@@ -108,17 +108,17 @@ def run_content_feature_injection(
 
 if __name__ == "__main__":
     datasets = [
-        # Datasets.NELA_ELECTIONS_2020,
-        # Datasets.NELA_COVID_2021,
-        # Datasets.NELA_COVID_2020,
-        # Datasets.NELA_CAPITOL_2021,
-        Datasets.NELA_ELECTIONS_SUBSET_2020,
+        Datasets.NELA_CAPITOL_2021,
+        Datasets.NELA_COVID_2021,
+        Datasets.NELA_COVID_2020,
+        Datasets.NELA_ELECTIONS_2020,
+        # Datasets.NELA_ELECTIONS_SUBSET_2020,
     ]
     for dataset in datasets:
         run_content_feature_injection(
             dataset=dataset,
             zero=True,
-            sample_size=50000,
+            sample_size=-1,
             stylistic_features=True,
             pos_tagging_features=True,
             readability_features=True,

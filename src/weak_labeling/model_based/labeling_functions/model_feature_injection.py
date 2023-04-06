@@ -105,7 +105,9 @@ def run_model_feature_injection(
     )
     print(injected_df.head())
 
-    save_model_feature_injected_csv(injected_df, a_dataset.injected_path, train_dataset.name)
+    save_model_feature_injected_csv(
+        injected_df, a_dataset.injected_path, train_dataset.name
+    )
 
 
 if __name__ == "__main__":
@@ -119,6 +121,6 @@ if __name__ == "__main__":
         run_model_feature_injection(
             a_dataset=dataset,
             train_dataset=Datasets.NELA_COVID_2021,
-            identifier="test1",
+            identifier="final",
             zero=True,
         )
