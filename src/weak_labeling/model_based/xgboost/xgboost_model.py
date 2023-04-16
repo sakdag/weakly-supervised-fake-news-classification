@@ -61,8 +61,8 @@ def get_best_xgb_parameters(
 ):
     parameters = {
         "max_depth": range(2, 10, 1),
-        "n_estimators": range(60, 220, 40),
-        "learning_rate": [0.1, 0.01, 0.05],
+        "n_estimators": [60, 150, 250, 1000],
+        "learning_rate": [0.01, 0.05, 0.1, 0.15],
     }
     xgb = XGBClassifier(
         eval_metric="auc",
@@ -149,9 +149,9 @@ def get_xgboost_labels(
 def run():
     datasets = [
         # Datasets.NELA_ELECTIONS_2020,
-        # Datasets.NELA_COVID_2021,
+        Datasets.NELA_COVID_SUBSET,
         # Datasets.NELA_ELECTIONS_SUBSET_2020,
-        Datasets.NELA_COVID_COMBINED
+        # Datasets.NELA_COVID_COMBINED
     ]
     for dataset in datasets:
         for column in FeatureColumns.get_all():

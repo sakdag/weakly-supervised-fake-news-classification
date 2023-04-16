@@ -57,3 +57,10 @@ class Datasets:
         injected_path="feature_injected/nela/nela-covid-combined",
         weak_labeled_path="with_weak_labels/nela/nela-covid-combined",
     )
+    NELA_COVID_SUBSET = Dataset(
+        name="covid-subset",
+        raw_path="raw/nela/nela-covid-2021.db",
+        sampled_path="raw/nela/nela-covid-subset-2020",
+        injected_path="feature_injected/nela/nela-covid-subset-2020",
+        weak_labeled_path="with_weak_labels/nela/nela-covid-subset-2020",
+    )

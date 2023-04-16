@@ -255,16 +255,16 @@ if __name__ == "__main__":
     # sample_and_save(dataset=Datasets.NELA_COVID_2020)
     # sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020)
 
-    # save_subset_of_dataset(
-    #     source_dataset=Datasets.NELA_ELECTIONS_2020,
-    #     dest_dataset=Datasets.NELA_ELECTIONS_SUBSET_2020,
-    #     n=2000,
-    # )
-
-    combine_and_save_datasets(
-        dataset_1=Datasets.NELA_COVID_2020,
-        dataset_2=Datasets.NELA_COVID_2021,
-        dest_dataset=Datasets.NELA_COVID_COMBINED,
+    save_subset_of_dataset(
+        source_dataset=Datasets.NELA_COVID_COMBINED,
+        dest_dataset=Datasets.NELA_COVID_SUBSET,
+        n=2000,
     )
+
+    # combine_and_save_datasets(
+    #     dataset_1=Datasets.NELA_COVID_2020,
+    #     dataset_2=Datasets.NELA_COVID_2021,
+    #     dest_dataset=Datasets.NELA_COVID_COMBINED,
+    # )
 
     # drop_less_than_100_words_and_save(path=Datasets.NELA_ELECTIONS_2020.injected_path)

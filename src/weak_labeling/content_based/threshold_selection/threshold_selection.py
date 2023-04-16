@@ -140,11 +140,15 @@ def get_thresholds_for_content_features(injected_df: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    # dataset = Datasets.NELA_ELECTIONS_SUBSET_2020
-    dataset = Datasets.NELA_COVID_2021
-    df = read_csv(dataset.injected_path)
-    # df = normalize_content_features(df, features=ContentFeatures.get_all())
-    print(df.columns)
-    thresholds = get_thresholds_for_content_features(df)
+    datasets = [
+        Datasets.NELA_ELECTIONS_2020,
+        Datasets.NELA_COVID_SUBSET,
+        Datasets.NELA_ELECTIONS_SUBSET_2020,
+        Datasets.NELA_COVID_COMBINED,
+    ]
+    for dataset in datasets:
+        df = read_csv(dataset.injected_path)
+        # df = normalize_content_features(df, features=ContentFeatures.get_all())
+        thresholds = get_thresholds_for_content_features(df)
 
-    update_and_save_thresholds_json(updated_thresholds=thresholds, dataset=dataset)
+        update_and_save_thresholds_json(updated_thresholds=thresholds, dataset=dataset)

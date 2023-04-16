@@ -112,9 +112,9 @@ def get_random_forest_labels(
 def run():
     datasets = [
         # Datasets.NELA_ELECTIONS_2020,
-        # Datasets.NELA_COVID_2021,
-        Datasets.NELA_ELECTIONS_SUBSET_2020,
-        Datasets.NELA_COVID_COMBINED,
+        Datasets.NELA_COVID_SUBSET,
+        # Datasets.NELA_ELECTIONS_SUBSET_2020,
+        # Datasets.NELA_COVID_COMBINED,
     ]
     for dataset in datasets:
         for column in FeatureColumns.get_all():

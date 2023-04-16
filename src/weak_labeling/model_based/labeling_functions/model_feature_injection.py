@@ -111,16 +111,28 @@ def run_model_feature_injection(
 
 
 if __name__ == "__main__":
-    datasets = [
-        Datasets.NELA_ELECTIONS_2020,
-        # Datasets.NELA_COVID_2021,
-        # Datasets.NELA_COVID_2020,
-        # Datasets.NELA_CAPITOL_2021,
+    run_configs = [
+        {
+            "dataset": Datasets.NELA_ELECTIONS_2020,
+            "train_dataset": Datasets.NELA_COVID_COMBINED,
+        },
+        # {
+        #     "dataset": Datasets.NELA_COVID_COMBINED,
+        #     "train_dataset": Datasets.NELA_ELECTIONS_2020,
+        # },
+        # {
+        #     "dataset": Datasets.NELA_ELECTIONS_2020,
+        #     "train_dataset": Datasets.NELA_ELECTIONS_SUBSET_2020,
+        # },
+        # {
+        #     "dataset": Datasets.NELA_COVID_COMBINED,
+        #     "train_dataset": Datasets.NELA_COVID_SUBSET,
+        # },
     ]
-    for dataset in datasets:
+    for config in run_configs:
         run_model_feature_injection(
-            a_dataset=dataset,
-            train_dataset=Datasets.NELA_COVID_2021,
+            a_dataset=config["dataset"],
+            train_dataset=config["train_dataset"],
             identifier="final",
             zero=True,
         )
