@@ -85,11 +85,12 @@ def save_model_feature_injected_csv(df: pd.DataFrame, path: str, train_df_name: 
 def read_weak_labeled_csv(
     path: str,
     train_df_name: str,
+    top_n: int,
 ) -> pandas.DataFrame:
     dataset_path = os.path.join(
         get_project_root(),
         DATA_FOLDER_PREFIX,
-        f"{path}-labeled-with-{train_df_name}.csv",
+        f"{path}-labeled-with-{train_df_name}-top_{top_n}_lfs.csv",
     )
     print(f"Reading dataset from path: {dataset_path}")
     df = pd.read_csv(dataset_path, delimiter=",", encoding="utf-8")
@@ -97,14 +98,15 @@ def read_weak_labeled_csv(
     return df
 
 
-def save_weak_labeled_csv(df: pd.DataFrame, path: str, train_df_name: str):
+def save_weak_labeled_csv(df: pd.DataFrame, path: str, train_df_name: str, top_n: int) -> str:
     dataset_path = os.path.join(
         get_project_root(),
         DATA_FOLDER_PREFIX,
-        f"{path}-labeled-with-{train_df_name}.csv",
+        f"{path}-labeled-with-{train_df_name}-top_{top_n}_lfs.csv",
     )
     print(f"Saving dataframe to: {dataset_path}")
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)
+    return dataset_path
 
 
 def sample_and_save(dataset: Dataset = Datasets.NELA_ELECTIONS_2020):

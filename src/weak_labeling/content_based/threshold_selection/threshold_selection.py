@@ -4,7 +4,7 @@ import pandas as pd
 
 from src.preprocessing.cleanup import separate_real_and_fake
 from src.preprocessing.consts import Datasets
-from src.preprocessing.read_raw_data import read_csv
+from src.preprocessing.read_raw_data import read_csv, read_model_feature_injected_csv
 from src.weak_labeling.consts.content_features import ContentFeatures
 from src.weak_labeling.content_based.feature_injection.content_feature_injection import (
     normalize_content_features,
@@ -140,15 +140,28 @@ def get_thresholds_for_content_features(injected_df: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    datasets = [
-        Datasets.NELA_ELECTIONS_2020,
-        Datasets.NELA_COVID_SUBSET,
-        Datasets.NELA_ELECTIONS_SUBSET_2020,
-        Datasets.NELA_COVID_COMBINED,
+    run_configs = [
+        {
+            "dataset": Datasets.NELA_ELECTIONS_2020,
+            "train_dataset": Datasets.NELA_COVID_COMBINED,
+        },
+        {
+            "dataset": Datasets.NELA_COVID_COMBINED,
+            "train_dataset": Datasets.NELA_ELECTIONS_2020,
+        },
+        {
+            "dataset": Datasets.NELA_ELECTIONS_SUBSET_2020,
+        },
+        {
+            "dataset": Datasets.NELA_COVID_SUBSET,
+        },
     ]
-    for dataset in datasets:
-        df = read_csv(dataset.injected_path)
+    for config in run_configs:
+        if "train_dataset" in config.keys():
+            df = read_model_feature_injected_csv(config["dataset"].injected_path, config["train_dataset"].name)
+        else:
+            df = read_csv(config["dataset"].injected_path)
         # df = normalize_content_features(df, features=ContentFeatures.get_all())
         thresholds = get_thresholds_for_content_features(df)
 
-        update_and_save_thresholds_json(updated_thresholds=thresholds, dataset=dataset)
+        update_and_save_thresholds_json(updated_thresholds=thresholds, dataset=config["dataset"])

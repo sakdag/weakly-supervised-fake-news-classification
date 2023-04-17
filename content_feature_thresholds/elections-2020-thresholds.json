@@ -2,14 +2,14 @@
   "content_word_count": {
     "upper": {
       "side": "real",
-      "threshold": 458.0,
+      "threshold": 456.0,
       "percentile": 0.25
     }
   },
   "content_unique_words_count": {
     "upper": {
       "side": "real",
-      "threshold": 229.0,
+      "threshold": 228.0,
       "percentile": 0.2
     }
   },
@@ -21,7 +21,7 @@
     },
     "lower": {
       "side": "fake",
-      "threshold": 20.215764705882354,
+      "threshold": 20.20833333333333,
       "percentile": 0.25
     }
   },
@@ -52,7 +52,7 @@
     },
     "lower": {
       "side": "fake",
-      "threshold": 24.28884615384615,
+      "threshold": 24.28685258964143,
       "percentile": 0.3
     }
   },
@@ -60,12 +60,12 @@
   "content_noun_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.2029161603888213,
+      "threshold": 0.2028985507246377,
       "percentile": 0.5
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.2029161603888213,
+      "threshold": 0.2028985507246377,
       "percentile": 0.5
     }
   },
@@ -85,7 +85,7 @@
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.07605739173193773,
+      "threshold": 0.076,
       "percentile": 0.1
     }
   },
@@ -97,8 +97,8 @@
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.1032679738562091,
-      "percentile": 0.15
+      "threshold": 0.1061792863359443,
+      "percentile": 0.2
     }
   },
   "content_interjection_ratio": {
@@ -111,14 +111,14 @@
   "content_symbol_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0008347245409015,
+      "threshold": 0.0008264462809917,
       "percentile": 0.65
     }
   },
   "content_adjective_ratio": {
     "lower": {
       "side": "fake",
-      "threshold": 0.06885425237884249,
+      "threshold": 0.06885136319803625,
       "percentile": 0.45
     }
   },
@@ -130,7 +130,7 @@
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.0016750418760469,
+      "threshold": 0.001669449081803,
       "percentile": 0.1
     }
   },
@@ -139,11 +139,6 @@
       "side": "fake",
       "threshold": 0.1463414634146341,
       "percentile": 0.8
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.1003134796238244,
-      "percentile": 0.05
     }
   },
   "content_verb_present_participle_ratio": {
@@ -169,7 +164,7 @@
   "content_modal_ratio": {
     "lower": {
       "side": "fake",
-      "threshold": 0.0025575447570332,
+      "threshold": 0.0025641025641025,
       "percentile": 0.05
     }
   },
@@ -177,31 +172,31 @@
   "content_comparative_adverb_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0013586956521739,
+      "threshold": 0.0013540961408259,
       "percentile": 0.5
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.0013586956521739,
+      "threshold": 0.0013540961408259,
       "percentile": 0.5
     }
   },
   "content_superlative_adverb_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0005043245996621954,
+      "threshold": 0.0004971414674558,
       "percentile": 0.55
     }
   },
   "content_existential_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.001068376068376,
+      "threshold": 0.0010827197921178,
       "percentile": 0.5
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.001068376068376,
+      "threshold": 0.0010827197921178,
       "percentile": 0.5
     }
   },
@@ -215,7 +210,7 @@
   "content_personal_pronoun_ratio": {
     "lower": {
       "side": "fake",
-      "threshold": 0.0017621145374449,
+      "threshold": 0.0017574692442882,
       "percentile": 0.15
     }
   },
@@ -236,12 +231,12 @@
   "content_period_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0413907284768211,
+      "threshold": 0.0413533834586466,
       "percentile": 0.5
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.0413907284768211,
+      "threshold": 0.0413533834586466,
       "percentile": 0.5
     }
   },
@@ -262,12 +257,12 @@
   "content_comma_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0495695105785498,
+      "threshold": 0.0495726495726495,
       "percentile": 0.5
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.0495695105785498,
+      "threshold": 0.0495726495726495,
       "percentile": 0.5
     }
   },
@@ -286,7 +281,7 @@
   "content_semicolon_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0007346459112494403,
+      "threshold": 0.0007308160779537,
       "percentile": 0.8
     }
   },
@@ -366,7 +361,7 @@
   "title_determiner_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0333333333333333,
+      "threshold": 0.0434782608695652,
       "percentile": 0.6
     }
   },
@@ -452,7 +447,7 @@
   "title_personal_pronoun_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0625,
+      "threshold": 0.0588235294117647,
       "percentile": 0.95
     }
   },
@@ -478,19 +473,19 @@
     },
     "lower": {
       "side": "fake",
-      "threshold": 13.30077688714489,
-      "percentile": 0.3
+      "threshold": 12.972346368715089,
+      "percentile": 0.25
     }
   },
   "content_automated_readability_index": {
     "upper": {
       "side": "fake",
-      "threshold": 15.414278543481664,
-      "percentile": 0.75
+      "threshold": 16.045194128150598,
+      "percentile": 0.8
     },
     "lower": {
       "side": "fake",
-      "threshold": 10.932005549127716,
+      "threshold": 10.9382577754349,
       "percentile": 0.2
     }
   },
@@ -502,7 +497,7 @@
     },
     "lower": {
       "side": "fake",
-      "threshold": 10.682126502762664,
+      "threshold": 10.675885885885886,
       "percentile": 0.2
     }
   }

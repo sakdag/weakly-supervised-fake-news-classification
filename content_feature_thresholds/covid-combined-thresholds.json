@@ -30,8 +30,8 @@
   "content_average_sentence_length": {
     "upper": {
       "side": "fake",
-      "threshold": 31.266666666666666,
-      "percentile": 0.8
+      "threshold": 32.6875,
+      "percentile": 0.85
     }
   },
   "content_average_word_length": {
@@ -46,13 +46,7 @@
       "percentile": 0.2
     }
   },
-  "content_noun_ratio": {
-    "lower": {
-      "side": "fake",
-      "threshold": 0.1623616236162361,
-      "percentile": 0.05
-    }
-  },
+  "content_noun_ratio": {},
   "content_proper_noun_ratio": {
     "upper": {
       "side": "fake",
@@ -63,8 +57,8 @@
   "content_cardinal_number_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0216383307573415,
-      "percentile": 0.6
+      "threshold": 0.0198366394399066,
+      "percentile": 0.55
     }
   },
   "content_determiner_ratio": {
@@ -85,7 +79,7 @@
   "content_symbol_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0095465393794749,
+      "threshold": 0.0094786729857819,
       "percentile": 0.95
     }
   },
@@ -133,12 +127,12 @@
   "content_modal_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0266075388026607,
+      "threshold": 0.026591142362762523,
       "percentile": 0.95
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.0015748031496062,
+      "threshold": 0.0015503875968992,
       "percentile": 0.05
     }
   },
@@ -152,26 +146,26 @@
   "content_comparative_adverb_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0013440860215053,
+      "threshold": 0.0013404825737265,
       "percentile": 0.5
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.0013440860215053,
+      "threshold": 0.0013404825737265,
       "percentile": 0.5
     }
   },
   "content_superlative_adverb_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0004048582995951,
+      "threshold": 0.0003703429456853404,
       "percentile": 0.6
     }
   },
   "content_existential_ratio": {
     "lower": {
       "side": "fake",
-      "threshold": 0.0006702412868632,
+      "threshold": 0.0006570302233902,
       "percentile": 0.45
     }
   },
@@ -186,26 +180,26 @@
   "content_possessive_pronoun_ratio": {
     "lower": {
       "side": "fake",
-      "threshold": 0.0015847860538827,
+      "threshold": 0.0015060240963855,
       "percentile": 0.05
     }
   },
   "content_punctuation_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.13125,
+      "threshold": 0.13130329622623949,
       "percentile": 0.7
     }
   },
   "content_period_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.04173457628006215,
+      "threshold": 0.0416666666666666,
       "percentile": 0.5
     },
     "lower": {
       "side": "fake",
-      "threshold": 0.04173457628006215,
+      "threshold": 0.0416666666666666,
       "percentile": 0.5
     }
   },
@@ -385,8 +379,8 @@
   "title_adverb_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.05,
-      "percentile": 0.8
+      "threshold": 0.0714285714285714,
+      "percentile": 0.85
     }
   },
   "title_comparative_adverb_ratio": {},
@@ -402,7 +396,7 @@
   "title_personal_pronoun_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0526315789473684,
+      "threshold": 0.05,
       "percentile": 0.95
     }
   },
