@@ -63,7 +63,7 @@ def generate_labels(
         print(tabulate(analysis, headers="keys", tablefmt="psql"))
 
         analysis = analysis[["Emp. Acc."]]
-        report["lfs"] =  list(analysis.itertuples(index=True))
+        report["lfs"] = list(analysis.itertuples(index=True))
 
     weak_labeled_df = df[["title", "content", "label"]].copy()
     weak_labeled_df = weak_labeled_df.rename(columns={"label": "actual_label"})
@@ -79,7 +79,7 @@ def generate_labels(
                 weak_labels=weak_labels,
                 actual_labels=df.label.values,
                 mid_range_to_eliminate=mid_range_to_eliminate,
-                report = report,
+                report=report,
             )
             assert len(prob_agg_labels) == len(weak_labels)
             assert len(agg_labels) == len(weak_labels)
@@ -168,7 +168,7 @@ def aggregate_with_hyper_label_model(weak_labels, actual_labels, report: dict):
         "accuracy": accuracy_score(actual_labels, predictions),
         "precision": precision_score(actual_labels, predictions),
         "recall": recall_score(actual_labels, predictions),
-        "f1": f1_score(actual_labels, predictions, average="macro")
+        "f1": f1_score(actual_labels, predictions, average="macro"),
     }
     return predictions
 

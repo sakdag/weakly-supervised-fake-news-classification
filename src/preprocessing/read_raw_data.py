@@ -98,7 +98,9 @@ def read_weak_labeled_csv(
     return df
 
 
-def save_weak_labeled_csv(df: pd.DataFrame, path: str, train_df_name: str, top_n: int) -> str:
+def save_weak_labeled_csv(
+    df: pd.DataFrame, path: str, train_df_name: str, top_n: int
+) -> str:
     dataset_path = os.path.join(
         get_project_root(),
         DATA_FOLDER_PREFIX,
@@ -244,8 +246,9 @@ def combine_and_save_datasets(
 
 
 if __name__ == "__main__":
-    # df = read_csv(path=Datasets.NELA_COVID_2020.sampled_path)
-    # print(len(df))
+    df = read_csv(path=Datasets.NELA_ELECTIONS_2020.sampled_path)
+    print(len(df))
+    print(df.label.value_counts())
     # print(is_string_series(df.title))
     # print(is_string_series(df.content))
     # print(df.dtypes)
@@ -257,11 +260,11 @@ if __name__ == "__main__":
     # sample_and_save(dataset=Datasets.NELA_COVID_2020)
     # sample_and_save(dataset=Datasets.NELA_ELECTIONS_2020)
 
-    save_subset_of_dataset(
-        source_dataset=Datasets.NELA_COVID_COMBINED,
-        dest_dataset=Datasets.NELA_COVID_SUBSET,
-        n=2000,
-    )
+    # save_subset_of_dataset(
+    #     source_dataset=Datasets.NELA_COVID_COMBINED,
+    #     dest_dataset=Datasets.NELA_COVID_SUBSET,
+    #     n=2000,
+    # )
 
     # combine_and_save_datasets(
     #     dataset_1=Datasets.NELA_COVID_2020,

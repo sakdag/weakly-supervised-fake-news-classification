@@ -5,6 +5,7 @@ from src.preprocessing.read_raw_data import (
     read_csv,
     read_weak_labeled_csv,
     save_model_feature_injected_csv,
+    balanced_undersample,
 )
 from src.weak_labeling.consts.model_features import ModelFeatures, FeatureColumns
 from src.weak_labeling.model_based.adaboost.adaboost import (
@@ -92,13 +93,21 @@ def inject_model_features(
 
 
 def run_model_feature_injection(
-    a_dataset: Dataset, train_dataset: Dataset, identifier: str, zero: bool = False
+    a_dataset: Dataset,
+    train_dataset: Dataset,
+    identifier: str,
+    zero: bool = False,
+    undersample: bool = False,
 ):
     if zero:
         df = read_csv(a_dataset.injected_path)
     else:
         df = read_weak_labeled_csv(a_dataset.injected_path, train_dataset.name)
     print(df.head())
+
+    if undersample:
+        df = balanced_undersample(df, min(df["label"].value_counts()) * 2)
+        print(f"Undersampled, dataframe size: {len(df)}")
 
     injected_df = inject_model_features(
         df, train_dataset=train_dataset, identifier=identifier
@@ -116,18 +125,18 @@ if __name__ == "__main__":
             "dataset": Datasets.NELA_ELECTIONS_2020,
             "train_dataset": Datasets.NELA_COVID_COMBINED,
         },
-        # {
-        #     "dataset": Datasets.NELA_COVID_COMBINED,
-        #     "train_dataset": Datasets.NELA_ELECTIONS_2020,
-        # },
-        # {
-        #     "dataset": Datasets.NELA_ELECTIONS_2020,
-        #     "train_dataset": Datasets.NELA_ELECTIONS_SUBSET_2020,
-        # },
-        # {
-        #     "dataset": Datasets.NELA_COVID_COMBINED,
-        #     "train_dataset": Datasets.NELA_COVID_SUBSET,
-        # },
+        {
+            "dataset": Datasets.NELA_COVID_COMBINED,
+            "train_dataset": Datasets.NELA_ELECTIONS_2020,
+        },
+        {
+            "dataset": Datasets.NELA_ELECTIONS_2020,
+            "train_dataset": Datasets.NELA_ELECTIONS_SUBSET_2020,
+        },
+        {
+            "dataset": Datasets.NELA_COVID_COMBINED,
+            "train_dataset": Datasets.NELA_COVID_SUBSET,
+        },
     ]
     for config in run_configs:
         run_model_feature_injection(
@@ -135,4 +144,5 @@ if __name__ == "__main__":
             train_dataset=config["train_dataset"],
             identifier="final",
             zero=True,
+            undersample=True,
         )

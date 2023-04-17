@@ -158,10 +158,14 @@ if __name__ == "__main__":
     ]
     for config in run_configs:
         if "train_dataset" in config.keys():
-            df = read_model_feature_injected_csv(config["dataset"].injected_path, config["train_dataset"].name)
+            df = read_model_feature_injected_csv(
+                config["dataset"].injected_path, config["train_dataset"].name
+            )
         else:
             df = read_csv(config["dataset"].injected_path)
         # df = normalize_content_features(df, features=ContentFeatures.get_all())
         thresholds = get_thresholds_for_content_features(df)
 
-        update_and_save_thresholds_json(updated_thresholds=thresholds, dataset=config["dataset"])
+        update_and_save_thresholds_json(
+            updated_thresholds=thresholds, dataset=config["dataset"]
+        )
