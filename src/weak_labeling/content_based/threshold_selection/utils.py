@@ -11,6 +11,7 @@ def get_thresholds_json(dataset: Dataset) -> dict:
     thresholds_json_path = os.path.join(
         get_project_root(), f"{THRESHOLDS_JSON_PREFIX}/{dataset.name}-thresholds.json"
     )
+    print(f"Getting thresholds json, path: {thresholds_json_path}")
     f = open(thresholds_json_path)
     return json.load(f)
 

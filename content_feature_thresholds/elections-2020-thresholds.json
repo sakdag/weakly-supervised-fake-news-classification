@@ -1,250 +1,69 @@
 {
-  "content_word_count": {
-    "upper": {
-      "side": "real",
-      "threshold": 456.0,
-      "percentile": 0.25
-    }
-  },
-  "content_unique_words_count": {
-    "upper": {
-      "side": "real",
-      "threshold": 228.0,
-      "percentile": 0.2
-    }
-  },
+  "content_word_count": {},
+  "content_unique_words_count": {},
   "content_words_per_sentence": {
     "upper": {
       "side": "fake",
-      "threshold": 27.35,
-      "percentile": 0.8
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 20.20833333333333,
-      "percentile": 0.25
+      "threshold": 33.625,
+      "percentile": 0.95
     }
   },
-  "content_stopwords_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.4842162533646412,
-      "percentile": 0.65
-    }
-  },
-  "content_unique_words_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.5368098159509203,
-      "percentile": 0.5
-    },
-    "lower": {
-      "side": "real",
-      "threshold": 0.5368098159509203,
-      "percentile": 0.5
-    }
-  },
+  "content_stopwords_ratio": {},
+  "content_unique_words_ratio": {},
   "content_average_sentence_length": {
     "upper": {
       "side": "fake",
-      "threshold": 31.32758620689655,
-      "percentile": 0.8
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 24.28685258964143,
-      "percentile": 0.3
+      "threshold": 38.09090909090909,
+      "percentile": 0.95
     }
   },
   "content_average_word_length": {},
-  "content_noun_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.2028985507246377,
-      "percentile": 0.5
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.2028985507246377,
-      "percentile": 0.5
-    }
-  },
-  "content_proper_noun_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.132183908045977,
-      "percentile": 0.55
-    }
-  },
+  "content_noun_ratio": {},
+  "content_proper_noun_ratio": {},
   "content_cardinal_number_ratio": {},
-  "content_determiner_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.1167315175097276,
-      "percentile": 0.9
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.076,
-      "percentile": 0.1
-    }
-  },
-  "content_adposition_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.1472868217054263,
-      "percentile": 0.95
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.1061792863359443,
-      "percentile": 0.2
-    }
-  },
+  "content_determiner_ratio": {},
+  "content_adposition_ratio": {},
   "content_interjection_ratio": {
     "upper": {
       "side": "fake",
-      "threshold": 0.0007062146892655,
-      "percentile": 0.7
+      "threshold": 0.0029411764705882,
+      "percentile": 0.9
     }
   },
-  "content_symbol_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.0008264462809917,
-      "percentile": 0.65
-    }
-  },
-  "content_adjective_ratio": {
-    "lower": {
-      "side": "fake",
-      "threshold": 0.06885136319803625,
-      "percentile": 0.45
-    }
-  },
-  "content_wh_determiner_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.0130434782608695,
-      "percentile": 0.95
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.001669449081803,
-      "percentile": 0.1
-    }
-  },
-  "content_verb_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.1463414634146341,
-      "percentile": 0.8
-    }
-  },
-  "content_verb_present_participle_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.0275482093663911,
-      "percentile": 0.7
-    }
-  },
-  "content_verb_past_participle_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.0243605359317904,
-      "percentile": 0.5
-    },
-    "lower": {
-      "side": "real",
-      "threshold": 0.0243605359317904,
-      "percentile": 0.5
-    }
-  },
+  "content_symbol_ratio": {},
+  "content_adjective_ratio": {},
+  "content_wh_determiner_ratio": {},
+  "content_verb_ratio": {},
+  "content_verb_present_participle_ratio": {},
+  "content_verb_past_participle_ratio": {},
   "content_verb_third_person_ratio": {},
-  "content_modal_ratio": {
-    "lower": {
-      "side": "fake",
-      "threshold": 0.0025641025641025,
-      "percentile": 0.05
-    }
-  },
+  "content_modal_ratio": {},
   "content_adverb_ratio": {},
   "content_comparative_adverb_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.0013540961408259,
-      "percentile": 0.5
-    },
     "lower": {
       "side": "fake",
-      "threshold": 0.0013540961408259,
-      "percentile": 0.5
+      "threshold": 0.0011198208286674,
+      "percentile": 0.45
     }
   },
   "content_superlative_adverb_ratio": {
     "upper": {
       "side": "real",
-      "threshold": 0.0004971414674558,
-      "percentile": 0.55
-    }
-  },
-  "content_existential_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.0010827197921178,
-      "percentile": 0.5
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.0010827197921178,
-      "percentile": 0.5
-    }
-  },
-  "content_pronoun_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.0723076923076923,
+      "threshold": 0.0008045052292839,
       "percentile": 0.6
     }
   },
-  "content_personal_pronoun_ratio": {
-    "lower": {
-      "side": "fake",
-      "threshold": 0.0017574692442882,
-      "percentile": 0.15
-    }
-  },
-  "content_possessive_pronoun_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 0.0208416867147821,
-      "percentile": 0.85
-    }
-  },
-  "content_punctuation_ratio": {
-    "lower": {
-      "side": "fake",
-      "threshold": 0.0947368421052631,
-      "percentile": 0.15
-    }
-  },
-  "content_period_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.0413533834586466,
-      "percentile": 0.5
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.0413533834586466,
-      "percentile": 0.5
-    }
-  },
+  "content_existential_ratio": {},
+  "content_pronoun_ratio": {},
+  "content_personal_pronoun_ratio": {},
+  "content_possessive_pronoun_ratio": {},
+  "content_punctuation_ratio": {},
+  "content_period_ratio": {},
   "content_question_mark_ration": {
     "upper": {
       "side": "fake",
-      "threshold": 0.0004242681374628,
-      "percentile": 0.55
+      "threshold": 0.002680965147453,
+      "percentile": 0.75
     }
   },
   "content_exclamation_point_ratio": {
@@ -254,28 +73,12 @@
       "percentile": 0.7
     }
   },
-  "content_comma_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.0495726495726495,
-      "percentile": 0.5
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.0495726495726495,
-      "percentile": 0.5
-    }
-  },
+  "content_comma_ratio": {},
   "content_colon_ratio": {
     "upper": {
       "side": "fake",
-      "threshold": 0.0022321428571428,
-      "percentile": 0.5
-    },
-    "lower": {
-      "side": "real",
-      "threshold": 0.0022321428571428,
-      "percentile": 0.5
+      "threshold": 0.0068630260115947,
+      "percentile": 0.85
     }
   },
   "content_semicolon_ratio": {
@@ -288,44 +91,27 @@
   "content_parentheses_open_ratio": {
     "upper": {
       "side": "fake",
-      "threshold": 0.0017452006980802,
-      "percentile": 0.6
+      "threshold": 0.0059701492537313,
+      "percentile": 0.9
     }
   },
   "content_parentheses_close_ratio": {
     "upper": {
       "side": "fake",
-      "threshold": 0.0017605633802816,
-      "percentile": 0.6
+      "threshold": 0.0060240963855421,
+      "percentile": 0.9
     }
   },
   "content_quotation_mark_ratio": {},
   "title_word_count": {
     "upper": {
       "side": "fake",
-      "threshold": 7.0,
-      "percentile": 0.05
+      "threshold": 14.0,
+      "percentile": 0.55
     }
   },
-  "title_stopwords_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.3571428571428571,
-      "percentile": 0.65
-    }
-  },
-  "title_unique_words_ratio": {
-    "upper": {
-      "side": "fake",
-      "threshold": 1.0454545454545454,
-      "percentile": 0.5
-    },
-    "lower": {
-      "side": "real",
-      "threshold": 1.0454545454545454,
-      "percentile": 0.5
-    }
-  },
+  "title_stopwords_ratio": {},
+  "title_unique_words_ratio": {},
   "title_average_word_length": {},
   "title_noun_ratio": {
     "upper": {
@@ -351,13 +137,7 @@
       "percentile": 0.5
     }
   },
-  "title_cardinal_number_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.0625,
-      "percentile": 0.85
-    }
-  },
+  "title_cardinal_number_ratio": {},
   "title_determiner_ratio": {
     "upper": {
       "side": "real",
@@ -366,11 +146,6 @@
     }
   },
   "title_adposition_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.2142857142857142,
-      "percentile": 0.9
-    },
     "lower": {
       "side": "real",
       "threshold": 0.0555555555555555,
@@ -387,18 +162,7 @@
     }
   },
   "title_wh_determiner_ratio": {},
-  "title_verb_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.1428571428571428,
-      "percentile": 0.6
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 0.1111111111111111,
-      "percentile": 0.45
-    }
-  },
+  "title_verb_ratio": {},
   "title_verb_present_participle_ratio": {
     "upper": {
       "side": "fake",
@@ -413,20 +177,8 @@
       "percentile": 0.85
     }
   },
-  "title_verb_third_person_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.0666666666666666,
-      "percentile": 0.7
-    }
-  },
-  "title_modal_ratio": {
-    "upper": {
-      "side": "real",
-      "threshold": 0.0666666666666666,
-      "percentile": 0.9
-    }
-  },
+  "title_verb_third_person_ratio": {},
+  "title_modal_ratio": {},
   "title_adverb_ratio": {
     "upper": {
       "side": "fake",
@@ -458,47 +210,8 @@
       "percentile": 0.9
     }
   },
-  "title_punctuation_ratio": {
-    "lower": {
-      "side": "real",
-      "threshold": 0.0476190476190476,
-      "percentile": 0.4
-    }
-  },
-  "content_gunning_fog_index": {
-    "upper": {
-      "side": "fake",
-      "threshold": 16.82373051784817,
-      "percentile": 0.8
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 12.972346368715089,
-      "percentile": 0.25
-    }
-  },
-  "content_automated_readability_index": {
-    "upper": {
-      "side": "fake",
-      "threshold": 16.045194128150598,
-      "percentile": 0.8
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 10.9382577754349,
-      "percentile": 0.2
-    }
-  },
-  "content_flesch_kincaid_index": {
-    "upper": {
-      "side": "fake",
-      "threshold": 14.32994268925519,
-      "percentile": 0.75
-    },
-    "lower": {
-      "side": "fake",
-      "threshold": 10.675885885885886,
-      "percentile": 0.2
-    }
-  }
+  "title_punctuation_ratio": {},
+  "content_gunning_fog_index": {},
+  "content_automated_readability_index": {},
+  "content_flesch_kincaid_index": {}
 }

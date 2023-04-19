@@ -221,12 +221,6 @@ if __name__ == "__main__":
         {
             "dataset": Datasets.NELA_COVID_COMBINED,
             "train_dataset": Datasets.NELA_ELECTIONS_2020,
-            "top_n": 5,
-        },
-        {
-            "dataset": Datasets.NELA_COVID_COMBINED,
-            "train_dataset": Datasets.NELA_ELECTIONS_2020,
-            "top_n": 10,
         },
         # {
         #     "dataset": Datasets.NELA_ELECTIONS_2020,
@@ -235,51 +229,30 @@ if __name__ == "__main__":
         {
             "dataset": Datasets.NELA_COVID_COMBINED,
             "train_dataset": Datasets.NELA_COVID_SUBSET,
-            "top_n": 5,
-        },
-        {
-            "dataset": Datasets.NELA_COVID_COMBINED,
-            "train_dataset": Datasets.NELA_COVID_SUBSET,
-            "top_n": 6,
-        },
-        {
-            "dataset": Datasets.NELA_COVID_COMBINED,
-            "train_dataset": Datasets.NELA_COVID_SUBSET,
-            "top_n": 7,
-        },
-        {
-            "dataset": Datasets.NELA_COVID_COMBINED,
-            "train_dataset": Datasets.NELA_COVID_SUBSET,
-            "top_n": 8,
-        },
-        {
-            "dataset": Datasets.NELA_COVID_COMBINED,
-            "train_dataset": Datasets.NELA_COVID_SUBSET,
-            "top_n": 10,
         },
     ]
     for config in run_configs:
-        dataset = config["dataset"]
-        train_dataset = config["train_dataset"]
-        top_n = config["top_n"]
-        print(
-            f"Running weak labeler for dataset: {dataset} and train_dataset: {train_dataset}, top_n: {top_n}"
-        )
-        report = run_weak_labeler(
-            dataset,
-            train_dataset,
-            WeakLabelAggregators.get_active_aggregators(),
-            top_n=top_n,
-            mid_range_to_eliminate=0,
-        )
+        for top_n in range(3, 21):
+            dataset = config["dataset"]
+            train_dataset = config["train_dataset"]
+            print(
+                f"Running weak labeler for dataset: {dataset.name} and train_dataset: {train_dataset.name}, top_n: {top_n}"
+            )
+            report = run_weak_labeler(
+                dataset,
+                train_dataset,
+                WeakLabelAggregators.get_active_aggregators(),
+                top_n=top_n,
+                mid_range_to_eliminate=0,
+            )
 
-        weak_labeler_runs_path = os.path.join(
-            get_project_root(), f"{WEAK_LABELER_RUNS_PREFIX}/runs.json"
-        )
-        f = open(weak_labeler_runs_path)
-        old_runs = json.load(f)
-        f.close()
-        old_runs.append(report)
-        f = open(weak_labeler_runs_path, "w")
-        f.write(json.dumps(old_runs, indent=2))
-        f.close()
+            weak_labeler_runs_path = os.path.join(
+                get_project_root(), f"{WEAK_LABELER_RUNS_PREFIX}/runs.json"
+            )
+            f = open(weak_labeler_runs_path)
+            old_runs = json.load(f)
+            f.close()
+            old_runs.append(report)
+            f = open(weak_labeler_runs_path, "w")
+            f.write(json.dumps(old_runs, indent=2))
+            f.close()

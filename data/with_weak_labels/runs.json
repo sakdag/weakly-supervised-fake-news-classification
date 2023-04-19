@@ -1,5 +1,43 @@
 [
   {
+    "top_n": 3,
+    "lfs": [
+      [
+        "lf_model_xgboost_content",
+        0.8486175626348658
+      ],
+      [
+        "lf_model_logistic_regression_content",
+        0.8206696737676376
+      ],
+      [
+        "lf_model_naive_bayes_content",
+        0.729145799581874
+      ]
+    ],
+    "snorkel_majority_vote": {
+      "accuracy": 0.8365409823943425,
+      "precision": 0.8852964944010466,
+      "recall": 0.7732708609227005,
+      "f1": 0.8255003695809742,
+      "coverage": 1.0
+    },
+    "snorkel_label_model": {
+      "accuracy": 0.8302422038330454,
+      "precision": 0.8667881168011826,
+      "recall": 0.7804233693423591,
+      "f1": 0.8213416532246652,
+      "coverage": 1.0
+    },
+    "hyper_label_model": {
+      "accuracy": 0.8365409823943425,
+      "precision": 0.8852964944010466,
+      "recall": 0.7732708609227005,
+      "f1": 0.8358840083106014
+    },
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_3_lfs.csv"
+  },
+  {
     "top_n": 4,
     "lfs": [
       [
@@ -319,6 +357,150 @@
         0.7226813769443686
       ],
       [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
+        "lf_title_proper_noun_ratio_upper_fake",
+        0.7111409651553938
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.8486175626348658
+      ],
+      [
+        "lf_model_xgboost_title",
+        0.7152844533776108
+      ],
+      [
+        "lf_model_adaboost_content",
+        0.69609233727035
+      ],
+      [
+        "lf_model_logistic_regression_content",
+        0.8206696737676376
+      ],
+      [
+        "lf_model_logistic_regression_title",
+        0.7116476986266377
+      ],
+      [
+        "lf_model_naive_bayes_content",
+        0.729145799581874
+      ],
+      [
+        "lf_model_naive_bayes_title",
+        0.7049052494302865
+      ]
+    ],
+    "snorkel_majority_vote": {
+      "accuracy": 0.8482578610843479,
+      "precision": 0.8690260817126488,
+      "recall": 0.8163445946424399,
+      "f1": 0.8418619765518601,
+      "coverage": 0.959353719774938
+    },
+    "snorkel_label_model": {
+      "accuracy": 0.8371426266646051,
+      "precision": 0.8266743092375233,
+      "recall": 0.8531651866441694,
+      "f1": 0.8397108688820153,
+      "coverage": 1.0
+    },
+    "hyper_label_model": {
+      "accuracy": 0.8290893324101399,
+      "precision": 0.8690260817126488,
+      "recall": 0.7749783206394235,
+      "f1": 0.8285874361498091
+    },
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_10_lfs.csv"
+  },
+  {
+    "top_n": 11,
+    "lfs": [
+      [
+        "lf_content_exclamation_point_ratio_upper_fake",
+        0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
+        "lf_title_proper_noun_ratio_upper_fake",
+        0.7111409651553938
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.8486175626348658
+      ],
+      [
+        "lf_model_xgboost_title",
+        0.7152844533776108
+      ],
+      [
+        "lf_model_adaboost_content",
+        0.69609233727035
+      ],
+      [
+        "lf_model_logistic_regression_content",
+        0.8206696737676376
+      ],
+      [
+        "lf_model_logistic_regression_title",
+        0.7116476986266377
+      ],
+      [
+        "lf_model_naive_bayes_content",
+        0.729145799581874
+      ],
+      [
+        "lf_model_naive_bayes_title",
+        0.7049052494302865
+      ]
+    ],
+    "snorkel_majority_vote": {
+      "accuracy": 0.8481831113410061,
+      "precision": 0.8652585199574281,
+      "recall": 0.82107619834594,
+      "f1": 0.8425885661274424,
+      "coverage": 0.9616930740324955
+    },
+    "snorkel_label_model": {
+      "accuracy": 0.8370686815587628,
+      "precision": 0.8259868934311125,
+      "recall": 0.8540659724789761,
+      "f1": 0.8397917871602083,
+      "coverage": 1.0
+    },
+    "hyper_label_model": {
+      "accuracy": 0.8299060897155802,
+      "precision": 0.8652585199574281,
+      "recall": 0.7815123790829462,
+      "f1": 0.8295068029632788
+    },
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_11_lfs.csv"
+  },
+  {
+    "top_n": 12,
+    "lfs": [
+      [
+        "lf_content_exclamation_point_ratio_upper_fake",
+        0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
         "lf_title_noun_ratio_upper_real",
         0.6811969671760987
       ],
@@ -356,33 +538,41 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.852506731219629,
-      "precision": 0.8936166752059597,
-      "recall": 0.795955030134446,
-      "f1": 0.8419633039473735,
-      "coverage": 0.940000268891294
+      "accuracy": 0.8555957194496435,
+      "precision": 0.889999523635613,
+      "recall": 0.8083751586477443,
+      "f1": 0.8472258961704444,
+      "coverage": 0.9409985278201655
     },
     "snorkel_label_model": {
-      "accuracy": 0.8393811466869231,
-      "precision": 0.8384506060281025,
-      "recall": 0.8407558534273557,
-      "f1": 0.8396016473834194,
+      "accuracy": 0.8400836251924253,
+      "precision": 0.8360802758235845,
+      "recall": 0.846039567353908,
+      "f1": 0.841030438704935,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.8262693349646072,
-      "precision": 0.8698872859461807,
-      "recall": 0.7673081964788685,
-      "f1": 0.8256632679859287
+      "accuracy": 0.8298623948803098,
+      "precision": 0.8679624463841147,
+      "recall": 0.7780907373671508,
+      "f1": 0.8294051487290763
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_10_lfs.csv"
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_12_lfs.csv"
   },
   {
-    "top_n": 11,
+    "top_n": 13,
     "lfs": [
       [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -426,33 +616,41 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.8475060174427692,
-      "precision": 0.8744708944807033,
-      "recall": 0.8095357836357795,
-      "f1": 0.8407513937200084,
-      "coverage": 0.9677162390174712
+      "accuracy": 0.8496779681613805,
+      "precision": 0.870209916462571,
+      "recall": 0.820356858860786,
+      "f1": 0.8445483302275314,
+      "coverage": 0.9680590754172856
     },
     "snorkel_label_model": {
-      "accuracy": 0.8395055089103852,
-      "precision": 0.8387585772065975,
-      "recall": 0.840607963215671,
-      "f1": 0.8396822519019895,
+      "accuracy": 0.8402214319805861,
+      "precision": 0.8369484168197917,
+      "recall": 0.8450782809779577,
+      "f1": 0.8409937015617317,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.8336302341370943,
-      "precision": 0.8744708944807033,
-      "recall": 0.7790990797195464,
-      "f1": 0.8331340336899954
+      "accuracy": 0.8363393139238634,
+      "precision": 0.870209916462571,
+      "recall": 0.7905941825368549,
+      "f1": 0.8359961166019176
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_11_lfs.csv"
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_13_lfs.csv"
   },
   {
-    "top_n": 12,
+    "top_n": 14,
     "lfs": [
       [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -500,33 +698,323 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.8485780332863428,
-      "precision": 0.8777133349919144,
-      "recall": 0.8074945103677159,
-      "f1": 0.841140992351909,
-      "coverage": 0.9465544941818647
+      "accuracy": 0.8510177074352779,
+      "precision": 0.8747094108949001,
+      "recall": 0.817881195880697,
+      "f1": 0.845341308367156,
+      "coverage": 0.9473678903461303
     },
     "snorkel_label_model": {
-      "accuracy": 0.8374652962173718,
-      "precision": 0.8382452026735662,
-      "recall": 0.8363124247944662,
-      "f1": 0.8372776983259023,
+      "accuracy": 0.8382215529816683,
+      "precision": 0.8363539124912257,
+      "recall": 0.8409978555919305,
+      "f1": 0.8386694553937736,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.8273314555757971,
-      "precision": 0.8736542431148661,
-      "recall": 0.765345290032872,
-      "f1": 0.8266654549019414
+      "accuracy": 0.830477483715271,
+      "precision": 0.8747094108949001,
+      "recall": 0.7714558446883886,
+      "f1": 0.8298848785249292
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_12_lfs.csv"
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_14_lfs.csv"
   },
   {
-    "top_n": 13,
+    "top_n": 15,
     "lfs": [
       [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.6598192468227894
+      ],
+      [
+        "lf_title_noun_ratio_upper_real",
+        0.6811969671760987
+      ],
+      [
+        "lf_title_proper_noun_ratio_upper_fake",
+        0.7111409651553938
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.8486175626348658
+      ],
+      [
+        "lf_model_xgboost_title",
+        0.7152844533776108
+      ],
+      [
+        "lf_model_adaboost_content",
+        0.69609233727035
+      ],
+      [
+        "lf_model_adaboost_title",
+        0.6683192277442037
+      ],
+      [
+        "lf_model_logistic_regression_content",
+        0.8206696737676376
+      ],
+      [
+        "lf_model_logistic_regression_title",
+        0.7116476986266377
+      ],
+      [
+        "lf_model_random_forest_content",
+        0.6786412922915588
+      ],
+      [
+        "lf_model_naive_bayes_content",
+        0.729145799581874
+      ],
+      [
+        "lf_model_naive_bayes_title",
+        0.7049052494302865
+      ]
+    ],
+    "snorkel_majority_vote": {
+      "accuracy": 0.8526995947869894,
+      "precision": 0.8681202496081388,
+      "recall": 0.8311213041416265,
+      "f1": 0.8492179730584938,
+      "coverage": 0.9514079820380615
+    },
+    "snorkel_label_model": {
+      "accuracy": 0.8389845320283142,
+      "precision": 0.833847518669562,
+      "recall": 0.8466781841770918,
+      "f1": 0.8402138709236275,
+      "coverage": 1.0
+    },
+    "hyper_label_model": {
+      "accuracy": 0.8344032966072641,
+      "precision": 0.8683623977192788,
+      "recall": 0.7883086065380918,
+      "f1": 0.8340507007370299
+    },
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_15_lfs.csv"
+  },
+  {
+    "top_n": 16,
+    "lfs": [
+      [
+        "lf_content_words_per_sentence_upper_fake",
+        0.6579352850539291
+      ],
+      [
+        "lf_content_exclamation_point_ratio_upper_fake",
+        0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.6598192468227894
+      ],
+      [
+        "lf_title_noun_ratio_upper_real",
+        0.6811969671760987
+      ],
+      [
+        "lf_title_proper_noun_ratio_upper_fake",
+        0.7111409651553938
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.8486175626348658
+      ],
+      [
+        "lf_model_xgboost_title",
+        0.7152844533776108
+      ],
+      [
+        "lf_model_adaboost_content",
+        0.69609233727035
+      ],
+      [
+        "lf_model_adaboost_title",
+        0.6683192277442037
+      ],
+      [
+        "lf_model_logistic_regression_content",
+        0.8206696737676376
+      ],
+      [
+        "lf_model_logistic_regression_title",
+        0.7116476986266377
+      ],
+      [
+        "lf_model_random_forest_content",
+        0.6786412922915588
+      ],
+      [
+        "lf_model_naive_bayes_content",
+        0.729145799581874
+      ],
+      [
+        "lf_model_naive_bayes_title",
+        0.7049052494302865
+      ]
+    ],
+    "snorkel_majority_vote": {
+      "accuracy": 0.8525743975659086,
+      "precision": 0.8667506056121285,
+      "recall": 0.8325859703223799,
+      "f1": 0.8493248532642614,
+      "coverage": 0.9522415450493752
+    },
+    "snorkel_label_model": {
+      "accuracy": 0.839045032569458,
+      "precision": 0.8335184891287097,
+      "recall": 0.8473302455649743,
+      "f1": 0.8403676208318472,
+      "coverage": 1.0
+    },
+    "hyper_label_model": {
+      "accuracy": 0.8345511868189488,
+      "precision": 0.8670575653649002,
+      "recall": 0.7902715129840884,
+      "f1": 0.8342261557807398
+    },
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_16_lfs.csv"
+  },
+  {
+    "top_n": 17,
+    "lfs": [
+      [
+        "lf_content_words_per_sentence_upper_fake",
+        0.6579352850539291
+      ],
+      [
+        "lf_content_average_sentence_length_upper_fake",
+        0.6561591143634488
+      ],
+      [
+        "lf_content_exclamation_point_ratio_upper_fake",
+        0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.6598192468227894
+      ],
+      [
+        "lf_title_noun_ratio_upper_real",
+        0.6811969671760987
+      ],
+      [
+        "lf_title_proper_noun_ratio_upper_fake",
+        0.7111409651553938
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.8486175626348658
+      ],
+      [
+        "lf_model_xgboost_title",
+        0.7152844533776108
+      ],
+      [
+        "lf_model_adaboost_content",
+        0.69609233727035
+      ],
+      [
+        "lf_model_adaboost_title",
+        0.6683192277442037
+      ],
+      [
+        "lf_model_logistic_regression_content",
+        0.8206696737676376
+      ],
+      [
+        "lf_model_logistic_regression_title",
+        0.7116476986266377
+      ],
+      [
+        "lf_model_random_forest_content",
+        0.6786412922915588
+      ],
+      [
+        "lf_model_naive_bayes_content",
+        0.729145799581874
+      ],
+      [
+        "lf_model_naive_bayes_title",
+        0.7049052494302865
+      ]
+    ],
+    "snorkel_majority_vote": {
+      "accuracy": 0.8528180877476135,
+      "precision": 0.8660414631817814,
+      "recall": 0.8342270199912282,
+      "f1": 0.8498365948308477,
+      "coverage": 0.9517172070261295
+    },
+    "snorkel_label_model": {
+      "accuracy": 0.8390954496870777,
+      "precision": 0.8331825177180827,
+      "recall": 0.847968862388158,
+      "f1": 0.8405106643834247,
+      "coverage": 1.0
+    },
+    "hyper_label_model": {
+      "accuracy": 0.8346923547482842,
+      "precision": 0.8664179159399171,
+      "recall": 0.7914008564187713,
+      "f1": 0.8343819610666954
+    },
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_17_lfs.csv"
+  },
+  {
+    "top_n": 18,
+    "lfs": [
+      [
+        "lf_content_words_per_sentence_upper_fake",
+        0.6579352850539291
+      ],
+      [
+        "lf_content_average_sentence_length_upper_fake",
+        0.6561591143634488
+      ],
+      [
+        "lf_content_exclamation_point_ratio_upper_fake",
+        0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.6598192468227894
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -578,33 +1066,53 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.8298691487739628,
-      "precision": 0.8636064762169982,
-      "recall": 0.7801389199463328,
-      "f1": 0.8197535034162209,
-      "coverage": 0.9699312310515666
+      "accuracy": 0.8379415455092089,
+      "precision": 0.8555398167411801,
+      "recall": 0.8108873505349277,
+      "f1": 0.8326153448498687,
+      "coverage": 0.9670372885001915
     },
     "snorkel_label_model": {
-      "accuracy": 0.8257685249295841,
-      "precision": 0.8239891426432048,
-      "recall": 0.8285145772692745,
-      "f1": 0.8262456634320479,
+      "accuracy": 0.8277045422461834,
+      "precision": 0.8207424270337131,
+      "recall": 0.8385576670991335,
+      "f1": 0.8295544095202944,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.8159775206878239,
-      "precision": 0.8636064762169982,
-      "recall": 0.7504823237585625,
-      "f1": 0.8151847332716639
+      "accuracy": 0.8239299807070497,
+      "precision": 0.8556246817366662,
+      "recall": 0.7793679710135185,
+      "f1": 0.8235796499908787
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_13_lfs.csv"
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_18_lfs.csv"
   },
   {
-    "top_n": 14,
+    "top_n": 19,
     "lfs": [
+      [
+        "lf_content_words_per_sentence_upper_fake",
+        0.6579352850539291
+      ],
+      [
+        "lf_content_average_sentence_length_upper_fake",
+        0.6561591143634488
+      ],
       [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.6598192468227894
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -660,26 +1168,170 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.8370124976994371,
-      "precision": 0.852984149473125,
-      "recall": 0.810575992594982,
-      "f1": 0.831239527976931,
-      "coverage": 0.9679179074879503
+      "accuracy": 0.8444887606052655,
+      "precision": 0.8465122224905188,
+      "recall": 0.8392111581274511,
+      "f1": 0.8428458794287875,
+      "coverage": 0.9606981762447986
     },
     "snorkel_label_model": {
-      "accuracy": 0.8300842301978367,
-      "precision": 0.8218138443590988,
-      "recall": 0.84293387290853,
-      "f1": 0.8322398877019723,
+      "accuracy": 0.8294691413628755,
+      "precision": 0.8180148847953178,
+      "recall": 0.8474781357766589,
+      "f1": 0.8324859018212073,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.8215603761789203,
-      "precision": 0.852984149473125,
-      "recall": 0.7770487836030089,
-      "f1": 0.8212061351353451
+      "accuracy": 0.8250122681652875,
+      "precision": 0.8498368342221225,
+      "recall": 0.789532061925665,
+      "f1": 0.8247917080769434
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_14_lfs.csv"
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_19_lfs.csv"
+  },
+  {
+    "top_n": 20,
+    "lfs": [
+      [
+        "lf_content_words_per_sentence_upper_fake",
+        0.6579352850539291
+      ],
+      [
+        "lf_content_average_sentence_length_upper_fake",
+        0.6561591143634488
+      ],
+      [
+        "lf_content_question_mark_ration_upper_fake",
+        0.6359541863861081
+      ],
+      [
+        "lf_content_exclamation_point_ratio_upper_fake",
+        0.7226813769443686
+      ],
+      [
+        "lf_content_parentheses_open_ratio_upper_fake",
+        0.6896670206784532
+      ],
+      [
+        "lf_content_parentheses_close_ratio_upper_fake",
+        0.6896950020291575
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.6598192468227894
+      ],
+      [
+        "lf_title_noun_ratio_upper_real",
+        0.6811969671760987
+      ],
+      [
+        "lf_title_noun_ratio_lower_fake",
+        0.6478971390543875
+      ],
+      [
+        "lf_title_proper_noun_ratio_upper_fake",
+        0.7111409651553938
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.8486175626348658
+      ],
+      [
+        "lf_model_xgboost_title",
+        0.7152844533776108
+      ],
+      [
+        "lf_model_adaboost_content",
+        0.69609233727035
+      ],
+      [
+        "lf_model_adaboost_title",
+        0.6683192277442037
+      ],
+      [
+        "lf_model_logistic_regression_content",
+        0.8206696737676376
+      ],
+      [
+        "lf_model_logistic_regression_title",
+        0.7116476986266377
+      ],
+      [
+        "lf_model_random_forest_content",
+        0.6786412922915588
+      ],
+      [
+        "lf_model_random_forest_title",
+        0.6544545203987657
+      ],
+      [
+        "lf_model_naive_bayes_content",
+        0.729145799581874
+      ],
+      [
+        "lf_model_naive_bayes_title",
+        0.7049052494302865
+      ]
+    ],
+    "snorkel_majority_vote": {
+      "accuracy": 0.8449119664727469,
+      "precision": 0.8430677887779536,
+      "recall": 0.8459998173272162,
+      "f1": 0.8445312582191565,
+      "coverage": 0.9608057327623875
+    },
+    "snorkel_label_model": {
+      "accuracy": 0.8311295451031534,
+      "precision": 0.8164066263705911,
+      "recall": 0.8543953643140919,
+      "f1": 0.8349691236368414,
+      "coverage": 1.0
+    },
+    "hyper_label_model": {
+      "accuracy": 0.8259701934000632,
+      "precision": 0.8476555778606252,
+      "recall": 0.7947821644404708,
+      "f1": 0.8258007509837431
+    },
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_20_lfs.csv"
+  },
+  {
+    "top_n": 3,
+    "lfs": [
+      [
+        "lf_model_xgboost_content",
+        0.7442574903031077
+      ],
+      [
+        "lf_model_logistic_regression_content",
+        0.7677989230903677
+      ],
+      [
+        "lf_model_naive_bayes_content",
+        0.7525931204162437
+      ]
+    ],
+    "snorkel_majority_vote": {
+      "accuracy": 0.7734859739578782,
+      "precision": 0.809674595623216,
+      "recall": 0.7150558957777344,
+      "f1": 0.75942941592238,
+      "coverage": 1.0
+    },
+    "snorkel_label_model": {
+      "accuracy": 0.767785478525669,
+      "precision": 0.7731583386476312,
+      "recall": 0.7579507794486384,
+      "f1": 0.7654790354116882,
+      "coverage": 1.0
+    },
+    "hyper_label_model": {
+      "accuracy": 0.7734859739578782,
+      "precision": 0.809674595623216,
+      "recall": 0.7150558957777344,
+      "f1": 0.7727099890327616
+    },
+    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_3_lfs.csv"
   },
   {
     "top_n": 4,
@@ -777,8 +1429,8 @@
         0.7363986620940768
       ],
       [
-        "lf_title_noun_ratio_upper_real",
-        0.7191553382408253
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
       ],
       [
         "lf_model_xgboost_content",
@@ -798,24 +1450,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.8009389840914426,
-      "precision": 0.8356434666798205,
-      "recall": 0.7431729946700006,
-      "f1": 0.7867002565680253,
-      "coverage": 0.9306831855551597
+      "accuracy": 0.803470085091623,
+      "precision": 0.8331553657234383,
+      "recall": 0.7593785943905388,
+      "f1": 0.7945580645410151,
+      "coverage": 0.9108759806129377
     },
     "snorkel_label_model": {
-      "accuracy": 0.7732137215227314,
-      "precision": 0.7874856762912558,
-      "recall": 0.7483916939479291,
-      "f1": 0.7674411390638086,
+      "accuracy": 0.7741514799104592,
+      "precision": 0.7867786145743237,
+      "recall": 0.7521360052164912,
+      "f1": 0.7690673888537573,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7758925510389287,
-      "precision": 0.8342168910170278,
-      "recall": 0.6886373261449728,
-      "f1": 0.7741732246953774
+      "accuracy": 0.7768504762737044,
+      "precision": 0.8331553657234383,
+      "recall": 0.6923480260017881,
+      "f1": 0.7752455804583268
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_6_lfs.csv"
   },
@@ -831,8 +1483,8 @@
         0.7191553382408253
       ],
       [
-        "lf_title_proper_noun_ratio_upper_fake",
-        0.710797618083124
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
       ],
       [
         "lf_model_xgboost_content",
@@ -852,24 +1504,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7991099652977788,
-      "precision": 0.8239497782992274,
-      "recall": 0.760350682311916,
-      "f1": 0.7908736905610706,
-      "coverage": 0.9569437815527128
+      "accuracy": 0.8010579950021095,
+      "precision": 0.8353096071440254,
+      "recall": 0.7446273400594856,
+      "f1": 0.7873660679873583,
+      "coverage": 0.9321015871308627
     },
     "snorkel_label_model": {
-      "accuracy": 0.7782789612729314,
-      "precision": 0.7847566638005159,
-      "recall": 0.7669048595379103,
-      "f1": 0.7757280695193348,
+      "accuracy": 0.7737111704165799,
+      "precision": 0.7874722885101456,
+      "recall": 0.7497764841118857,
+      "f1": 0.7681622055324263,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7858381677747229,
-      "precision": 0.8239497782992274,
-      "recall": 0.7270148360771449,
-      "f1": 0.7850945553178734
+      "accuracy": 0.7756337431684805,
+      "precision": 0.8353096071440254,
+      "recall": 0.686647530569579,
+      "f1": 0.7738429078234598
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_7_lfs.csv"
   },
@@ -885,16 +1537,16 @@
         0.7191553382408253
       ],
       [
-        "lf_title_proper_noun_ratio_upper_fake",
-        0.710797618083124
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
       ],
       [
         "lf_model_xgboost_content",
         0.7442574903031077
-      ],
-      [
-        "lf_model_adaboost_content",
-        0.6823116584542784
       ],
       [
         "lf_model_logistic_regression_content",
@@ -910,24 +1562,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.8029160185241215,
-      "precision": 0.823093947950851,
-      "recall": 0.7701536022622593,
-      "f1": 0.7957442255973616,
-      "coverage": 0.9442487513360536
+      "accuracy": 0.80162308711458,
+      "precision": 0.8347018397296724,
+      "recall": 0.7466579053042748,
+      "f1": 0.7882289013153077,
+      "coverage": 0.9310461888020221
     },
     "snorkel_label_model": {
-      "accuracy": 0.7784402960493146,
-      "precision": 0.7827897672576825,
-      "recall": 0.7707500050417118,
-      "f1": 0.7767232327338007,
+      "accuracy": 0.7737313372636277,
+      "precision": 0.7871204749615716,
+      "recall": 0.7504151009350695,
+      "f1": 0.7683296567910497,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7845878232577524,
-      "precision": 0.823093947950851,
-      "recall": 0.7249981513723539,
-      "f1": 0.783820184081184
+      "accuracy": 0.7756606322978777,
+      "precision": 0.8347018397296724,
+      "recall": 0.6874609267338446,
+      "f1": 0.7739017716592242
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_8_lfs.csv"
   },
@@ -947,20 +1599,20 @@
         0.710797618083124
       ],
       [
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
+      ],
+      [
         "lf_model_xgboost_content",
         0.7442574903031077
       ],
       [
-        "lf_model_adaboost_content",
-        0.6823116584542784
-      ],
-      [
         "lf_model_logistic_regression_content",
         0.7677989230903677
-      ],
-      [
-        "lf_model_logistic_regression_title",
-        0.6561720635390128
       ],
       [
         "lf_model_random_forest_content",
@@ -972,24 +1624,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7995490070825436,
-      "precision": 0.8213166850729112,
-      "recall": 0.7646890126185614,
-      "f1": 0.7919919151232835,
-      "coverage": 0.9628963625730208
+      "accuracy": 0.799806042888415,
+      "precision": 0.8229683558208775,
+      "recall": 0.7637269927867377,
+      "f1": 0.7922417471019593,
+      "coverage": 0.9565774171646757
     },
     "snorkel_label_model": {
-      "accuracy": 0.7793511653076453,
-      "precision": 0.7825093816283244,
-      "recall": 0.7737615875341997,
-      "f1": 0.7781108989200791,
+      "accuracy": 0.7783898789316949,
+      "precision": 0.7843127831937389,
+      "recall": 0.7679737024314496,
+      "f1": 0.7760572517398673,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7875086549385247,
-      "precision": 0.8213166850729112,
-      "recall": 0.7349000732728777,
-      "f1": 0.7869189183416122
+      "accuracy": 0.7865809799743209,
+      "precision": 0.8229683558208775,
+      "recall": 0.7302482538871597,
+      "f1": 0.7859015651333949
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_9_lfs.csv"
   },
@@ -1001,6 +1653,10 @@
         0.7363986620940768
       ],
       [
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
+      ],
+      [
         "lf_title_noun_ratio_upper_real",
         0.7191553382408253
       ],
@@ -1009,20 +1665,20 @@
         0.710797618083124
       ],
       [
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
+      ],
+      [
         "lf_model_xgboost_content",
         0.7442574903031077
       ],
       [
-        "lf_model_adaboost_content",
-        0.6823116584542784
-      ],
-      [
         "lf_model_logistic_regression_content",
         0.7677989230903677
-      ],
-      [
-        "lf_model_logistic_regression_title",
-        0.6561720635390128
       ],
       [
         "lf_model_random_forest_content",
@@ -1031,31 +1687,27 @@
       [
         "lf_model_naive_bayes_content",
         0.7525931204162437
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.6545620769163547
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.8011395789711957,
-      "precision": 0.8183597411459466,
-      "recall": 0.7732541661943091,
-      "f1": 0.7951678184871745,
-      "coverage": 0.9503156111562998
+      "accuracy": 0.8036927896823863,
+      "precision": 0.8209460462630281,
+      "recall": 0.7768193312728294,
+      "f1": 0.7982733480589602,
+      "coverage": 0.9569740318232847
     },
     "snorkel_label_model": {
-      "accuracy": 0.7819795777062228,
-      "precision": 0.7884620674478737,
-      "recall": 0.7707432827593624,
-      "f1": 0.7795019971105636,
+      "accuracy": 0.7783932400728696,
+      "precision": 0.7843142639416179,
+      "recall": 0.7679804247137988,
+      "f1": 0.77606140887168,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7853978582808435,
-      "precision": 0.8183597411459466,
-      "recall": 0.7336295619088593,
-      "f1": 0.7848211884241063
+      "accuracy": 0.7906277939486014,
+      "precision": 0.8209494822018485,
+      "recall": 0.7433903158800476,
+      "f1": 0.7901595603280218
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_10_lfs.csv"
   },
@@ -1067,6 +1719,10 @@
         0.7363986620940768
       ],
       [
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
+      ],
+      [
         "lf_title_noun_ratio_upper_real",
         0.7191553382408253
       ],
@@ -1075,57 +1731,53 @@
         0.710797618083124
       ],
       [
-        "lf_model_xgboost_content",
-        0.7442574903031077
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
       ],
       [
-        "lf_model_adaboost_content",
-        0.6823116584542784
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.7442574903031077
       ],
       [
         "lf_model_logistic_regression_content",
         0.7677989230903677
       ],
       [
-        "lf_model_logistic_regression_title",
-        0.6561720635390128
-      ],
-      [
         "lf_model_random_forest_content",
         0.7383654098239434
       ],
       [
-        "lf_model_random_forest_title",
-        0.641235152158861
-      ],
-      [
         "lf_model_naive_bayes_content",
         0.7525931204162437
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.6545620769163547
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7944247833894109,
-      "precision": 0.8120017189769123,
-      "recall": 0.7654178714606993,
-      "f1": 0.7880219456248966,
-      "coverage": 0.9639920945959572
+      "accuracy": 0.8035935977829282,
+      "precision": 0.819908510858784,
+      "recall": 0.77849933934947,
+      "f1": 0.798667541513148,
+      "coverage": 0.9557035204592663
     },
     "snorkel_label_model": {
-      "accuracy": 0.7827291121881701,
-      "precision": 0.7887820050672544,
-      "recall": 0.7722490740056064,
-      "f1": 0.7804279891304348,
+      "accuracy": 0.7787125484844615,
+      "precision": 0.7839989040345229,
+      "recall": 0.7694055485718511,
+      "f1": 0.7766336781464908,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.78306858744681,
-      "precision": 0.8120017189769123,
-      "recall": 0.7367016449424909,
-      "f1": 0.7826012032177447
+      "accuracy": 0.7904899871604407,
+      "precision": 0.8199256692726842,
+      "recall": 0.744486047902984,
+      "f1": 0.7900456476577156
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_11_lfs.csv"
   },
@@ -1137,6 +1789,10 @@
         0.7363986620940768
       ],
       [
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
+      ],
+      [
         "lf_title_noun_ratio_upper_real",
         0.7191553382408253
       ],
@@ -1145,12 +1801,20 @@
         0.710797618083124
       ],
       [
-        "lf_model_xgboost_content",
-        0.7442574903031077
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
       ],
       [
-        "lf_model_xgboost_title",
-        0.6254882057556181
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.7442574903031077
       ],
       [
         "lf_model_adaboost_content",
@@ -1161,45 +1825,33 @@
         0.7677989230903677
       ],
       [
-        "lf_model_logistic_regression_title",
-        0.6561720635390128
-      ],
-      [
         "lf_model_random_forest_content",
         0.7383654098239434
       ],
       [
-        "lf_model_random_forest_title",
-        0.641235152158861
-      ],
-      [
         "lf_model_naive_bayes_content",
         0.7525931204162437
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.6545620769163547
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.795520210746962,
-      "precision": 0.8141874287267866,
-      "recall": 0.7648469369656983,
-      "f1": 0.788746305346639,
-      "coverage": 0.9492669351098085
+      "accuracy": 0.8069110395043706,
+      "precision": 0.8197645904855321,
+      "recall": 0.7863415399090481,
+      "f1": 0.8027052985433007,
+      "coverage": 0.9439933046067801
     },
     "snorkel_label_model": {
-      "accuracy": 0.7848298254223274,
-      "precision": 0.7906104252400549,
-      "recall": 0.7748842086865333,
-      "f1": 0.7826683279071425,
+      "accuracy": 0.7788201050020503,
+      "precision": 0.7821910165870651,
+      "recall": 0.7728473571346943,
+      "f1": 0.7774911155369056,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7796637514368878,
-      "precision": 0.8141874287267866,
-      "recall": 0.7247225377960325,
-      "f1": 0.7789966446412646
+      "accuracy": 0.7890178073259433,
+      "precision": 0.8201101928374656,
+      "recall": 0.7404526784934021,
+      "f1": 0.788519014249718
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_12_lfs.csv"
   },
@@ -1207,12 +1859,12 @@
     "top_n": 13,
     "lfs": [
       [
-        "lf_content_adjective_ratio_upper_fake",
-        0.6195020746887967
-      ],
-      [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7363986620940768
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -1223,12 +1875,20 @@
         0.710797618083124
       ],
       [
-        "lf_model_xgboost_content",
-        0.7442574903031077
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
       ],
       [
-        "lf_model_xgboost_title",
-        0.6254882057556181
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.7442574903031077
       ],
       [
         "lf_model_adaboost_content",
@@ -1247,37 +1907,29 @@
         0.7383654098239434
       ],
       [
-        "lf_model_random_forest_title",
-        0.641235152158861
-      ],
-      [
         "lf_model_naive_bayes_content",
         0.7525931204162437
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.6545620769163547
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7955576312083837,
-      "precision": 0.8132667789271109,
-      "recall": 0.7665665211722692,
-      "f1": 0.7892264145437567,
-      "coverage": 0.9499996638858825
+      "accuracy": 0.8034004743060916,
+      "precision": 0.8182698657274928,
+      "recall": 0.7796396887649168,
+      "f1": 0.7984878263577879,
+      "coverage": 0.9623384131380286
     },
     "snorkel_label_model": {
-      "accuracy": 0.7847726860223583,
-      "precision": 0.7901918742850097,
-      "recall": 0.7754354358391761,
-      "f1": 0.7827441134559273,
+      "accuracy": 0.7798654199073669,
+      "precision": 0.7817327928647317,
+      "recall": 0.7765513347091605,
+      "f1": 0.7791334493410492,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7801309500601644,
-      "precision": 0.8132667789271109,
-      "recall": 0.7272433936770212,
-      "f1": 0.7795142307215752
+      "accuracy": 0.7915218575010587,
+      "precision": 0.8183025916927842,
+      "recall": 0.7494538145591191,
+      "f1": 0.7911522554210328
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_13_lfs.csv"
   },
@@ -1285,32 +1937,36 @@
     "top_n": 14,
     "lfs": [
       [
-        "lf_content_adjective_ratio_upper_fake",
-        0.6195020746887967
-      ],
-      [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7363986620940768
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
       ],
       [
         "lf_title_noun_ratio_upper_real",
         0.7191553382408253
       ],
       [
-        "lf_title_noun_ratio_lower_fake",
-        0.6144064478746339
-      ],
-      [
         "lf_title_proper_noun_ratio_upper_fake",
         0.710797618083124
       ],
       [
-        "lf_model_xgboost_content",
-        0.7442574903031077
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
       ],
       [
-        "lf_model_xgboost_title",
-        0.6254882057556181
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
+      ],
+      [
+        "lf_model_xgboost_content",
+        0.7442574903031077
       ],
       [
         "lf_model_adaboost_content",
@@ -1329,10 +1985,6 @@
         0.7383654098239434
       ],
       [
-        "lf_model_random_forest_title",
-        0.641235152158861
-      ],
-      [
         "lf_model_naive_bayes_content",
         0.7525931204162437
       ],
@@ -1342,24 +1994,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7989499767803778,
-      "precision": 0.8019083646218559,
-      "recall": 0.7986504533633233,
-      "f1": 0.8002760932800869,
-      "coverage": 0.9481409528163002
+      "accuracy": 0.8049680780283405,
+      "precision": 0.8157374021633981,
+      "recall": 0.7878888692266856,
+      "f1": 0.8015713272386192,
+      "coverage": 0.9497374948742597
     },
     "snorkel_label_model": {
-      "accuracy": 0.7859423631511371,
-      "precision": 0.7884632338480527,
-      "recall": 0.78157287962409,
-      "f1": 0.7850029370261091,
+      "accuracy": 0.7829744754939197,
+      "precision": 0.7876127357201421,
+      "recall": 0.7749110978159305,
+      "f1": 0.7812102914417574,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7875052937973501,
-      "precision": 0.8019045064377682,
-      "recall": 0.7636579971631968,
-      "f1": 0.7873843806645681
+      "accuracy": 0.789377449431631,
+      "precision": 0.8159658252655221,
+      "recall": 0.747302684207342,
+      "f1": 0.7890039260635946
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_14_lfs.csv"
   },
@@ -1368,611 +2020,35 @@
     "lfs": [
       [
         "lf_content_exclamation_point_ratio_upper_fake",
-        0.7226813769443686
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.601885250637634
-      ],
-      [
-        "lf_title_noun_ratio_upper_real",
-        0.6811969671760987
-      ],
-      [
-        "lf_title_noun_ratio_lower_fake",
-        0.6478971390543875
-      ],
-      [
-        "lf_title_proper_noun_ratio_upper_fake",
-        0.7111409651553938
-      ],
-      [
-        "lf_model_xgboost_content",
-        0.8486175626348658
-      ],
-      [
-        "lf_model_xgboost_title",
-        0.7152844533776108
-      ],
-      [
-        "lf_model_adaboost_content",
-        0.69609233727035
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6683192277442037
-      ],
-      [
-        "lf_model_logistic_regression_content",
-        0.8206696737676376
-      ],
-      [
-        "lf_model_logistic_regression_title",
-        0.7116476986266377
-      ],
-      [
-        "lf_model_random_forest_content",
-        0.6786412922915588
-      ],
-      [
-        "lf_model_random_forest_title",
-        0.6544545203987657
-      ],
-      [
-        "lf_model_naive_bayes_content",
-        0.729145799581874
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.7049052494302865
-      ]
-    ],
-    "snorkel_majority_vote": {
-      "accuracy": 0.8421162795565386,
-      "precision": 0.8490522836065456,
-      "recall": 0.8308255673105872,
-      "f1": 0.8398400452969069,
-      "coverage": 0.9634845622785848
-    },
-    "snorkel_label_model": {
-      "accuracy": 0.8301749810095523,
-      "precision": 0.8197709620505342,
-      "recall": 0.8464429042948662,
-      "f1": 0.8328934574246424,
-      "coverage": 1.0
-    },
-    "hyper_label_model": {
-      "accuracy": 0.8279297387048851,
-      "precision": 0.8490522836065456,
-      "recall": 0.7976727458506713,
-      "f1": 0.8277720665090007
-    },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_15_lfs.csv"
-  },
-  {
-    "top_n": 16,
-    "lfs": [
-      [
-        "lf_content_exclamation_point_ratio_upper_fake",
-        0.7226813769443686
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.601885250637634
-      ],
-      [
-        "lf_title_noun_ratio_upper_real",
-        0.6811969671760987
-      ],
-      [
-        "lf_title_noun_ratio_lower_fake",
-        0.6478971390543875
-      ],
-      [
-        "lf_title_proper_noun_ratio_upper_fake",
-        0.7111409651553938
-      ],
-      [
-        "lf_title_proper_noun_ratio_lower_real",
-        0.6015668802563076
-      ],
-      [
-        "lf_model_xgboost_content",
-        0.8486175626348658
-      ],
-      [
-        "lf_model_xgboost_title",
-        0.7152844533776108
-      ],
-      [
-        "lf_model_adaboost_content",
-        0.69609233727035
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6683192277442037
-      ],
-      [
-        "lf_model_logistic_regression_content",
-        0.8206696737676376
-      ],
-      [
-        "lf_model_logistic_regression_title",
-        0.7116476986266377
-      ],
-      [
-        "lf_model_random_forest_content",
-        0.6786412922915588
-      ],
-      [
-        "lf_model_random_forest_title",
-        0.6544545203987657
-      ],
-      [
-        "lf_model_naive_bayes_content",
-        0.729145799581874
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.7049052494302865
-      ]
-    ],
-    "snorkel_majority_vote": {
-      "accuracy": 0.8423835015357612,
-      "precision": 0.8689466067484195,
-      "recall": 0.8046607748679283,
-      "f1": 0.8355690320029003,
-      "coverage": 0.9575050921288796
-    },
-    "snorkel_label_model": {
-      "accuracy": 0.8327563374316848,
-      "precision": 0.8281851873951641,
-      "recall": 0.839720621945563,
-      "f1": 0.8339130144530859,
-      "coverage": 1.0
-    },
-    "hyper_label_model": {
-      "accuracy": 0.8244845690008672,
-      "precision": 0.8567996688496962,
-      "recall": 0.7791999139547859,
-      "f1": 0.824123899885415
-    },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_16_lfs.csv"
-  },
-  {
-    "top_n": 17,
-    "lfs": [
-      [
-        "lf_content_exclamation_point_ratio_upper_fake",
-        0.7226813769443686
-      ],
-      [
-        "lf_content_parentheses_open_ratio_upper_fake",
-        0.6010720323258978
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.601885250637634
-      ],
-      [
-        "lf_title_noun_ratio_upper_real",
-        0.6811969671760987
-      ],
-      [
-        "lf_title_noun_ratio_lower_fake",
-        0.6478971390543875
-      ],
-      [
-        "lf_title_proper_noun_ratio_upper_fake",
-        0.7111409651553938
-      ],
-      [
-        "lf_title_proper_noun_ratio_lower_real",
-        0.6015668802563076
-      ],
-      [
-        "lf_model_xgboost_content",
-        0.8486175626348658
-      ],
-      [
-        "lf_model_xgboost_title",
-        0.7152844533776108
-      ],
-      [
-        "lf_model_adaboost_content",
-        0.69609233727035
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6683192277442037
-      ],
-      [
-        "lf_model_logistic_regression_content",
-        0.8206696737676376
-      ],
-      [
-        "lf_model_logistic_regression_title",
-        0.7116476986266377
-      ],
-      [
-        "lf_model_random_forest_content",
-        0.6786412922915588
-      ],
-      [
-        "lf_model_random_forest_title",
-        0.6544545203987657
-      ],
-      [
-        "lf_model_naive_bayes_content",
-        0.729145799581874
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.7049052494302865
-      ]
-    ],
-    "snorkel_majority_vote": {
-      "accuracy": 0.850305560813924,
-      "precision": 0.8657141572090373,
-      "recall": 0.8279599956984622,
-      "f1": 0.8464162821973931,
-      "coverage": 0.941042222655436
-    },
-    "snorkel_label_model": {
-      "accuracy": 0.8330386732903555,
-      "precision": 0.8252890619357465,
-      "recall": 0.8449505576133208,
-      "f1": 0.8350040855371983,
-      "coverage": 1.0
-    },
-    "hyper_label_model": {
-      "accuracy": 0.8277717650696764,
-      "precision": 0.8665924845495692,
-      "recall": 0.7748237081453895,
-      "f1": 0.8272875663262864
-    },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_17_lfs.csv"
-  },
-  {
-    "top_n": 18,
-    "lfs": [
-      [
-        "lf_content_exclamation_point_ratio_upper_fake",
-        0.7226813769443686
-      ],
-      [
-        "lf_content_parentheses_open_ratio_upper_fake",
-        0.6010720323258978
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.601885250637634
-      ],
-      [
-        "lf_title_noun_ratio_upper_real",
-        0.6811969671760987
-      ],
-      [
-        "lf_title_noun_ratio_lower_fake",
-        0.6478971390543875
-      ],
-      [
-        "lf_title_proper_noun_ratio_upper_fake",
-        0.7111409651553938
-      ],
-      [
-        "lf_title_proper_noun_ratio_lower_real",
-        0.6015668802563076
-      ],
-      [
-        "lf_content_automated_readability_index_upper_fake",
-        0.6000039248008163
-      ],
-      [
-        "lf_model_xgboost_content",
-        0.8486175626348658
-      ],
-      [
-        "lf_model_xgboost_title",
-        0.7152844533776108
-      ],
-      [
-        "lf_model_adaboost_content",
-        0.69609233727035
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6683192277442037
-      ],
-      [
-        "lf_model_logistic_regression_content",
-        0.8206696737676376
-      ],
-      [
-        "lf_model_logistic_regression_title",
-        0.7116476986266377
-      ],
-      [
-        "lf_model_random_forest_content",
-        0.6786412922915588
-      ],
-      [
-        "lf_model_random_forest_title",
-        0.6544545203987657
-      ],
-      [
-        "lf_model_naive_bayes_content",
-        0.729145799581874
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.7049052494302865
-      ]
-    ],
-    "snorkel_majority_vote": {
-      "accuracy": 0.848026734563972,
-      "precision": 0.8587428036371351,
-      "recall": 0.832229752722323,
-      "f1": 0.8452784268263266,
-      "coverage": 0.9504635013679844
-    },
-    "snorkel_label_model": {
-      "accuracy": 0.8331058961138486,
-      "precision": 0.8243325500873788,
-      "recall": 0.8466311282006467,
-      "f1": 0.8353330547651736,
-      "coverage": 1.0
-    },
-    "hyper_label_model": {
-      "accuracy": 0.8290658044219174,
-      "precision": 0.8602686292548298,
-      "recall": 0.7857608615277059,
-      "f1": 0.8287446461607249
-    },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_18_lfs.csv"
-  },
-  {
-    "top_n": 19,
-    "lfs": [
-      [
-        "lf_content_exclamation_point_ratio_upper_fake",
-        0.7226813769443686
-      ],
-      [
-        "lf_content_parentheses_open_ratio_upper_fake",
-        0.6010720323258978
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.601885250637634
-      ],
-      [
-        "lf_title_noun_ratio_upper_real",
-        0.6811969671760987
-      ],
-      [
-        "lf_title_noun_ratio_lower_fake",
-        0.6478971390543875
-      ],
-      [
-        "lf_title_proper_noun_ratio_upper_fake",
-        0.7111409651553938
-      ],
-      [
-        "lf_title_proper_noun_ratio_lower_real",
-        0.6015668802563076
-      ],
-      [
-        "lf_content_automated_readability_index_upper_fake",
-        0.6000039248008163
-      ],
-      [
-        "lf_content_flesch_kincaid_index_upper_fake",
-        0.595876386838722
-      ],
-      [
-        "lf_model_xgboost_content",
-        0.8486175626348658
-      ],
-      [
-        "lf_model_xgboost_title",
-        0.7152844533776108
-      ],
-      [
-        "lf_model_adaboost_content",
-        0.69609233727035
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6683192277442037
-      ],
-      [
-        "lf_model_logistic_regression_content",
-        0.8206696737676376
-      ],
-      [
-        "lf_model_logistic_regression_title",
-        0.7116476986266377
-      ],
-      [
-        "lf_model_random_forest_content",
-        0.6786412922915588
-      ],
-      [
-        "lf_model_random_forest_title",
-        0.6544545203987657
-      ],
-      [
-        "lf_model_naive_bayes_content",
-        0.729145799581874
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.7049052494302865
-      ]
-    ],
-    "snorkel_majority_vote": {
-      "accuracy": 0.8502609222220243,
-      "precision": 0.8561009350397265,
-      "recall": 0.8420673933176605,
-      "f1": 0.8490261780856848,
-      "coverage": 0.9435899676658219
-    },
-    "snorkel_label_model": {
-      "accuracy": 0.8333243702902009,
-      "precision": 0.8231219372328225,
-      "recall": 0.8491116503875396,
-      "f1": 0.835914828847013,
-      "coverage": 1.0
-    },
-    "hyper_label_model": {
-      "accuracy": 0.829502752774622,
-      "precision": 0.8582998910842599,
-      "recall": 0.7893169488904873,
-      "f1": 0.8292269716102285
-    },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_19_lfs.csv"
-  },
-  {
-    "top_n": 20,
-    "lfs": [
-      [
-        "lf_content_exclamation_point_ratio_upper_fake",
-        0.7226813769443686
-      ],
-      [
-        "lf_content_parentheses_open_ratio_upper_fake",
-        0.6010720323258978
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.601885250637634
-      ],
-      [
-        "lf_title_noun_ratio_upper_real",
-        0.6811969671760987
-      ],
-      [
-        "lf_title_noun_ratio_lower_fake",
-        0.6478971390543875
-      ],
-      [
-        "lf_title_proper_noun_ratio_upper_fake",
-        0.7111409651553938
-      ],
-      [
-        "lf_title_proper_noun_ratio_lower_real",
-        0.6015668802563076
-      ],
-      [
-        "lf_content_gunning_fog_index_upper_fake",
-        0.5956326004520576
-      ],
-      [
-        "lf_content_automated_readability_index_upper_fake",
-        0.6000039248008163
-      ],
-      [
-        "lf_content_flesch_kincaid_index_upper_fake",
-        0.595876386838722
-      ],
-      [
-        "lf_model_xgboost_content",
-        0.8486175626348658
-      ],
-      [
-        "lf_model_xgboost_title",
-        0.7152844533776108
-      ],
-      [
-        "lf_model_adaboost_content",
-        0.69609233727035
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6683192277442037
-      ],
-      [
-        "lf_model_logistic_regression_content",
-        0.8206696737676376
-      ],
-      [
-        "lf_model_logistic_regression_title",
-        0.7116476986266377
-      ],
-      [
-        "lf_model_random_forest_content",
-        0.6786412922915588
-      ],
-      [
-        "lf_model_random_forest_title",
-        0.6544545203987657
-      ],
-      [
-        "lf_model_naive_bayes_content",
-        0.729145799581874
-      ],
-      [
-        "lf_model_naive_bayes_title",
-        0.7049052494302865
-      ]
-    ],
-    "snorkel_majority_vote": {
-      "accuracy": 0.8465315060751625,
-      "precision": 0.8468949991504786,
-      "recall": 0.8457215168396347,
-      "f1": 0.8463078512104362,
-      "coverage": 0.951606289367366
-    },
-    "snorkel_label_model": {
-      "accuracy": 0.833149590949119,
-      "precision": 0.8215486030909775,
-      "recall": 0.8511888356334743,
-      "f1": 0.8361061128811265,
-      "coverage": 1.0
-    },
-    "hyper_label_model": {
-      "accuracy": 0.8285717166692436,
-      "precision": 0.8561498105508598,
-      "recall": 0.7898547314784315,
-      "f1": 0.828314359044936
-    },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_20_lfs.csv"
-  },
-  {
-    "top_n": 15,
-    "lfs": [
-      [
-        "lf_content_adjective_ratio_upper_fake",
-        0.6195020746887967
-      ],
-      [
-        "lf_content_exclamation_point_ratio_upper_fake",
         0.7363986620940768
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
       ],
       [
         "lf_title_noun_ratio_upper_real",
         0.7191553382408253
       ],
       [
-        "lf_title_noun_ratio_lower_fake",
-        0.6144064478746339
-      ],
-      [
         "lf_title_proper_noun_ratio_upper_fake",
         0.710797618083124
       ],
       [
-        "lf_title_proper_noun_ratio_lower_real",
-        0.6109117650126735
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
+      ],
+      [
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
       ],
       [
         "lf_model_xgboost_content",
         0.7442574903031077
-      ],
-      [
-        "lf_model_xgboost_title",
-        0.6254882057556181
       ],
       [
         "lf_model_adaboost_content",
@@ -2004,24 +2080,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7919304231064342,
-      "precision": 0.8066184673785479,
-      "recall": 0.7658140350635863,
-      "f1": 0.7856868161915951,
-      "coverage": 0.9812381099630947
+      "accuracy": 0.7978617308403133,
+      "precision": 0.8091089481764723,
+      "recall": 0.7794731187296803,
+      "f1": 0.7940145975026472,
+      "coverage": 0.963887899219543
     },
     "snorkel_label_model": {
-      "accuracy": 0.7875389052090966,
-      "precision": 0.7933141328944662,
-      "recall": 0.777694122708542,
-      "f1": 0.7854264755303152,
+      "accuracy": 0.7837845105170107,
+      "precision": 0.7880915822158528,
+      "recall": 0.7763093325445856,
+      "f1": 0.7821560885084017,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7845206004342594,
-      "precision": 0.8066184673785479,
-      "recall": 0.7484858059008195,
-      "f1": 0.7842404352548943
+      "accuracy": 0.786859954691817,
+      "precision": 0.809166388941214,
+      "recall": 0.7507848264642811,
+      "f1": 0.7865822096044579
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_15_lfs.csv"
   },
@@ -2029,28 +2105,32 @@
     "top_n": 16,
     "lfs": [
       [
-        "lf_content_adjective_ratio_upper_fake",
-        0.6195020746887967
-      ],
-      [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7363986620940768
+      ],
+      [
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
       ],
       [
         "lf_title_noun_ratio_upper_real",
         0.7191553382408253
       ],
       [
-        "lf_title_noun_ratio_lower_fake",
-        0.6144064478746339
-      ],
-      [
         "lf_title_proper_noun_ratio_upper_fake",
         0.710797618083124
       ],
       [
-        "lf_title_proper_noun_ratio_lower_real",
-        0.6109117650126735
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
+      ],
+      [
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
       ],
       [
         "lf_model_xgboost_content",
@@ -2063,10 +2143,6 @@
       [
         "lf_model_adaboost_content",
         0.6823116584542784
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6083799971766414
       ],
       [
         "lf_model_logistic_regression_content",
@@ -2094,24 +2170,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7998117633534861,
-      "precision": 0.8153003148462097,
-      "recall": 0.7747308464044532,
-      "f1": 0.7944980178851295,
-      "coverage": 0.9356509522112948
+      "accuracy": 0.799200940736438,
+      "precision": 0.8113410730354482,
+      "recall": 0.77951160054991,
+      "f1": 0.7951079178292109,
+      "coverage": 0.9489577101217406
     },
     "snorkel_label_model": {
-      "accuracy": 0.7872800973386485,
-      "precision": 0.7923504744183502,
-      "recall": 0.7786083531080472,
-      "f1": 0.78541930846483,
+      "accuracy": 0.7856969998453875,
+      "precision": 0.7890252029977014,
+      "recall": 0.7799393650132093,
+      "f1": 0.7844559760653134,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7800502826719727,
-      "precision": 0.8153003148462097,
-      "recall": 0.7241511437963417,
-      "f1": 0.7793608484865169
+      "accuracy": 0.7835660363406584,
+      "precision": 0.8115573806815664,
+      "recall": 0.7386443845414395,
+      "f1": 0.7831283992528667
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_16_lfs.csv"
   },
@@ -2119,16 +2195,12 @@
     "top_n": 17,
     "lfs": [
       [
-        "lf_content_adjective_ratio_upper_fake",
-        0.6195020746887967
-      ],
-      [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7363986620940768
       ],
       [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.5973136118329002
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -2143,8 +2215,16 @@
         0.710797618083124
       ],
       [
-        "lf_title_proper_noun_ratio_lower_real",
-        0.6109117650126735
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
+      ],
+      [
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
       ],
       [
         "lf_model_xgboost_content",
@@ -2157,10 +2237,6 @@
       [
         "lf_model_adaboost_content",
         0.6823116584542784
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6083799971766414
       ],
       [
         "lf_model_logistic_regression_content",
@@ -2188,24 +2264,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7974221078059704,
-      "precision": 0.8030781571163583,
-      "recall": 0.7892188258810116,
-      "f1": 0.7960881757836072,
-      "coverage": 0.9531019971900859
+      "accuracy": 0.7998583479566164,
+      "precision": 0.7979094316741083,
+      "recall": 0.8082627784098444,
+      "f1": 0.8030527363322086,
+      "coverage": 0.9538716985190812
     },
     "snorkel_label_model": {
-      "accuracy": 0.7874716823856036,
-      "precision": 0.789964740981828,
-      "recall": 0.7831727828232241,
-      "f1": 0.7865540998990679,
+      "accuracy": 0.7870851511505186,
+      "precision": 0.787467774180303,
+      "recall": 0.7864196451979376,
+      "f1": 0.7869433606888201,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7844332107637185,
-      "precision": 0.8030641626197946,
-      "recall": 0.7536955747215295,
-      "f1": 0.7842293501640702
+      "accuracy": 0.7905975436780296,
+      "precision": 0.7989474703327709,
+      "recall": 0.7766320020973521,
+      "f1": 0.7905566946198724
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_17_lfs.csv"
   },
@@ -2213,20 +2289,12 @@
     "top_n": 18,
     "lfs": [
       [
-        "lf_content_adjective_ratio_upper_fake",
-        0.6195020746887967
-      ],
-      [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7363986620940768
       ],
       [
-        "lf_content_parentheses_open_ratio_upper_fake",
-        0.5957340363861603
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.5973136118329002
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -2245,6 +2313,18 @@
         0.6109117650126735
       ],
       [
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
+      ],
+      [
+        "lf_content_automated_readability_index_upper_fake",
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
+      ],
+      [
         "lf_model_xgboost_content",
         0.7442574903031077
       ],
@@ -2255,10 +2335,6 @@
       [
         "lf_model_adaboost_content",
         0.6823116584542784
-      ],
-      [
-        "lf_model_adaboost_title",
-        0.6083799971766414
       ],
       [
         "lf_model_logistic_regression_content",
@@ -2286,24 +2362,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.8018932219926538,
-      "precision": 0.7993032339796601,
-      "recall": 0.8095764246303874,
-      "f1": 0.8044070305666031,
-      "coverage": 0.9370323812340766
+      "accuracy": 0.7974290290511432,
+      "precision": 0.8058212773275436,
+      "recall": 0.7807252001138549,
+      "f1": 0.7930747531734837,
+      "coverage": 0.973709153731875
     },
     "snorkel_label_model": {
-      "accuracy": 0.7877304902560517,
-      "precision": 0.7872747407631129,
-      "recall": 0.7885237195732695,
-      "f1": 0.7878987351975121,
+      "accuracy": 0.7887321103260979,
+      "precision": 0.7927027892681664,
+      "recall": 0.7819493274356509,
+      "f1": 0.787289340101523,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7844231273401946,
-      "precision": 0.8023625592247718,
-      "recall": 0.7547576953327194,
-      "f1": 0.7842332444271831
+      "accuracy": 0.7868162598565465,
+      "precision": 0.8059385778102839,
+      "recall": 0.7555643692146358,
+      "f1": 0.7866078438627964
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_18_lfs.csv"
   },
@@ -2311,20 +2387,12 @@
     "top_n": 19,
     "lfs": [
       [
-        "lf_content_adjective_ratio_upper_fake",
-        0.6195020746887967
-      ],
-      [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7363986620940768
       ],
       [
-        "lf_content_parentheses_open_ratio_upper_fake",
-        0.5957340363861603
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.5973136118329002
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -2343,8 +2411,16 @@
         0.6109117650126735
       ],
       [
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
+      ],
+      [
         "lf_content_automated_readability_index_upper_fake",
-        0.581893313298272
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
       ],
       [
         "lf_model_xgboost_content",
@@ -2388,24 +2464,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7984174309487261,
-      "precision": 0.7907234327674499,
-      "recall": 0.8150016912842485,
-      "f1": 0.8026790206999462,
-      "coverage": 0.9480871745575058
+      "accuracy": 0.8008471104556514,
+      "precision": 0.8123408077030668,
+      "recall": 0.7839362336961155,
+      "f1": 0.7978858014648995,
+      "coverage": 0.9435361894070274
     },
     "snorkel_label_model": {
-      "accuracy": 0.7877943519383701,
-      "precision": 0.7860808553291012,
-      "recall": 0.7907891287249847,
-      "f1": 0.7884279629635834,
+      "accuracy": 0.7884531356086019,
+      "precision": 0.7912707032310616,
+      "recall": 0.7836164534582781,
+      "f1": 0.7874249777930891,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.782527443717691,
-      "precision": 0.7994826738493769,
-      "recall": 0.7542199127447751,
-      "f1": 0.7823530396585948
+      "accuracy": 0.7850617441633784,
+      "precision": 0.8124691439898019,
+      "recall": 0.741205574116524,
+      "f1": 0.7846475430755377
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_19_lfs.csv"
   },
@@ -2413,24 +2489,16 @@
     "top_n": 20,
     "lfs": [
       [
-        "lf_content_average_word_length_upper_fake",
-        0.5782732685155846
-      ],
-      [
-        "lf_content_adjective_ratio_upper_fake",
-        0.6195020746887967
+        "lf_content_question_mark_ration_upper_fake",
+        0.6011270076933459
       ],
       [
         "lf_content_exclamation_point_ratio_upper_fake",
         0.7363986620940768
       ],
       [
-        "lf_content_parentheses_open_ratio_upper_fake",
-        0.5957340363861603
-      ],
-      [
-        "lf_content_parentheses_close_ratio_upper_fake",
-        0.5973136118329002
+        "lf_title_word_count_upper_fake",
+        0.7076953433307025
       ],
       [
         "lf_title_noun_ratio_upper_real",
@@ -2449,8 +2517,16 @@
         0.6109117650126735
       ],
       [
+        "lf_content_gunning_fog_index_upper_fake",
+        0.7022196926579397
+      ],
+      [
         "lf_content_automated_readability_index_upper_fake",
-        0.581893313298272
+        0.7169442998438313
+      ],
+      [
+        "lf_content_flesch_kincaid_index_upper_fake",
+        0.7278254649499285
       ],
       [
         "lf_model_xgboost_content",
@@ -2494,24 +2570,24 @@
       ]
     ],
     "snorkel_majority_vote": {
-      "accuracy": 0.7970224380560774,
-      "precision": 0.78549981149351,
-      "recall": 0.8212154058391283,
-      "f1": 0.8029606485623442,
-      "coverage": 0.9482115367809679
+      "accuracy": 0.7997060112224562,
+      "precision": 0.8035542713174433,
+      "recall": 0.795178431828266,
+      "f1": 0.7993444108547437,
+      "coverage": 0.9512163969911064
     },
     "snorkel_label_model": {
-      "accuracy": 0.7874918492326515,
-      "precision": 0.7839661102479317,
-      "recall": 0.793699876982233,
-      "f1": 0.788802966278623,
+      "accuracy": 0.7880699655146916,
+      "precision": 0.7884907972156023,
+      "recall": 0.7873405978797922,
+      "f1": 0.7879152777824494,
       "coverage": 1.0
     },
     "hyper_label_model": {
-      "accuracy": 0.7824938323059445,
-      "precision": 0.7970341468931346,
-      "recall": 0.7580180022721315,
-      "f1": 0.7823634535949548
+      "accuracy": 0.7861238647745683,
+      "precision": 0.803901268769144,
+      "recall": 0.7568752142727498,
+      "f1": 0.7859407405981025
     },
     "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_20_lfs.csv"
   }
