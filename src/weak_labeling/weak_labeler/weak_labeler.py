@@ -42,7 +42,7 @@ def generate_labels(
     report: dict,
     top_n: int = 0,
     mid_range_to_eliminate: int = 0,
-    curated_lf_names: Optional[List[str]] = None
+    curated_lf_names: Optional[List[str]] = None,
 ):
     """Applies provided labeling functions to the dataframe, then aggregates generated weak labels"""
     df = df.sample(frac=1)
@@ -63,7 +63,9 @@ def generate_labels(
         applier = PandasLFApplier(selected_lfs)
         weak_labels = applier.apply(df=df)
 
-        analysis = LFAnalysis(L=weak_labels, lfs=selected_lfs).lf_summary(Y=df.label.values)
+        analysis = LFAnalysis(L=weak_labels, lfs=selected_lfs).lf_summary(
+            Y=df.label.values
+        )
         print(tabulate(analysis, headers="keys", tablefmt="psql"))
 
         analysis = analysis[["Emp. Acc."]]
@@ -183,7 +185,7 @@ def run_weak_labeler(
     weak_label_aggregators: list,
     top_n: int = 0,
     mid_range_to_eliminate: int = 0,
-    curated_lf_names: Optional[List[str]] = None
+    curated_lf_names: Optional[List[str]] = None,
 ) -> dict:
     report = {}
     content_lfs = create_content_lfs(dataset=train_dataset)
