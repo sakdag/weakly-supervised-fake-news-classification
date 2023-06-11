@@ -85,12 +85,13 @@ def save_model_feature_injected_csv(df: pd.DataFrame, path: str, train_df_name: 
 def read_weak_labeled_csv(
     path: str,
     train_df_name: str,
-    top_n: int,
+    top_n: int = 0,
+    curated_lfs: bool = False,
 ) -> pandas.DataFrame:
     dataset_path = os.path.join(
         get_project_root(),
         DATA_FOLDER_PREFIX,
-        f"{path}-labeled-with-{train_df_name}-top_{top_n}_lfs.csv",
+        f"{path}-labeled-with-{train_df_name}-top_{top_n}{'_curated' if curated_lfs else ''}_lfs.csv",
     )
     print(f"Reading dataset from path: {dataset_path}")
     df = pd.read_csv(dataset_path, delimiter=",", encoding="utf-8")
@@ -99,12 +100,12 @@ def read_weak_labeled_csv(
 
 
 def save_weak_labeled_csv(
-    df: pd.DataFrame, path: str, train_df_name: str, top_n: int
+    df: pd.DataFrame, path: str, train_df_name: str, top_n: int = 0, curated_lfs: bool = False,
 ) -> str:
     dataset_path = os.path.join(
         get_project_root(),
         DATA_FOLDER_PREFIX,
-        f"{path}-labeled-with-{train_df_name}-top_{top_n}_lfs.csv",
+        f"{path}-labeled-with-{train_df_name}-top_{top_n}{'_curated' if curated_lfs else ''}_lfs.csv",
     )
     print(f"Saving dataframe to: {dataset_path}")
     df.to_csv(dataset_path, sep=",", encoding="utf-8", index=False)

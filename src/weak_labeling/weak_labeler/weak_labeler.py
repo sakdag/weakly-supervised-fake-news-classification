@@ -42,6 +42,7 @@ def generate_labels(
     report: dict,
     top_n: int = 0,
     mid_range_to_eliminate: int = 0,
+    curated_lf_names: Optional[List[str]] = None
 ):
     """Applies provided labeling functions to the dataframe, then aggregates generated weak labels"""
     df = df.sample(frac=1)
@@ -52,14 +53,17 @@ def generate_labels(
     sorted_analysis = analysis.sort_values("Emp. Acc.", ascending=False)
     print(tabulate(sorted_analysis, headers="keys", tablefmt="psql"))
 
-    if top_n > 0:
-        best_lf_names = sorted_analysis.iloc[:top_n, 0]
-        best_lfs = [x for x in lfs if x.name in best_lf_names]
+    if curated_lf_names or top_n > 0:
+        if curated_lf_names:
+            selected_lf_names = curated_lf_names
+        else:
+            selected_lf_names = sorted_analysis.iloc[:top_n, 0]
 
-        applier = PandasLFApplier(best_lfs)
+        selected_lfs = [x for x in lfs if x.name in selected_lf_names]
+        applier = PandasLFApplier(selected_lfs)
         weak_labels = applier.apply(df=df)
 
-        analysis = LFAnalysis(L=weak_labels, lfs=best_lfs).lf_summary(Y=df.label.values)
+        analysis = LFAnalysis(L=weak_labels, lfs=selected_lfs).lf_summary(Y=df.label.values)
         print(tabulate(analysis, headers="keys", tablefmt="psql"))
 
         analysis = analysis[["Emp. Acc."]]
@@ -179,6 +183,7 @@ def run_weak_labeler(
     weak_label_aggregators: list,
     top_n: int = 0,
     mid_range_to_eliminate: int = 0,
+    curated_lf_names: Optional[List[str]] = None
 ) -> dict:
     report = {}
     content_lfs = create_content_lfs(dataset=train_dataset)
@@ -191,6 +196,7 @@ def run_weak_labeler(
         dataset_to_weak_label.injected_path, train_dataset.name
     )
     report["top_n"] = top_n
+    report["curated_lfs"] = curated_lf_names is not None
 
     df_with_predictions = generate_labels(
         a_df,
@@ -199,6 +205,7 @@ def run_weak_labeler(
         top_n=top_n,
         mid_range_to_eliminate=mid_range_to_eliminate,
         report=report,
+        curated_lf_names=curated_lf_names,
     )
 
     saved_path = save_weak_labeled_csv(
@@ -206,6 +213,7 @@ def run_weak_labeler(
         dataset_to_weak_label.weak_labeled_path,
         train_dataset.name,
         top_n=top_n,
+        curated_lfs=curated_lf_names is not None,
     )
 
     report["csv_path"] = saved_path
@@ -232,27 +240,45 @@ if __name__ == "__main__":
         },
     ]
     for config in run_configs:
-        for top_n in range(3, 21):
-            dataset = config["dataset"]
-            train_dataset = config["train_dataset"]
-            print(
-                f"Running weak labeler for dataset: {dataset.name} and train_dataset: {train_dataset.name}, top_n: {top_n}"
-            )
-            report = run_weak_labeler(
-                dataset,
-                train_dataset,
-                WeakLabelAggregators.get_active_aggregators(),
-                top_n=top_n,
-                mid_range_to_eliminate=0,
-            )
+        dataset = config["dataset"]
+        train_dataset = config["train_dataset"]
+        curated_lfs = [
+            "lf_model_xgboost_content",
+            "lf_model_logistic_regression_content",
+            "lf_model_naive_bayes_content",
+            "lf_content_exclamation_point_ratio_upper_fake",
+            "lf_title_proper_noun_ratio_upper_fake",
+            "lf_model_adaboost_content",
+            "lf_title_noun_ratio_upper_real",
+            "lf_model_xgboost_title",
+            "lf_model_logistic_regression_title",
+            "lf_model_naive_bayes_title",
+            "lf_content_parentheses_close_ratio_upper_fake",
+            "lf_content_parentheses_open_ratio_upper_fake",
+            "lf_model_random_forest_content",
+            "lf_content_flesch_kincaid_index_upper_fake",
+            "lf_content_automated_readability_index_upper_fake",
+            "lf_title_word_count_upper_fake",
+            "lf_content_gunning_fog_index_upper_fake",
+        ]
+        print(
+            f"Running weak labeler for dataset: {dataset.name} and train_dataset: {train_dataset.name} with curated lfs"
+        )
+        report = run_weak_labeler(
+            dataset,
+            train_dataset,
+            WeakLabelAggregators.get_active_aggregators(),
+            curated_lf_names=curated_lfs,
+            mid_range_to_eliminate=0,
+        )
 
-            weak_labeler_runs_path = os.path.join(
-                get_project_root(), f"{WEAK_LABELER_RUNS_PREFIX}/runs.json"
-            )
-            f = open(weak_labeler_runs_path)
-            old_runs = json.load(f)
-            f.close()
-            old_runs.append(report)
-            f = open(weak_labeler_runs_path, "w")
-            f.write(json.dumps(old_runs, indent=2))
-            f.close()
+        weak_labeler_runs_path = os.path.join(
+            get_project_root(), f"{WEAK_LABELER_RUNS_PREFIX}/runs.json"
+        )
+        f = open(weak_labeler_runs_path)
+        old_runs = json.load(f)
+        f.close()
+        old_runs.append(report)
+        f = open(weak_labeler_runs_path, "w")
+        f.write(json.dumps(old_runs, indent=2))
+        f.close()
