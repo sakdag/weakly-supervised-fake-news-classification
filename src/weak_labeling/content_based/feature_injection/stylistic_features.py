@@ -4,12 +4,9 @@ from typing import List
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from dask.diagnostics import ProgressBar
 
 from src.weak_labeling.consts.content_features import ContentFeatures
 from src.weak_labeling.consts.globals import NLP
-import dask.dataframe as dd
-
 from src.weak_labeling.consts.spacy_consts import (
     ADJECTIVE,
     NOUN,
@@ -447,42 +444,3 @@ def get_content_features(features, content):
         res.append(num_of_quotation_marks_content / num_of_words_content)
 
     return res
-
-
-def append_stylistic_features_parallel(ddf: dd.DataFrame) -> pd.DataFrame:
-    # Initialize empty columns to fill while iterating
-    tqdm.pandas()
-    ProgressBar().register()
-
-    res = ddf.apply(
-        append_stylistic_features_helper,
-        axis=1,
-        result_type="expand",
-        meta={
-            0: float,
-            1: float,
-            2: float,
-            3: float,
-            4: float,
-            5: float,
-            6: float,
-        },
-    )
-
-    res.columns = [
-        ContentFeatures.CONTENT_WORD_COUNT,
-        ContentFeatures.CONTENT_WORDS_PER_SENTENCE,
-        ContentFeatures.CONTENT_STOPWORDS_RATIO,
-        ContentFeatures.CONTENT_UNIQUE_WORDS_RATIO,
-        ContentFeatures.CONTENT_UNIQUE_WORDS_COUNT,
-        ContentFeatures.CONTENT_AVERAGE_SENTENCE_LENGTH,
-        ContentFeatures.TITLE_WORD_COUNT,
-    ]
-
-    full = ddf.merge(res, left_index=True, right_index=True)
-
-    final_res = full.compute()
-    print(final_res)
-    print(len(final_res))
-
-    return final_res

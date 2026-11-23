@@ -12,8 +12,8 @@ def get_thresholds_json(dataset: Dataset) -> dict:
         get_project_root(), f"{THRESHOLDS_JSON_PREFIX}/{dataset.name}-thresholds.json"
     )
     print(f"Getting thresholds json, path: {thresholds_json_path}")
-    f = open(thresholds_json_path)
-    return json.load(f)
+    with open(thresholds_json_path) as handle:
+        return json.load(handle)
 
 
 def update_and_save_thresholds_json(updated_thresholds: dict, dataset: Dataset):
@@ -23,5 +23,5 @@ def update_and_save_thresholds_json(updated_thresholds: dict, dataset: Dataset):
     thresholds_json_path = os.path.join(
         get_project_root(), f"{THRESHOLDS_JSON_PREFIX}/{dataset.name}-thresholds.json"
     )
-    f = open(thresholds_json_path, "w")
-    f.write(json.dumps(old_thresholds, indent=2))
+    with open(thresholds_json_path, "w") as handle:
+        json.dump(old_thresholds, handle, indent=2)

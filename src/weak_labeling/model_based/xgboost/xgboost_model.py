@@ -1,64 +1,16 @@
-import pickle
-
-import pandas as pd
-import transformers
-from keras_preprocessing import sequence
-from sklearn.metrics import classification_report
+from sklearn.model_selection import GridSearchCV
 from xgboost import XGBClassifier
 
-from src.preprocessing.cleanup import cleanup_df
-from src.preprocessing.consts import Datasets, Dataset
-from src.preprocessing.read_raw_data import read_csv, balanced_undersample
+from src.preprocessing.consts import Dataset, Datasets
 from src.utils.time_utils import report_time
-from src.weak_labeling.consts.model_features import ModelFeatures, FeatureColumns
-from src.weak_labeling.model_based.common.get_vectors import get_tfidf_vectors
-from src.weak_labeling.model_based.utils import get_model_file_name
-from sklearn.model_selection import GridSearchCV, train_test_split
-
-ROBERTA_TOKENIZER = transformers.RobertaTokenizer.from_pretrained(
-    "roberta-base-openai-detector"
+from src.weak_labeling.consts.model_features import FeatureColumns, ModelFeatures
+from src.weak_labeling.model_based.common.trainer import (
+    predict_labels,
+    train_and_save_model,
 )
 
 
-def xgboost_tokenizer(tokenizer_name, docs):
-    features = []
-    for doc in docs:
-        tokens = tokenizer_name.tokenize(doc)
-        ids = tokenizer_name.convert_tokens_to_ids(tokens)
-        features.append(ids)
-    return features
-
-
-# Legacy, not used right now
-def preprocess_for_xgboost_test(test_data: pd.Series):
-    features = xgboost_tokenizer(ROBERTA_TOKENIZER, test_data)
-    padded_features = sequence.pad_sequences(features, maxlen=500)
-    return padded_features
-
-
-# Legacy, not used right now
-def preprocess_for_xgboost_train(df: pd.DataFrame):
-    df_cleaned = cleanup_df(df)
-    # df.sample(n=5000).reset_index(drop=True)
-
-    X, y = df_cleaned["content"], df_cleaned["label"]
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
-
-    roberta_train_features = xgboost_tokenizer(ROBERTA_TOKENIZER, X_train)
-    roberta_test_features = xgboost_tokenizer(ROBERTA_TOKENIZER, X_test)
-
-    roberta_train = sequence.pad_sequences(roberta_train_features, maxlen=500)
-    roberta_test = sequence.pad_sequences(roberta_test_features, maxlen=500)
-
-    return roberta_train, roberta_test, y_test, y_train
-
-
-def get_best_xgb_parameters(
-    roberta_train,
-    y_train,
-):
+def get_best_xgb_parameters(train_vectors, y_train):
     parameters = {
         "max_depth": range(2, 10, 1),
         "n_estimators": [60, 150, 250, 1000],
@@ -78,11 +30,9 @@ def get_best_xgb_parameters(
         cv=10,
         verbose=1,
     )
-    grid_search.fit(roberta_train, y_train)
-    best_params = grid_search.best_params_
-
+    grid_search.fit(train_vectors, y_train)
     print(f"Best params: {grid_search.best_params_}")
-    return best_params
+    return grid_search.best_params_
 
 
 def train_xgb_model(
@@ -92,67 +42,51 @@ def train_xgb_model(
     undersample: bool = False,
     optimize: bool = False,
 ):
-    df: pd.DataFrame = read_csv(dataset.injected_path)
-
-    if undersample:
-        df = balanced_undersample(df, min(df["label"].value_counts()) * 2)
-        print(f"Undersampled, dataframe size: {len(df)}")
-
-    # TODO: For testing, remove later
-    # df = balanced_undersample(df, 20000)
-    # print(f"Undersampled, dataframe size: {len(df)}")
-
-    x_train, x_test, y_train, y_test = train_test_split(df, df["label"], test_size=0.20)
-
-    train_vectors = get_tfidf_vectors(x_train, feature_column)
-    test_vectors = get_tfidf_vectors(x_test, feature_column)
-
-    # warnings.filterwarnings(action='ignore', category=UserWarning)
     if optimize:
+        from sklearn.model_selection import train_test_split
+
+        from src.preprocessing.read_raw_data import balanced_undersample, read_csv
+        from src.weak_labeling.model_based.common.get_vectors import get_tfidf_vectors
+
+        df = read_csv(dataset.injected_path)
+        if undersample:
+            df = balanced_undersample(df, min(df["label"].value_counts()) * 2)
+            print(f"Undersampled, dataframe size: {len(df)}")
+        x_train, _, y_train, _ = train_test_split(df, df["label"], test_size=0.20)
+        train_vectors = get_tfidf_vectors(x_train, feature_column)
         params = get_best_xgb_parameters(train_vectors, y_train)
     else:
         params = {"learning_rate": 0.15, "max_depth": 9, "n_estimators": 1000}
 
-    xgb = XGBClassifier(
-        **params,
-        eval_metric="auc",
-        use_label_encoder=False,
-        objective="binary:logistic",
-    )
-    xgb.fit(train_vectors, y_train)
+    def build_model():
+        return XGBClassifier(
+            **params,
+            eval_metric="auc",
+            use_label_encoder=False,
+            objective="binary:logistic",
+        )
 
-    xgb_pred = xgb.predict(test_vectors)
-    cr = classification_report(y_test, xgb_pred)
-    print(cr)
-
-    xgb_file_name = get_model_file_name(
-        ModelFeatures.XGBOOST, feature_column, dataset, save_identifier
+    return train_and_save_model(
+        dataset=dataset,
+        save_identifier=save_identifier,
+        model_feature=ModelFeatures.XGBOOST,
+        build_model=build_model,
+        feature_column=feature_column,
+        undersample=undersample,
     )
-    pickle.dump(xgb, open(xgb_file_name, "wb"))
 
 
 def get_xgboost_labels(
     xgboost_classifier,
-    df: pd.DataFrame,
+    df,
     feature_column: str = FeatureColumns.CONTENT,
-) -> pd.Series:
-    test_df = df[["title", "content", "label"]].copy()
-    test_vectors = get_tfidf_vectors(test_df, feature_column)
-
-    y_test_pred = xgboost_classifier.predict(test_vectors)
-    cr = classification_report(test_df["label"], y_test_pred)
-    print(cr)
-    return y_test_pred
+):
+    return predict_labels(xgboost_classifier, df, feature_column)
 
 
 @report_time
 def run():
-    datasets = [
-        # Datasets.NELA_ELECTIONS_2020,
-        Datasets.NELA_COVID_SUBSET,
-        # Datasets.NELA_ELECTIONS_SUBSET_2020,
-        # Datasets.NELA_COVID_COMBINED
-    ]
+    datasets = [Datasets.NELA_COVID_SUBSET]
     for dataset in datasets:
         for column in FeatureColumns.get_all():
             train_xgb_model(

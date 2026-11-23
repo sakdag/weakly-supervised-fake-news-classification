@@ -24,7 +24,8 @@ def get_any_file_name(folder: str, name: str) -> str:
 def load_model(
     model_feature: str, feature_column: str, dataset: Dataset, identifier: str
 ):
-    xgb_file_name = get_model_file_name(
+    model_path = get_model_file_name(
         model_feature, feature_column, dataset, identifier
     )
-    return pickle.load(open(xgb_file_name, "rb"))
+    with open(model_path, "rb") as handle:
+        return pickle.load(handle)

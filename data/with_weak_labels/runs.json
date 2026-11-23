@@ -35,7 +35,7 @@
       "recall": 0.7732708609227005,
       "f1": 0.8358840083106014
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_3_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_3_lfs.csv"
   },
   {
     "top_n": 4,
@@ -77,7 +77,7 @@
       "recall": 0.7732708609227005,
       "f1": 0.8358840083106014
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_4_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_4_lfs.csv"
   },
   {
     "top_n": 5,
@@ -123,7 +123,7 @@
       "recall": 0.8405743518039245,
       "f1": 0.8500728161106454
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_5_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_5_lfs.csv"
   },
   {
     "top_n": 6,
@@ -173,7 +173,7 @@
       "recall": 0.7567206017787159,
       "f1": 0.8305023256846178
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_6_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_6_lfs.csv"
   },
   {
     "top_n": 7,
@@ -227,7 +227,7 @@
       "recall": 0.764215946598189,
       "f1": 0.8324816233903451
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_7_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_7_lfs.csv"
   },
   {
     "top_n": 8,
@@ -285,7 +285,7 @@
       "recall": 0.7518066133813752,
       "f1": 0.8221960519648202
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_8_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_8_lfs.csv"
   },
   {
     "top_n": 9,
@@ -347,7 +347,7 @@
       "recall": 0.7677989230903677,
       "f1": 0.8258022006448869
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_9_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_9_lfs.csv"
   },
   {
     "top_n": 10,
@@ -413,7 +413,7 @@
       "recall": 0.7749783206394235,
       "f1": 0.8285874361498091
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_10_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_10_lfs.csv"
   },
   {
     "top_n": 11,
@@ -483,7 +483,7 @@
       "recall": 0.7815123790829462,
       "f1": 0.8295068029632788
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_11_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_11_lfs.csv"
   },
   {
     "top_n": 12,
@@ -557,7 +557,7 @@
       "recall": 0.7780907373671508,
       "f1": 0.8294051487290763
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_12_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_12_lfs.csv"
   },
   {
     "top_n": 13,
@@ -635,7 +635,7 @@
       "recall": 0.7905941825368549,
       "f1": 0.8359961166019176
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_13_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_13_lfs.csv"
   },
   {
     "top_n": 14,
@@ -717,7 +717,7 @@
       "recall": 0.7714558446883886,
       "f1": 0.8298848785249292
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_14_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_14_lfs.csv"
   },
   {
     "top_n": 15,
@@ -803,7 +803,7 @@
       "recall": 0.7883086065380918,
       "f1": 0.8340507007370299
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_15_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_15_lfs.csv"
   },
   {
     "top_n": 16,
@@ -893,7 +893,7 @@
       "recall": 0.7902715129840884,
       "f1": 0.8342261557807398
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_16_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_16_lfs.csv"
   },
   {
     "top_n": 17,
@@ -987,7 +987,7 @@
       "recall": 0.7914008564187713,
       "f1": 0.8343819610666954
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_17_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_17_lfs.csv"
   },
   {
     "top_n": 18,
@@ -1085,7 +1085,7 @@
       "recall": 0.7793679710135185,
       "f1": 0.8235796499908787
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_18_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_18_lfs.csv"
   },
   {
     "top_n": 19,
@@ -1187,7 +1187,7 @@
       "recall": 0.789532061925665,
       "f1": 0.8247917080769434
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_19_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_19_lfs.csv"
   },
   {
     "top_n": 20,
@@ -1293,7 +1293,7 @@
       "recall": 0.7947821644404708,
       "f1": 0.8258007509837431
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_20_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_20_lfs.csv"
   },
   {
     "top_n": 3,
@@ -1331,7 +1331,7 @@
       "recall": 0.7150558957777344,
       "f1": 0.7727099890327616
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_3_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_3_lfs.csv"
   },
   {
     "top_n": 4,
@@ -1373,7 +1373,7 @@
       "recall": 0.6672873574035857,
       "f1": 0.7670143592653917
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_4_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_4_lfs.csv"
   },
   {
     "top_n": 5,
@@ -1419,7 +1419,7 @@
       "recall": 0.6886373261449728,
       "f1": 0.7741732246953774
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_5_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_5_lfs.csv"
   },
   {
     "top_n": 6,
@@ -1469,7 +1469,7 @@
       "recall": 0.6923480260017881,
       "f1": 0.7752455804583268
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_6_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_6_lfs.csv"
   },
   {
     "top_n": 7,
@@ -1523,7 +1523,7 @@
       "recall": 0.686647530569579,
       "f1": 0.7738429078234598
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_7_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_7_lfs.csv"
   },
   {
     "top_n": 8,
@@ -1581,7 +1581,7 @@
       "recall": 0.6874609267338446,
       "f1": 0.7739017716592242
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_8_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_8_lfs.csv"
   },
   {
     "top_n": 9,
@@ -1643,7 +1643,7 @@
       "recall": 0.7302482538871597,
       "f1": 0.7859015651333949
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_9_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_9_lfs.csv"
   },
   {
     "top_n": 10,
@@ -1709,7 +1709,7 @@
       "recall": 0.7433903158800476,
       "f1": 0.7901595603280218
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_10_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_10_lfs.csv"
   },
   {
     "top_n": 11,
@@ -1779,7 +1779,7 @@
       "recall": 0.744486047902984,
       "f1": 0.7900456476577156
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_11_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_11_lfs.csv"
   },
   {
     "top_n": 12,
@@ -1853,7 +1853,7 @@
       "recall": 0.7404526784934021,
       "f1": 0.788519014249718
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_12_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_12_lfs.csv"
   },
   {
     "top_n": 13,
@@ -1931,7 +1931,7 @@
       "recall": 0.7494538145591191,
       "f1": 0.7911522554210328
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_13_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_13_lfs.csv"
   },
   {
     "top_n": 14,
@@ -2013,7 +2013,7 @@
       "recall": 0.747302684207342,
       "f1": 0.7890039260635946
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_14_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_14_lfs.csv"
   },
   {
     "top_n": 15,
@@ -2099,7 +2099,7 @@
       "recall": 0.7507848264642811,
       "f1": 0.7865822096044579
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_15_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_15_lfs.csv"
   },
   {
     "top_n": 16,
@@ -2189,7 +2189,7 @@
       "recall": 0.7386443845414395,
       "f1": 0.7831283992528667
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_16_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_16_lfs.csv"
   },
   {
     "top_n": 17,
@@ -2283,7 +2283,7 @@
       "recall": 0.7766320020973521,
       "f1": 0.7905566946198724
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_17_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_17_lfs.csv"
   },
   {
     "top_n": 18,
@@ -2381,7 +2381,7 @@
       "recall": 0.7555643692146358,
       "f1": 0.7866078438627964
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_18_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_18_lfs.csv"
   },
   {
     "top_n": 19,
@@ -2483,7 +2483,7 @@
       "recall": 0.741205574116524,
       "f1": 0.7846475430755377
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_19_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_19_lfs.csv"
   },
   {
     "top_n": 20,
@@ -2589,7 +2589,7 @@
       "recall": 0.7568752142727498,
       "f1": 0.7859407405981025
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_20_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_20_lfs.csv"
   },
   {
     "top_n": 21,
@@ -2699,7 +2699,7 @@
       "recall": 0.781398100283008,
       "f1": 0.8291669407823758
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_21_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_21_lfs.csv"
   },
   {
     "top_n": 22,
@@ -2813,7 +2813,7 @@
       "recall": 0.7779092357437197,
       "f1": 0.8269550343117136
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_22_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_22_lfs.csv"
   },
   {
     "top_n": 23,
@@ -2931,7 +2931,7 @@
       "recall": 0.7810216524714471,
       "f1": 0.8270299567088404
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_23_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_23_lfs.csv"
   },
   {
     "top_n": 24,
@@ -3053,7 +3053,7 @@
       "recall": 0.7804368139070578,
       "f1": 0.8270569451492455
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_24_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_24_lfs.csv"
   },
   {
     "top_n": 25,
@@ -3179,7 +3179,7 @@
       "recall": 0.7810216524714471,
       "f1": 0.8271061860833324
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_25_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_25_lfs.csv"
   },
   {
     "top_n": 26,
@@ -3309,7 +3309,7 @@
       "recall": 0.7803830356482633,
       "f1": 0.8270096754196284
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_26_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_26_lfs.csv"
   },
   {
     "top_n": 27,
@@ -3443,7 +3443,7 @@
       "recall": 0.7825879442588347,
       "f1": 0.8279333069271548
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_27_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_27_lfs.csv"
   },
   {
     "top_n": 28,
@@ -3581,7 +3581,7 @@
       "recall": 0.7791864693900873,
       "f1": 0.8255288118547408
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_28_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_28_lfs.csv"
   },
   {
     "top_n": 29,
@@ -3723,7 +3723,7 @@
       "recall": 0.7820031056944454,
       "f1": 0.8264023866729213
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_29_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_29_lfs.csv"
   },
   {
     "top_n": 30,
@@ -3869,7 +3869,7 @@
       "recall": 0.7942443818525265,
       "f1": 0.8276145340214797
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_30_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_30_lfs.csv"
   },
   {
     "top_n": 31,
@@ -4019,7 +4019,7 @@
       "recall": 0.7885640532673653,
       "f1": 0.8267427631509183
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_31_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_31_lfs.csv"
   },
   {
     "top_n": 32,
@@ -4173,7 +4173,7 @@
       "recall": 0.7849004093869951,
       "f1": 0.8260113256239563
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_32_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_32_lfs.csv"
   },
   {
     "top_n": 33,
@@ -4331,7 +4331,7 @@
       "recall": 0.7895992847491581,
       "f1": 0.8264507289325598
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_33_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_33_lfs.csv"
   },
   {
     "top_n": 34,
@@ -4493,7 +4493,7 @@
       "recall": 0.7938208780645205,
       "f1": 0.8266350940308528
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_34_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_34_lfs.csv"
   },
   {
     "top_n": 35,
@@ -4659,7 +4659,7 @@
       "recall": 0.784987799057536,
       "f1": 0.8248443503554834
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_35_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_35_lfs.csv"
   },
   {
     "top_n": 21,
@@ -4769,7 +4769,7 @@
       "recall": 0.7552416996618692,
       "f1": 0.7851427510797409
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_21_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_21_lfs.csv"
   },
   {
     "top_n": 22,
@@ -4883,7 +4883,7 @@
       "recall": 0.7565659892846819,
       "f1": 0.7847873901304117
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_22_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_22_lfs.csv"
   },
   {
     "top_n": 23,
@@ -5001,7 +5001,7 @@
       "recall": 0.7573256071901532,
       "f1": 0.7845007331514443
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_23_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_23_lfs.csv"
   },
   {
     "top_n": 24,
@@ -5123,7 +5123,7 @@
       "recall": 0.7661385193500897,
       "f1": 0.7865650854360928
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_24_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_24_lfs.csv"
   },
   {
     "top_n": 25,
@@ -5249,7 +5249,7 @@
       "recall": 0.7598666299181899,
       "f1": 0.7859363996222828
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_25_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_25_lfs.csv"
   },
   {
     "top_n": 26,
@@ -5379,7 +5379,7 @@
       "recall": 0.754038411121344,
       "f1": 0.786099235909869
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_26_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_26_lfs.csv"
   },
   {
     "top_n": 27,
@@ -5513,7 +5513,7 @@
       "recall": 0.7432289811036643,
       "f1": 0.7837623496248904
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_27_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_27_lfs.csv"
   },
   {
     "top_n": 28,
@@ -5651,7 +5651,7 @@
       "recall": 0.746126284796214,
       "f1": 0.783868129295024
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_28_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_28_lfs.csv"
   },
   {
     "top_n": 29,
@@ -5793,7 +5793,7 @@
       "recall": 0.7576281098958718,
       "f1": 0.7849962526144687
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_29_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_29_lfs.csv"
   },
   {
     "top_n": 30,
@@ -5939,7 +5939,7 @@
       "recall": 0.7583742832366445,
       "f1": 0.7848653273169
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_30_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_30_lfs.csv"
   },
   {
     "top_n": 31,
@@ -6089,7 +6089,7 @@
       "recall": 0.7584616729071855,
       "f1": 0.7855744873508452
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_31_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_31_lfs.csv"
   },
   {
     "top_n": 32,
@@ -6243,7 +6243,7 @@
       "recall": 0.7554299235676497,
       "f1": 0.785394238650032
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_32_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_32_lfs.csv"
   },
   {
     "top_n": 0,
@@ -6326,7 +6326,7 @@
       "recall": 0.8044017504823238,
       "f1": 0.8396867930405031
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_0_curated_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-elections-2020-top_0_curated_lfs.csv"
   },
   {
     "top_n": 0,
@@ -6421,6 +6421,6 @@
       "recall": 0.7668241921497186,
       "f1": 0.7896732717702903
     },
-    "csv_path": "/home/sakdag/weakly-supervised-fake-news-classification/data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_0_curated_lfs.csv"
+    "csv_path": "data/with_weak_labels/nela/nela-covid-combined-labeled-with-covid-subset-top_0_curated_lfs.csv"
   }
 ]

@@ -1,0 +1,21 @@
+{
+  "paper_default": [
+    "lf_model_xgboost_content",
+    "lf_model_logistic_regression_content",
+    "lf_model_naive_bayes_content",
+    "lf_content_exclamation_point_ratio_upper_fake",
+    "lf_title_proper_noun_ratio_upper_fake",
+    "lf_model_adaboost_content",
+    "lf_title_noun_ratio_upper_real",
+    "lf_model_xgboost_title",
+    "lf_model_logistic_regression_title",
+    "lf_model_naive_bayes_title",
+    "lf_content_parentheses_close_ratio_upper_fake",
+    "lf_content_parentheses_open_ratio_upper_fake",
+    "lf_model_random_forest_content",
+    "lf_content_flesch_kincaid_index_upper_fake",
+    "lf_content_automated_readability_index_upper_fake",
+    "lf_title_word_count_upper_fake",
+    "lf_content_gunning_fog_index_upper_fake"
+  ]
+}

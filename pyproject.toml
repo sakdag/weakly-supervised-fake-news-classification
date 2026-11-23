@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wastec"
+version = "0.1.0"
+description = "Weakly Supervised Text Classification for early fake news detection"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+  { name = "Serhat Hakkı Akdağ" },
+  { name = "Nihan Kesim Cicekli" },
+]
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

@@ -1,16 +1,12 @@
-import pickle
-
-import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
 
-from src.preprocessing.consts import Datasets, Dataset
-from src.preprocessing.read_raw_data import read_csv, balanced_undersample
+from src.preprocessing.consts import Dataset, Datasets
 from src.utils.time_utils import report_time
-from src.weak_labeling.consts.model_features import ModelFeatures, FeatureColumns
-from src.weak_labeling.model_based.common.get_vectors import get_tfidf_vectors
-from src.weak_labeling.model_based.utils import get_model_file_name
-from sklearn.model_selection import train_test_split
+from src.weak_labeling.consts.model_features import FeatureColumns, ModelFeatures
+from src.weak_labeling.model_based.common.trainer import (
+    predict_labels,
+    train_and_save_model,
+)
 
 
 def train_logistic_regression_model(
@@ -19,51 +15,27 @@ def train_logistic_regression_model(
     feature_column: str = FeatureColumns.CONTENT,
     undersample: bool = False,
 ):
-    df: pd.DataFrame = read_csv(dataset.injected_path)
-
-    if undersample:
-        df = balanced_undersample(df, min(df["label"].value_counts()) * 2)
-        print(f"Undersampled, dataframe size: {len(df)}")
-
-    x_train, x_test, y_train, y_test = train_test_split(df, df["label"], test_size=0.20)
-
-    train_vectors = get_tfidf_vectors(x_train, feature_column)
-    test_vectors = get_tfidf_vectors(x_test, feature_column)
-
-    lr_classifier = LogisticRegression()
-    lr_classifier.fit(train_vectors, y_train)
-    lr_pred = lr_classifier.predict(test_vectors)
-    cr = classification_report(y_test, lr_pred)
-    print(cr)
-
-    logistic_regression_file_name = get_model_file_name(
-        ModelFeatures.LOGISTIC_REGRESSION, feature_column, dataset, save_identifier
+    return train_and_save_model(
+        dataset=dataset,
+        save_identifier=save_identifier,
+        model_feature=ModelFeatures.LOGISTIC_REGRESSION,
+        build_model=LogisticRegression,
+        feature_column=feature_column,
+        undersample=undersample,
     )
-    pickle.dump(lr_classifier, open(logistic_regression_file_name, "wb"))
 
 
 def get_logistic_regression_labels(
     lr_classifier,
-    df: pd.DataFrame,
+    df,
     feature_column: str = FeatureColumns.CONTENT,
-) -> pd.Series:
-    test_df = df[["title", "content", "label"]].copy()
-    test_vectors = get_tfidf_vectors(test_df, feature_column)
-
-    y_test_pred = lr_classifier.predict(test_vectors)
-    cr = classification_report(test_df["label"], y_test_pred)
-    print(cr)
-    return y_test_pred
+):
+    return predict_labels(lr_classifier, df, feature_column)
 
 
 @report_time
 def run():
-    datasets = [
-        # Datasets.NELA_ELECTIONS_2020,
-        Datasets.NELA_COVID_SUBSET,
-        # Datasets.NELA_ELECTIONS_SUBSET_2020,
-        # Datasets.NELA_COVID_COMBINED,
-    ]
+    datasets = [Datasets.NELA_COVID_SUBSET]
     for dataset in datasets:
         for column in FeatureColumns.get_all():
             train_logistic_regression_model(

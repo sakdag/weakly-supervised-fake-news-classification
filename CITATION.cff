@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: If you use this software, please cite the paper below.
+title: "WeSTeC: Weakly Supervised Text Classification for Early Fake News Detection"
+authors:
+  - family-names: Akdağ
+    given-names: Serhat Hakkı
+  - family-names: Cicekli
+    given-names: Nihan Kesim
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Akdağ
+      given-names: Serhat Hakkı
+    - family-names: Cicekli
+      given-names: Nihan Kesim
+  title: "Early detection of fake news on emerging topics through weak supervision"
+  journal: "Journal of Intelligent Information Systems"
+  year: 2024
+  volume: 62
+  start: 1263
+  end: 1284
+  doi: 10.1007/s10844-024-00852-1
+  url: https://link.springer.com/article/10.1007/s10844-024-00852-1

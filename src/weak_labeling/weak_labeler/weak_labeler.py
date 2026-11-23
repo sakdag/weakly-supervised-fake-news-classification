@@ -2,22 +2,23 @@ import json
 import os
 from typing import List, Optional
 
-import numpy as np
 import pandas as pd
-from hyperlm import HyperLabelModel
-from sklearn.metrics import classification_report
-from sklearn.model_selection import train_test_split
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    f1_score,
+    precision_score,
+    recall_score,
+)
+from snorkel.labeling import LFAnalysis, LabelingFunction, PandasLFApplier
+from snorkel.labeling.model import LabelModel, MajorityLabelVoter
 from tabulate import tabulate
 
-from src.preprocessing.consts import Datasets, Dataset
+from src.preprocessing.consts import Dataset, Datasets
 from src.preprocessing.read_raw_data import (
-    read_raw_data,
-    save_to_csv,
-    read_csv,
     read_model_feature_injected_csv,
     save_weak_labeled_csv,
 )
-from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
 from src.utils.path_utils import get_project_root
 from src.weak_labeling.content_based.labeling_functions.lf_creation import (
     create_content_lfs,
@@ -25,14 +26,19 @@ from src.weak_labeling.content_based.labeling_functions.lf_creation import (
 from src.weak_labeling.model_based.labeling_functions.model_based_lfs import (
     get_model_based_lfs,
 )
-from snorkel.labeling import LabelingFunction, PandasLFApplier, LFAnalysis
-from snorkel.labeling.model import LabelModel, MajorityLabelVoter
-
 from src.weak_labeling.weak_labeler.weak_label_aggregators import WeakLabelAggregators
 
 pd.set_option("display.max_columns", None)
 
 WEAK_LABELER_RUNS_PREFIX = "data/with_weak_labels"
+CURATED_LFS_CONFIG = "configs/curated_labeling_functions.json"
+
+
+def load_curated_lf_names(config_name: str = "paper_default") -> List[str]:
+    config_path = os.path.join(get_project_root(), CURATED_LFS_CONFIG)
+    with open(config_path) as handle:
+        configs = json.load(handle)
+    return configs[config_name]
 
 
 def generate_labels(
@@ -44,7 +50,7 @@ def generate_labels(
     mid_range_to_eliminate: int = 0,
     curated_lf_names: Optional[List[str]] = None,
 ):
-    """Applies provided labeling functions to the dataframe, then aggregates generated weak labels"""
+    """Applies labeling functions, then aggregates generated weak labels."""
     df = df.sample(frac=1)
     applier = PandasLFApplier(lfs)
     weak_labels = applier.apply(df=df)
@@ -156,20 +162,26 @@ def aggregate_with_snorkel_label_model(
 
         print(f"Number of elements to abstain {abstain_count}")
         print(f"Number of elements in mid range {mid_range_count}")
-        print(f"New classification report after mid range elimination:")
-        cr = classification_report(new_actual_labels, new_labels)
-        print(cr)
+        print("New classification report after mid range elimination:")
+        print(classification_report(new_actual_labels, new_labels))
 
     report["snorkel_label_model"] = label_model_score
     return probabilistic_labels, label_model.predict(weak_labels)
 
 
 def aggregate_with_hyper_label_model(weak_labels, actual_labels, report: dict):
+    try:
+        from hyperlm import HyperLabelModel
+    except ImportError as exc:
+        raise ImportError(
+            "hyperlm is required for HyperLabelModel aggregation. "
+            "Install it with `pip install hyperlm`."
+        ) from exc
+
     hlm = HyperLabelModel()
     predictions = hlm.infer(weak_labels)
     print("Hyper label model score:")
-    cr = classification_report(actual_labels, predictions, digits=5)
-    print(cr)
+    print(classification_report(actual_labels, predictions, digits=5))
     report["hyper_label_model"] = {
         "accuracy": accuracy_score(actual_labels, predictions),
         "precision": precision_score(actual_labels, predictions),
@@ -177,6 +189,20 @@ def aggregate_with_hyper_label_model(weak_labels, actual_labels, report: dict):
         "f1": f1_score(actual_labels, predictions, average="macro"),
     }
     return predictions
+
+
+def append_weak_labeler_run(report: dict) -> None:
+    weak_labeler_runs_path = os.path.join(
+        get_project_root(), f"{WEAK_LABELER_RUNS_PREFIX}/runs.json"
+    )
+    if os.path.exists(weak_labeler_runs_path):
+        with open(weak_labeler_runs_path) as handle:
+            old_runs = json.load(handle)
+    else:
+        old_runs = []
+    old_runs.append(report)
+    with open(weak_labeler_runs_path, "w") as handle:
+        json.dump(old_runs, handle, indent=2)
 
 
 def run_weak_labeler(
@@ -218,53 +244,32 @@ def run_weak_labeler(
         curated_lfs=curated_lf_names is not None,
     )
 
-    report["csv_path"] = saved_path
+    # Store a portable relative path in run logs.
+    try:
+        report["csv_path"] = os.path.relpath(saved_path, get_project_root())
+    except ValueError:
+        report["csv_path"] = saved_path
     return report
 
 
 if __name__ == "__main__":
     run_configs = [
-        # {
-        #     "dataset": Datasets.NELA_ELECTIONS_2020,
-        #     "train_dataset": Datasets.NELA_COVID_COMBINED,
-        # },
         {
             "dataset": Datasets.NELA_COVID_COMBINED,
             "train_dataset": Datasets.NELA_ELECTIONS_2020,
         },
-        # {
-        #     "dataset": Datasets.NELA_ELECTIONS_2020,
-        #     "train_dataset": Datasets.NELA_ELECTIONS_SUBSET_2020,
-        # },
         {
             "dataset": Datasets.NELA_COVID_COMBINED,
             "train_dataset": Datasets.NELA_COVID_SUBSET,
         },
     ]
+    curated_lfs = load_curated_lf_names()
     for config in run_configs:
         dataset = config["dataset"]
         train_dataset = config["train_dataset"]
-        curated_lfs = [
-            "lf_model_xgboost_content",
-            "lf_model_logistic_regression_content",
-            "lf_model_naive_bayes_content",
-            "lf_content_exclamation_point_ratio_upper_fake",
-            "lf_title_proper_noun_ratio_upper_fake",
-            "lf_model_adaboost_content",
-            "lf_title_noun_ratio_upper_real",
-            "lf_model_xgboost_title",
-            "lf_model_logistic_regression_title",
-            "lf_model_naive_bayes_title",
-            "lf_content_parentheses_close_ratio_upper_fake",
-            "lf_content_parentheses_open_ratio_upper_fake",
-            "lf_model_random_forest_content",
-            "lf_content_flesch_kincaid_index_upper_fake",
-            "lf_content_automated_readability_index_upper_fake",
-            "lf_title_word_count_upper_fake",
-            "lf_content_gunning_fog_index_upper_fake",
-        ]
         print(
-            f"Running weak labeler for dataset: {dataset.name} and train_dataset: {train_dataset.name} with curated lfs"
+            f"Running weak labeler for dataset: {dataset.name} and "
+            f"train_dataset: {train_dataset.name} with curated lfs"
         )
         report = run_weak_labeler(
             dataset,
@@ -273,14 +278,4 @@ if __name__ == "__main__":
             curated_lf_names=curated_lfs,
             mid_range_to_eliminate=0,
         )
-
-        weak_labeler_runs_path = os.path.join(
-            get_project_root(), f"{WEAK_LABELER_RUNS_PREFIX}/runs.json"
-        )
-        f = open(weak_labeler_runs_path)
-        old_runs = json.load(f)
-        f.close()
-        old_runs.append(report)
-        f = open(weak_labeler_runs_path, "w")
-        f.write(json.dumps(old_runs, indent=2))
-        f.close()
+        append_weak_labeler_run(report)

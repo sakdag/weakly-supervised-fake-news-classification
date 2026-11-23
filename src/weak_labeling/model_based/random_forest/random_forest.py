@@ -1,27 +1,28 @@
-import pickle
-from typing import Tuple
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
 
-import pandas as pd
-from nltk.corpus import stopwords
-from sklearn import metrics
-from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import classification_report
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.tree import DecisionTreeClassifier
-
-from src.preprocessing.consts import Datasets, Dataset
-from src.preprocessing.read_raw_data import (
-    read_raw_data,
-    read_csv,
-    balanced_undersample,
-)
+from src.preprocessing.consts import Dataset, Datasets
 from src.utils.time_utils import report_time
-from src.weak_labeling.consts.model_features import ModelFeatures, FeatureColumns
-from src.weak_labeling.model_based.common.get_vectors import get_tfidf_vectors
-from src.weak_labeling.model_based.utils import get_model_file_name
+from src.weak_labeling.consts.model_features import FeatureColumns, ModelFeatures
+from src.weak_labeling.model_based.common.trainer import (
+    predict_labels,
+    train_and_save_model,
+)
 
-stop = stopwords.words("english")
+
+def get_best_random_forest_parameters(tfidf_train, y_train) -> dict:
+    rfc = RandomForestClassifier()
+    parameters = {
+        "n_estimators": [90, 100, 115, 130],
+        "max_depth": range(2, 20),
+        "min_samples_leaf": range(1, 10),
+        "min_samples_split": range(2, 10),
+        "max_features": ["sqrt", "log2"],
+    }
+    grid_search = GridSearchCV(rfc, parameters, verbose=3, scoring="f1", n_jobs=-1)
+    grid_search.fit(tfidf_train, y_train)
+    print(f"Best params: {grid_search.best_params_}")
+    return grid_search.best_params_
 
 
 def train_random_forest_model(
@@ -31,18 +32,17 @@ def train_random_forest_model(
     undersample: bool = False,
     optimize: bool = False,
 ):
-    df: pd.DataFrame = read_csv(dataset.injected_path)
-
-    if undersample:
-        df = balanced_undersample(df, min(df["label"].value_counts()) * 2)
-        print(f"Undersampled, dataframe size: {len(df)}")
-
-    x_train, x_test, y_train, y_test = train_test_split(df, df["label"], test_size=0.20)
-
-    train_vectors = get_tfidf_vectors(x_train, feature_column)
-    test_vectors = get_tfidf_vectors(x_test, feature_column)
-
     if optimize:
+        from src.preprocessing.read_raw_data import balanced_undersample, read_csv
+        from src.weak_labeling.model_based.common.get_vectors import get_tfidf_vectors
+        from sklearn.model_selection import train_test_split
+
+        df = read_csv(dataset.injected_path)
+        if undersample:
+            df = balanced_undersample(df, min(df["label"].value_counts()) * 2)
+            print(f"Undersampled, dataframe size: {len(df)}")
+        x_train, _, y_train, _ = train_test_split(df, df["label"], test_size=0.20)
+        train_vectors = get_tfidf_vectors(x_train, feature_column)
         params = get_best_random_forest_parameters(train_vectors, y_train)
     else:
         params = {
@@ -53,69 +53,37 @@ def train_random_forest_model(
             "max_features": "sqrt",
         }
 
-    dts = RandomForestClassifier(
-        n_estimators=params["n_estimators"],
-        max_depth=params["max_depth"],
-        min_samples_leaf=params["min_samples_leaf"],
-        min_samples_split=params["min_samples_split"],
-        max_features=params["max_features"],
-        random_state=42,
+    def build_model():
+        return RandomForestClassifier(
+            n_estimators=params["n_estimators"],
+            max_depth=params["max_depth"],
+            min_samples_leaf=params["min_samples_leaf"],
+            min_samples_split=params["min_samples_split"],
+            max_features=params["max_features"],
+            random_state=42,
+        )
+
+    return train_and_save_model(
+        dataset=dataset,
+        save_identifier=save_identifier,
+        model_feature=ModelFeatures.RANDOM_FOREST,
+        build_model=build_model,
+        feature_column=feature_column,
+        undersample=undersample,
     )
-    dts.fit(train_vectors, y_train)
-    y_pred = dts.predict(test_vectors)
-    cr = classification_report(y_test, y_pred)
-    print(cr)
-
-    file_name = get_model_file_name(
-        ModelFeatures.RANDOM_FOREST, feature_column, dataset, save_identifier
-    )
-    pickle.dump(dts, open(file_name, "wb"))
-
-
-def get_best_random_forest_parameters(
-    tfidf_train,
-    y_train,
-) -> dict:
-    rfc = RandomForestClassifier()
-
-    parameters = {
-        "n_estimators": [90, 100, 115, 130],
-        "max_depth": range(2, 20),
-        "min_samples_leaf": range(1, 10),
-        "min_samples_split": range(2, 10),
-        "max_features": ["sqrt", "log2"],
-    }
-
-    grid_search = GridSearchCV(rfc, parameters, verbose=3, scoring="f1", n_jobs=-1)
-    grid_search.fit(tfidf_train, y_train)
-    best_params = grid_search.best_params_
-
-    print(f"Best params: {grid_search.best_params_}")
-    return best_params
 
 
 def get_random_forest_labels(
     random_forest_classifier,
-    df: pd.DataFrame,
+    df,
     feature_column: str = FeatureColumns.CONTENT,
-) -> pd.Series:
-    test_df = df[["title", "content", "label"]].copy()
-    test_vectors = get_tfidf_vectors(test_df, feature_column)
-
-    y_test_pred = random_forest_classifier.predict(test_vectors)
-    cr = classification_report(test_df["label"], y_test_pred)
-    print(cr)
-    return y_test_pred
+):
+    return predict_labels(random_forest_classifier, df, feature_column)
 
 
 @report_time
 def run():
-    datasets = [
-        # Datasets.NELA_ELECTIONS_2020,
-        Datasets.NELA_COVID_SUBSET,
-        # Datasets.NELA_ELECTIONS_SUBSET_2020,
-        # Datasets.NELA_COVID_COMBINED,
-    ]
+    datasets = [Datasets.NELA_COVID_SUBSET]
     for dataset in datasets:
         for column in FeatureColumns.get_all():
             train_random_forest_model(

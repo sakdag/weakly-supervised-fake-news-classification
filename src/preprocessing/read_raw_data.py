@@ -100,7 +100,11 @@ def read_weak_labeled_csv(
 
 
 def save_weak_labeled_csv(
-    df: pd.DataFrame, path: str, train_df_name: str, top_n: int = 0, curated_lfs: bool = False,
+    df: pd.DataFrame,
+    path: str,
+    train_df_name: str,
+    top_n: int = 0,
+    curated_lfs: bool = False,
 ) -> str:
     dataset_path = os.path.join(
         get_project_root(),

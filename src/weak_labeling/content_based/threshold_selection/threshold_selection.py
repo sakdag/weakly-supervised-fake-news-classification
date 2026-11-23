@@ -53,7 +53,7 @@ def find_threshold_for_feature(
 
     for percentile in percentiles_to_process:
         if abs(percentiles_dict[percentile]["diff"]) > (
-            (total_max_diff / 5.0)
+            (total_max_diff / 10.0)
         ):  # 1 / 200
             if percentiles_dict[percentile]["diff"] > 0:
                 side = "real" if direction == Direction.UPPER else "fake"
@@ -142,19 +142,19 @@ def get_thresholds_for_content_features(injected_df: pd.DataFrame):
 if __name__ == "__main__":
     run_configs = [
         {
-            "dataset": Datasets.NELA_ELECTIONS_2020,
-            "train_dataset": Datasets.NELA_COVID_COMBINED,
-        },
-        {
             "dataset": Datasets.NELA_COVID_COMBINED,
             "train_dataset": Datasets.NELA_ELECTIONS_2020,
         },
         # {
+        #     "dataset": Datasets.NELA_COVID_COMBINED,
+        #     "train_dataset": Datasets.NELA_ELECTIONS_2020,
+        # },
+        # {
         #     "dataset": Datasets.NELA_ELECTIONS_SUBSET_2020,
         # },
-        {
-            "dataset": Datasets.NELA_COVID_SUBSET,
-        },
+        # {
+        #     "dataset": Datasets.NELA_COVID_SUBSET,
+        # },
     ]
     for config in run_configs:
         if "train_dataset" in config.keys():
