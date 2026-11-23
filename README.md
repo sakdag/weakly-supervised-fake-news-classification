@@ -24,6 +24,8 @@ If you use this repository, please cite the paper (see [`CITATION.cff`](CITATION
 }
 ```
 
+Content-feature threshold selection and automatic labeling-function generation build on ideas from Özgöbek et al. (2022), which we cite and compare against in the paper.
+
 ## Repository layout
 
 ```
